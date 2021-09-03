@@ -40,8 +40,4 @@ public class MeetingRoom {
     @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
-
-
-
-
 }

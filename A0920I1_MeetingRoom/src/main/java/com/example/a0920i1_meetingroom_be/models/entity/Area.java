@@ -19,5 +19,5 @@ public class Area {
 
     @JsonBackReference
     @OneToMany(mappedBy = "area")
-    private List<Area> areaList;
+    private List<MeetingRoom> meetingRoomList;
 }
