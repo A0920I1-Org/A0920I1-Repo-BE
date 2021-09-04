@@ -18,6 +18,7 @@ public class MeetingRoom {
 
     private String name;
     private Integer floors;
+    private String imageUrl;
 
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderMeeting> orderMeetingList;
