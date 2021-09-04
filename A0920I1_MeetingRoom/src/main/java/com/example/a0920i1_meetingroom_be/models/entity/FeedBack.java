@@ -34,4 +34,15 @@ public class FeedBack {
     @JoinColumn(name="account_id" , referencedColumnName = "id")
     private Account account;
 
+    @OneToOne(mappedBy = "feedBack")
+    private Notification notification;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "feedBack")
+    private List<ImageFeedBack> imageFeedBackList;
+
+    @ManyToOne
+    @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
+    private MeetingRoom meetingRoom;
+
 }

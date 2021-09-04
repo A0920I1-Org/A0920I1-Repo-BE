@@ -17,10 +17,9 @@ public class Equipment {
     private long id;
 
     private String name;
-    private Integer stock;
+    private int stock;
 
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private Boolean repairement;
+    private int repairQuantity;
 
     private String imageUrl;
 

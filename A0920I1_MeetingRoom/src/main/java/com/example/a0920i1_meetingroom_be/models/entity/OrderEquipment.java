@@ -12,6 +12,7 @@ public class OrderEquipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private long quantity;
 
     @ManyToOne
     @JoinColumn(name = "equipment_id" , referencedColumnName = "id")
