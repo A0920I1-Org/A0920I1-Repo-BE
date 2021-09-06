@@ -19,9 +19,6 @@ public class MeetingRoom {
     private String name;
     private Integer floors;
 
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private Boolean status;
-
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderMeeting> orderMeetingList;
 
