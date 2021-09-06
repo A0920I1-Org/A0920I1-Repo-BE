@@ -23,6 +23,7 @@ public class MeetingRoom {
     private Boolean status;
 
     @OneToMany(mappedBy = "meetingRoom")
+    @JsonBackReference
     private List<OrderMeeting> orderMeetingList;
 
     @ManyToOne

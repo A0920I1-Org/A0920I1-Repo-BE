@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,5 @@ public class OrderEquipment {
     @ManyToOne
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;
+    private long quantity;
 }

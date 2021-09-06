@@ -17,18 +17,14 @@ public class Equipment {
     private long id;
 
     private String name;
-    private Integer stock;
-
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private Boolean repairement;
+    private int stock;
+    private int repairement;
 
     private String imageUrl;
 
     @JsonBackReference
     @OneToMany(mappedBy = "equipment")
     private List<OrderEquipment> orderEquipmentList;
-
-
-
+    private int using;
 
 }
