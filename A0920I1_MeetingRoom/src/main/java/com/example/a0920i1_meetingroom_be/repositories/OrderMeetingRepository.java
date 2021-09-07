@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -135,44 +134,16 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
             @Param("accountId")String accountId
     );
 
-    @Query(
-            value = "select * " +
-                    "from order_meeting om " +
-                    "inner join meeting_room mr on mr.id = om.meeting_room_id " +
-                    "where mr.name like %:idMeetingRoom% " +
-                    "and mr.room_status_id like %:idStatusRoom% " +
-                    "and mr.type_meeting_room_id like %:idTypeMeetingRoom% " +
-                    "and om.create_date like %:createDate% " +
-                    "and om.account_id like %:accountId% "
-            , nativeQuery = true
-    )
-    List<OrderMeeting> findRegisterHistoryDateCheckinAndCheckoutNull(
-            @Param("idMeetingRoom")String idMeetingRoom,
-            @Param("idStatusRoom")String idStatusRoom,
-            @Param("idTypeMeetingRoom")String idTypeMeetingRoom,
-            @Param("createDate")String createDate,
-            @Param("accountId")String accountId
-    );
-
     @Modifying
     @Transactional
     @Query(
             value = "update order_meeting om " +
-                    "set om.reason_delete = :reasonDelete, om.delete_time = :deleteTime " +
-                    "where om.id = :idOrder"
+                    "set om.reason_delete = :reasonDelete " +
+                    "where om.id like %:idOrder%"
             , nativeQuery = true
     )
     void deleteRegister(
             @Param("idOrder")String idOrder,
-            @Param("reasonDelete")String reasonDelete,
-            @Param("deleteTime") Date deleteTime
+            @Param("reasonDelete")String reasonDelete
     );
-
-    @Query(
-            value = "select * " +
-                    "from order_meeting om " +
-                    "where om.id = :idOrder"
-            , nativeQuery = true
-    )
-     List<OrderMeeting> checkIsDelete(@Param("idOrder")String idOrder);
 }

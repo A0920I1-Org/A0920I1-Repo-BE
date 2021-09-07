@@ -17,5 +17,4 @@ public interface OrderMeetingService {
     OrderMeeting findOrderById(String idOrder);
     List<OrderMeeting> findRegisterHistory(RegisterHistory registerHistory, String accountId);
     void deleteRegister(String idOrder, String reasonDelete);
-    boolean checkIsDelete(String idOrder);
 }
