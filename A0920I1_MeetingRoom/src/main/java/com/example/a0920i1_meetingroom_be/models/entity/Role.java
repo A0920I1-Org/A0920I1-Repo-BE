@@ -21,29 +21,4 @@ public class Role {
     @OneToMany(mappedBy = "role")
     private List<AccountRole> accountRoleList;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public List<AccountRole> getAccountRoleList() {
-        return accountRoleList;
-    }
-
-    public void setAccountRoleList(List<AccountRole> accountRoleList) {
-        this.accountRoleList = accountRoleList;
-    }
-
-
 }

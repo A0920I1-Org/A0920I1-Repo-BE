@@ -25,38 +25,4 @@ public class Notification {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "feedback_id", referencedColumnName = "id")
     private FeedBack feedBack;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public LocalDate getDate_notification() {
-        return date_notification;
-    }
-
-    public void setDate_notification(LocalDate date_notification) {
-        this.date_notification = date_notification;
-    }
-
-    public boolean isSeen() {
-        return isSeen;
-    }
-
-    public void setSeen(boolean seen) {
-        isSeen = seen;
-    }
-
-    public FeedBack getFeedBack() {
-        return feedBack;
-    }
-
-    public void setFeedBack(FeedBack feedBack) {
-        this.feedBack = feedBack;
-    }
-
-
 }
