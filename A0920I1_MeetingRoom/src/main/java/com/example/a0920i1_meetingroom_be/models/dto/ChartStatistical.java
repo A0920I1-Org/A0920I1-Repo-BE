@@ -3,18 +3,18 @@ package com.example.a0920i1_meetingroom_be.models.dto;
 public class ChartStatistical {
     private String nameMeetingRoom;
     private int uses;
-    private double performance;
+    private float performance;
 
-    public ChartStatistical(String nameMeetingRoom, double performance) {
+    public ChartStatistical(String nameMeetingRoom, float performance) {
         this.nameMeetingRoom = nameMeetingRoom;
         this.performance = performance;
     }
 
-    public double getPerformance() {
+    public float getPerformance() {
         return performance;
     }
 
-    public void setPerformance(double performance) {
+    public void setPerformance(float performance) {
         this.performance = performance;
     }
 

@@ -28,7 +28,19 @@ public class StatisticController {
     }
     @GetMapping("/totalsOfUses")
     public List<ChartStatistical> totalsOfUses(){
-        return orderMeetingService.totalsOfUses();
+        List<ChartStatistical> list = orderMeetingService.calculatorPerformanceByDate();
+        List<ChartStatistical> list1 = orderMeetingService.totalsOfUses();
+        for (int i=0; i< list.size();i++){
+            list.get(i).setUses(list1.get(i).getUses());
+            System.out.println(list.get(i).getUses());
+        }
+        return list;
+    }
+
+    //sua lai url for by date
+    @GetMapping("/performance")
+    public List<ChartStatistical> calculatorPerformanceByDate(){
+        return orderMeetingService.calculatorPerformanceByDate();
     }
 
 }

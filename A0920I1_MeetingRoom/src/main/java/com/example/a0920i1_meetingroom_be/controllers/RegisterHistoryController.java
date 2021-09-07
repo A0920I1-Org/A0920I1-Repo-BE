@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.controllers;
 
+import com.example.a0920i1_meetingroom_be.models.dto.DeleteRegistration;
 import com.example.a0920i1_meetingroom_be.models.dto.RegisterHistory;
 import com.example.a0920i1_meetingroom_be.models.entity.OrderMeeting;
 import com.example.a0920i1_meetingroom_be.services.OrderMeetingService;
@@ -37,8 +38,17 @@ public class RegisterHistoryController {
     }
 
     @PutMapping("/deleteRegister/{idOrder}")
-    public void deleteRegister(@RequestBody String reasonDelete,
+    public void deleteRegister(@RequestBody DeleteRegistration reasonDelete,
                                @PathVariable("idOrder")String idOrder){
-         orderMeetingService.deleteRegister(idOrder,reasonDelete);
+        System.out.println(reasonDelete.getReasonDelete());
+        System.out.println("Id order in Controller"+idOrder);
+         orderMeetingService.deleteRegister(idOrder,reasonDelete.getReasonDelete());
+    }
+
+    @GetMapping("/checkIsDelete/{idOrder}")
+    public boolean checkIsDelete(@PathVariable("idOrder")String idOrder){
+        boolean check = orderMeetingService.checkIsDelete(idOrder);
+        System.out.println(check);
+        return orderMeetingService.checkIsDelete(idOrder);
     }
 }
