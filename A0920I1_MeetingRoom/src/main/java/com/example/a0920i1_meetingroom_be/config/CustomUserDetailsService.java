@@ -1,11 +1,8 @@
 package com.example.a0920i1_meetingroom_be.config;
 
 
-import com.example.a0920i1_meetingroom_be.models.dto.AuthenticationResponse;
-import com.example.a0920i1_meetingroom_be.models.dto.UserRole;
 import com.example.a0920i1_meetingroom_be.models.entity.Account;
 import com.example.a0920i1_meetingroom_be.models.entity.AccountRole;
-import com.example.a0920i1_meetingroom_be.models.entity.Role;
 import com.example.a0920i1_meetingroom_be.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,7 +27,6 @@ public class CustomUserDetailsService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<GrantedAuthority> grantedAuthorities = null;
         Account account = accountRepository.findByUsername(username);
-//        UserRole userRole = accountRepository.findRoleByUsername(username);
 
         if (account != null) {
             grantedAuthorities = new ArrayList<>();
