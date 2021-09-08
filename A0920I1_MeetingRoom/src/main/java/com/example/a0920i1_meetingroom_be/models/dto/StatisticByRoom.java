@@ -4,7 +4,6 @@ public class StatisticByRoom {
     private String idTypeMeetingRoom;
     private String idMeetingRoom;
     private String month;
-    private String year;
 
     public String getIdTypeMeetingRoom() {
         return idTypeMeetingRoom;
@@ -30,18 +29,9 @@ public class StatisticByRoom {
         this.month = month;
     }
 
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public StatisticByRoom(String idTypeMeetingRoom, String idMeetingRoom, String month, String year) {
+    public StatisticByRoom(String idTypeMeetingRoom, String idMeetingRoom, String month) {
         this.idTypeMeetingRoom = idTypeMeetingRoom;
         this.idMeetingRoom = idMeetingRoom;
         this.month = month;
-        this.year = year;
     }
 }

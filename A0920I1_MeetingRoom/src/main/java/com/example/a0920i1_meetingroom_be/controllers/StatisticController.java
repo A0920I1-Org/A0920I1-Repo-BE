@@ -17,17 +17,22 @@ public class StatisticController {
     @Autowired
     OrderMeetingService orderMeetingService;
 
-    @PutMapping("/statisticByDate")
+    //thong ke theo ngay
+    @PutMapping("/statistic-by-date")
     public List<OrderMeeting> statisticByDate(@RequestBody StatisticByDate statisticByDate){
         System.out.println("controller statistic by date");
         return orderMeetingService.statisticByDate(statisticByDate);
     }
-    @PutMapping("/statisticByRoom")
+
+    // thong ke theo phong
+    @PutMapping("/statistic-by-room")
     public List<OrderMeeting> statisticByDate(@RequestBody StatisticByRoom statisticByRoom){
         return orderMeetingService.statisticByRoom(statisticByRoom);
     }
-    @GetMapping("/totalsOfUses")
-    public List<ChartStatistical> totalsOfUses(){
+
+    // tinh toan hieu suat va so lan su dung cua moi phong
+    @GetMapping("/cal-performance-totals-of-uses")
+    public List<ChartStatistical> calPerformanceAndUses(){
         List<ChartStatistical> list = orderMeetingService.calculatorPerformanceByDate();
         List<ChartStatistical> list1 = orderMeetingService.totalsOfUses();
         for (int i=0; i< list.size();i++){
@@ -37,10 +42,5 @@ public class StatisticController {
         return list;
     }
 
-    //sua lai url for by date
-    @GetMapping("/performance")
-    public List<ChartStatistical> calculatorPerformanceByDate(){
-        return orderMeetingService.calculatorPerformanceByDate();
-    }
 
 }

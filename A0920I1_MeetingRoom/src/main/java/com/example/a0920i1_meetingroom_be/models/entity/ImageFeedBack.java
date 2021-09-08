@@ -44,6 +44,4 @@ public class ImageFeedBack {
         this.feedBack = feedBack;
     }
 
-
-
 }

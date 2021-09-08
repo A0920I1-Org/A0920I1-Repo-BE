@@ -158,7 +158,9 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
     @Transactional
     @Query(
             value = "update order_meeting om " +
-                    "set om.reason_delete = :reasonDelete, om.delete_time = :deleteTime " +
+                    "inner join meeting_room mr on mr.id = om.meeting_room_id " +
+                    "inner join room_status rs on rs.id = mr.room_status_id " +
+                    "set om.reason_delete = :reasonDelete, om.delete_time = :deleteTime, mr.room_status_id = 2 " +
                     "where om.id = :idOrder"
             , nativeQuery = true
     )
@@ -168,11 +170,14 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
             @Param("deleteTime") Date deleteTime
     );
 
+
     @Query(
             value = "select * " +
                     "from order_meeting om " +
                     "where om.id = :idOrder"
             , nativeQuery = true
     )
-     List<OrderMeeting> checkIsDelete(@Param("idOrder")String idOrder);
+     List<OrderMeeting> checkIsDelete(
+             @Param("idOrder")String idOrder);
+
 }

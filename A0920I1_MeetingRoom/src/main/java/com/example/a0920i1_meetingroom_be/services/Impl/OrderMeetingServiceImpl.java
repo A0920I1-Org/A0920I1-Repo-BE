@@ -27,7 +27,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     MeetingRoomRepository meetingRoomRepository;
 
     private List<OrderMeeting> statisticList;
-    float daysBetweenBySearch; //bien dem ngay sau khi search theo date or room
+    float daysBetweenBySearch = 0; //bien dem ngay sau khi search theo date or room
 
     SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     // HH:mm:ss.SSSXXX
@@ -74,24 +74,27 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     @Override
     public List<OrderMeeting> statisticByRoom(StatisticByRoom statisticByRoom) {
         System.out.println("statisticByRoom");
-        switch (statisticByRoom.getMonth()) {
-            case "1":
-            case "3":
-            case "5":
-            case "7":
-            case "8":
-            case "10":
-            case "12":
-                daysBetweenBySearch = 31;
-                break;
-            case "2":
-            case "4":
-            case "6":
-            case "9":
-            case "11":
-                daysBetweenBySearch = 30;
-                break;
-
+        if (statisticByRoom.getMonth()!=null) {
+            switch (statisticByRoom.getMonth()) {
+                case "1":
+                case "3":
+                case "5":
+                case "7":
+                case "8":
+                case "10":
+                case "12":
+                    daysBetweenBySearch = 31;
+                    break;
+                case "2":
+                case "4":
+                case "6":
+                case "9":
+                case "11":
+                    daysBetweenBySearch = 30;
+                    break;
+            }
+        }else {
+            daysBetweenBySearch = 0;
         }
 
         if (statisticByRoom.getIdMeetingRoom() == null) {
@@ -307,7 +310,12 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
 
     @Override
     public boolean checkIsDelete(String idOrder) {
-        if (orderMeetingRepository.checkIsDelete(idOrder).get(0).getDeleteTime() == null) {
+        OrderMeeting orderMeeting = orderMeetingRepository.checkIsDelete(idOrder).get(0);
+        LocalDate dateNow = LocalDate.now();
+        System.out.println("Ngay hien tai " + dateNow);
+        float checkDay = getDaysBetween(String.valueOf(orderMeeting.getDateCheckout()), String.valueOf(dateNow));
+        System.out.println("so sanh ngay hien tai va ngay checkout da het han chua?: " + checkDay);
+        if(orderMeeting.getDeleteTime()==null && checkDay < 0){
             return false;
         }
         return true;
