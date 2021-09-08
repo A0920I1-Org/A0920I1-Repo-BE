@@ -21,6 +21,8 @@ public class FeedBack {
 
     private String description;
 
+    private String title;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFeedback;
     @Type(type = "org.hibernate.type.NumericBooleanType")

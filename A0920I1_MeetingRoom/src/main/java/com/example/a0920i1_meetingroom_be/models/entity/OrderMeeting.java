@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Data
-@NoArgsConstructor
+//Data
+//@NoArgsConstructor@
 public class OrderMeeting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +21,54 @@ public class OrderMeeting {
     @JoinColumn(name = "account_id" , referencedColumnName = "id")
     private Account account;
 
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
+//
+//    public MeetingRoom getMeetingRoom() {
+//        return meetingRoom;
+//    }
+//
+//    public void setMeetingRoom(MeetingRoom meetingRoom) {
+//        this.meetingRoom = meetingRoom;
+//    }
+//
+//    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
 
+    public OrderMeeting() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public MeetingRoom getMeetingRoom() {
+        return meetingRoom;
+    }
+
+    public void setMeetingRoom(MeetingRoom meetingRoom) {
+        this.meetingRoom = meetingRoom;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }
