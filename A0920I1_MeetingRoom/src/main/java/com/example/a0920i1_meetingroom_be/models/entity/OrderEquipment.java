@@ -13,6 +13,7 @@ public class OrderEquipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private long quantity;
 
     @ManyToOne
     @JoinColumn(name = "equipment_id" , referencedColumnName = "id")
@@ -21,5 +22,4 @@ public class OrderEquipment {
     @ManyToOne
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;
-    private long quantity;
 }

@@ -18,9 +18,7 @@ public class MeetingRoom {
 
     private String name;
     private Integer floors;
-
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private Boolean status;
+    private String imageUrl;
 
     @OneToMany(mappedBy = "meetingRoom")
     @JsonBackReference
@@ -41,4 +39,9 @@ public class MeetingRoom {
     @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
+
+    @OneToMany(mappedBy = "meetingRoom")
+    private List<FeedBack> feedBackList;
+
+
 }
