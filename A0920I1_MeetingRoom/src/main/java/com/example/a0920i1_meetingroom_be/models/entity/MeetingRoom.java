@@ -20,6 +20,7 @@ public class MeetingRoom {
     private Integer floors;
     private String imageUrl;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderMeeting> orderMeetingList;
 
@@ -39,6 +40,7 @@ public class MeetingRoom {
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<FeedBack> feedBackList;
 
