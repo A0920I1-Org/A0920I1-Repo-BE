@@ -8,20 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/meetingRooms")
-public class MeetingroomController {
+public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService;
 
     @GetMapping("")
     public List<MeetingRoom> getMeetingRoom(){
         return meetingRoomService.getMeetingRooms();
-    }
-
-    @PutMapping("/update")
-    public MeetingRoom update(@RequestBody MeetingRoom meetingRoom){
-        System.out.println("hello");
-        return null;
     }
 }

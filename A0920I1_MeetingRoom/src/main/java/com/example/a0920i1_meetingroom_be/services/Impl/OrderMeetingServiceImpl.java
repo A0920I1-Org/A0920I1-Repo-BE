@@ -39,7 +39,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
             Date dateStart = myDateFormat.parse(dateCheckin);
             Date dateEnd = myDateFormat.parse(dateCheckout);
             long getDayDiffBySearch = (dateEnd.getTime() - dateStart.getTime());
-            daysBetween = (getDayDiffBySearch / (1000 * 60 * 60 * 24));
+            daysBetween = (float) (getDayDiffBySearch / (1000 * 60 * 60 * 24));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -48,23 +48,18 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
 
     @Override
     public List<OrderMeeting> statisticByDate(StatisticByDate statisticByDate) {
-        System.out.println("impl statistic by date");
         //tinh diff : end - start
         daysBetweenBySearch = getDaysBetween(statisticByDate.getDateCheckin(), statisticByDate.getDateCheckout());
-        System.out.println("tong so ngay cua search : " + daysBetweenBySearch);
 
         // statistical by date
         if (statisticByDate.getDateCheckin() == null) {
-            System.out.println("checkin null and checkout = " + statisticByDate.getDateCheckout());
             statisticList = orderMeetingRepository.statisticByDateCheckinNull(statisticByDate.getDateCheckout());
             return orderMeetingRepository.statisticByDateCheckinNull(statisticByDate.getDateCheckout());
         }
         if (statisticByDate.getDateCheckout() == null) {
-            System.out.println("checkout null and checkin = " + statisticByDate.getDateCheckin());
             statisticList = orderMeetingRepository.statisticByDateCheckoutNull(statisticByDate.getDateCheckin());
             return orderMeetingRepository.statisticByDateCheckoutNull(statisticByDate.getDateCheckin());
         }
-        System.out.println("checkin checkout");
         statisticList = orderMeetingRepository.statisticByDate(statisticByDate.getDateCheckin(), statisticByDate.getDateCheckout());
         return orderMeetingRepository.statisticByDate(
                 statisticByDate.getDateCheckin(),
@@ -73,8 +68,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
 
     @Override
     public List<OrderMeeting> statisticByRoom(StatisticByRoom statisticByRoom) {
-        System.out.println("statisticByRoom");
-        if (statisticByRoom.getMonth()!=null) {
+        if (statisticByRoom.getMonth() != null) {
             switch (statisticByRoom.getMonth()) {
                 case "1":
                 case "3":
@@ -93,21 +87,18 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                     daysBetweenBySearch = 30;
                     break;
             }
-        }else {
+        } else {
             daysBetweenBySearch = 0;
         }
 
         if (statisticByRoom.getIdMeetingRoom() == null) {
             statisticByRoom.setIdMeetingRoom("");
-            System.out.println(statisticByRoom.getIdMeetingRoom());
         }
         if (statisticByRoom.getIdTypeMeetingRoom() == null) {
             statisticByRoom.setIdTypeMeetingRoom("");
-            System.out.println(statisticByRoom.getIdTypeMeetingRoom());
         }
         if (statisticByRoom.getMonth() == null) {
             statisticByRoom.setMonth("");
-            System.out.println(statisticByRoom.getMonth());
         }
         statisticList = orderMeetingRepository.statisticByRoom(
                 statisticByRoom.getIdTypeMeetingRoom(),
@@ -122,13 +113,13 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
 
 
     // xu li lay gio
-    public long getTimeDiff(LocalDate dateCheckin, LocalTime timeStart, LocalTime timeEnd){
+    public long getTimeDiff(LocalDate dateCheckin, LocalTime timeStart, LocalTime timeEnd) {
         long getTimeDiff = 0;
-        try{
-            Date timeStartFunc = myTimeFormat.parse(dateCheckin + " " +timeStart );
-            Date timeEndFunc = myTimeFormat.parse(dateCheckin+" "+timeEnd);
+        try {
+            Date timeStartFunc = myTimeFormat.parse(dateCheckin + " " + timeStart);
+            Date timeEndFunc = myTimeFormat.parse(dateCheckin + " " + timeEnd);
             getTimeDiff = (((timeEndFunc.getTime() - timeStartFunc.getTime()) / (1000 * 60 * 60)) % 24);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return getTimeDiff;
@@ -145,27 +136,21 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     // xu li tinh hieu suat
     public float calculatorPerformance(float getTimeDiff,
                                        float daysBetweenBySearch,
-                                       float daysBetweenForCalculator){
+                                       float daysBetweenForCalculator) {
         float numberHoursUses = getTimeDiff * daysBetweenForCalculator;
-        System.out.println("So gio su dung : "+numberHoursUses);
-        System.out.println("So ngay theo search : " + daysBetweenBySearch);
         float numberHoursUsesForSearch = 24 * daysBetweenBySearch;
-        System.out.println("So gio tong :" + numberHoursUsesForSearch);
-        System.out.println("Performance :" +((numberHoursUses / numberHoursUsesForSearch) % 100));
         return ((numberHoursUses / numberHoursUsesForSearch) % 100);
     }
 
 
     @Override
     public List<ChartStatistical> calculatorPerformanceByDate() {
-        System.out.println("Calculator performance by date");
         List<MeetingRoom> meetingRoom = meetingRoomRepository.findAll();
         List<ChartStatistical> chartStatisticalList = getChartStatisticalList(meetingRoom);
         long[] holdTotalHours = new long[chartStatisticalList.size()];
-        float[] holDays =new float[chartStatisticalList.size()];
+        float[] holDays = new float[chartStatisticalList.size()];
 //        // xu li time tinh performance
         if (statisticList != null) {
-            System.out.println("vao day k?");
             for (int i = 0; i < statisticList.size(); i++) {
                 for (int j = 0; j < chartStatisticalList.size(); j++) {
                     if (statisticList.get(i).getMeetingRoom().getName().equals(chartStatisticalList.get(j).getNameMeetingRoom())) {
@@ -175,16 +160,13 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                                     statisticList.get(i).getDateCheckin(),
                                     statisticList.get(i).getTimeStart(),
                                     statisticList.get(i).getTimeEnd());
-                            System.out.println("number of hours : " + getTimeDiff);
                             holdTotalHours[j] += getTimeDiff;
-                            System.out.println(holdTotalHours[j]);
+
                             //tinh toan days register
                             float daysBetweenForCalculator = getDaysBetween(
                                     String.valueOf(statisticList.get(i).getDateCheckin()),
                                     String.valueOf(statisticList.get(i).getDateCheckout()));
-                            System.out.println("Ngay trong DB : " + daysBetweenForCalculator);
                             holDays[j] += daysBetweenForCalculator;
-                            System.out.println(holDays[j]);
                             break;
 
                         } catch (Exception e) {
@@ -196,17 +178,8 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         }
 
         for (int i = 0; i < chartStatisticalList.size(); i++) {
-            System.out.println("so gio :" +holdTotalHours[i]);
-            System.out.println("so ngay : " + holDays[i]);
-            float performance = calculatorPerformance(holdTotalHours[i],daysBetweenBySearch,holDays[i]);
+            float performance = calculatorPerformance(holdTotalHours[i], daysBetweenBySearch, holDays[i]);
             chartStatisticalList.get(i).setPerformance(performance);
-            System.out.println(chartStatisticalList.get(i).getPerformance());
-        }
-
-
-        for (int i = 0; i < chartStatisticalList.size(); i++) {
-            System.out.println(chartStatisticalList.get(i).getNameMeetingRoom());
-            System.out.println(chartStatisticalList.get(i).getPerformance());
         }
         return chartStatisticalList;
     }
@@ -223,7 +196,6 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
 
         //calculator totals of uses, each meeting room
         if (statisticList != null) {
-            System.out.println("vào đây không ta");
             for (OrderMeeting orderMeeting : statisticList) {
                 for (ChartStatistical chartStatistical : chartStatisticalList) {
                     if (orderMeeting.getMeetingRoom().getName().equals(chartStatistical.getNameMeetingRoom())) {
@@ -302,8 +274,6 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
 
     @Override
     public void deleteOrderMeeting(String idOrder, String reasonDelete) {
-        System.out.println("ID Order : " + idOrder);
-        System.out.println("reason delete: " + reasonDelete);
         Date deleteTime = Calendar.getInstance().getTime();
         orderMeetingRepository.deleteRegister(idOrder, reasonDelete, deleteTime);
     }
@@ -312,10 +282,8 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     public boolean checkIsDelete(String idOrder) {
         OrderMeeting orderMeeting = orderMeetingRepository.checkIsDelete(idOrder).get(0);
         LocalDate dateNow = LocalDate.now();
-        System.out.println("Ngay hien tai " + dateNow);
         float checkDay = getDaysBetween(String.valueOf(orderMeeting.getDateCheckout()), String.valueOf(dateNow));
-        System.out.println("so sanh ngay hien tai va ngay checkout da het han chua?: " + checkDay);
-        if(orderMeeting.getDeleteTime()==null && checkDay < 0){
+        if (orderMeeting.getDeleteTime() == null && checkDay < 0) {
             return false;
         }
         return true;
@@ -325,6 +293,5 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     public List<OrderMeeting> getRegisterHistoryByIdMeetingRoom(String idMeetingRoom) {
         return orderMeetingRepository.getRegisterHistoryByIdMeetingRoom(idMeetingRoom);
     }
-
-
 }
+

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/statistical")
 public class StatisticController {
     @Autowired
@@ -20,7 +20,6 @@ public class StatisticController {
     //thong ke theo ngay
     @PutMapping("/statistic-by-date")
     public List<OrderMeeting> statisticByDate(@RequestBody StatisticByDate statisticByDate){
-        System.out.println("controller statistic by date");
         return orderMeetingService.statisticByDate(statisticByDate);
     }
 
@@ -41,6 +40,4 @@ public class StatisticController {
         }
         return list;
     }
-
-
 }

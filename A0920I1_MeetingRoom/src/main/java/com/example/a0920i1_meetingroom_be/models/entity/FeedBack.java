@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,7 +23,7 @@ public class FeedBack {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFeedback;
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean ísHandle;
+    private boolean isHandle;
 
     @ManyToOne
     @JoinColumn(name="feedBackType_id" , referencedColumnName = "id")
@@ -69,12 +68,12 @@ public class FeedBack {
         this.dateFeedback = dateFeedback;
     }
 
-    public boolean isÍsHandle() {
-        return ísHandle;
+    public boolean isIsHandle() {
+        return isHandle;
     }
 
-    public void setÍsHandle(boolean ísHandle) {
-        this.ísHandle = ísHandle;
+    public void setIsHandle(boolean isHandle) {
+        this.isHandle = isHandle;
     }
 
     public FeedBackType getFeedBackType() {

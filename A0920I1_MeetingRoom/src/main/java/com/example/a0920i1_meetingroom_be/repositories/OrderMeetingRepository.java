@@ -1,15 +1,12 @@
 package com.example.a0920i1_meetingroom_be.repositories;
 
-import ch.qos.logback.core.boolex.EvaluationException;
 import com.example.a0920i1_meetingroom_be.models.entity.OrderMeeting;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
 import java.util.List;

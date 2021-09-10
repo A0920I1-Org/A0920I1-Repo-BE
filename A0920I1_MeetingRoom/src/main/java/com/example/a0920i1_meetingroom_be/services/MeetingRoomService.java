@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface MeetingRoomService {
     List<MeetingRoom> getMeetingRooms();
-    List<String> getNameMeetingRooms();
 }
