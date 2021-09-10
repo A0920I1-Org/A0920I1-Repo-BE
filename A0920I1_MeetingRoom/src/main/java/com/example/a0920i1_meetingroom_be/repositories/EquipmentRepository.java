@@ -12,4 +12,6 @@ import java.util.List;
 public interface EquipmentRepository extends JpaRepository<Equipment , Long> {
 //    @Query(value = "SELECT * FROM equipment" , nativeQuery = true)
 //    List<Equipment> findAllEquipment();
+
+
 }

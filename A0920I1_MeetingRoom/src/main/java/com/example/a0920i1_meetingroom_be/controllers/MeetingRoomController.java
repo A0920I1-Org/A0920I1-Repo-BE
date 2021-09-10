@@ -1,18 +1,18 @@
 package com.example.a0920i1_meetingroom_be.controllers;
 
-import com.example.a0920i1_meetingroom_be.models.dto.UpdateMeeting;
+import com.example.a0920i1_meetingroom_be.models.dto.MeetingRoomDto;
 import com.example.a0920i1_meetingroom_be.models.entity.*;
 import com.example.a0920i1_meetingroom_be.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@RestController("")
+@RestController
+@RequestMapping("/meeting")
 public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService ;
@@ -30,22 +30,22 @@ public class MeetingRoomController {
     EquipmentService equipmentService ;
 
 
-    // Get All Meeting Room
-    @GetMapping(value = "/list")
-//    @GetMapping
-    public ResponseEntity<List<MeetingRoom>>getAllListMeetingRoom(){
+    // Lấy danh sách phòng họp (Hoàng)
+//    @GetMapping(value = "/list")
+    @GetMapping
+    public List<MeetingRoom>getAllListMeetingRoom(){
         List<MeetingRoom> meetingRooms = meetingRoomService.findAllMeetingRoom();
-        if(meetingRooms.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }else {
-            return new ResponseEntity<>(meetingRooms,HttpStatus.OK);
-        }
-//        return meetingRooms ;
+//        if(meetingRooms.isEmpty()){
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }else {
+//            return new ResponseEntity<>(meetingRooms,HttpStatus.OK);
+//        }
+        return meetingRooms ;
     }
 
-    // Get By Id Meeting Room
+    // Lấy dữ liệu theo Id (Hoàng)
 //    @GetMapping("/meeting-room/{id}")
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public MeetingRoom getById(@PathVariable("id") long id){
         System.out.println("success!");
         MeetingRoom meetingRoom = meetingRoomService.findById(id);
@@ -60,57 +60,56 @@ public class MeetingRoomController {
 
     // Update Meeting Room
     @PutMapping( value = "/meeting-room-edit/{id}")
-    public ResponseEntity<MeetingRoom> updateMeetingRoom(@PathVariable("id") long id , @RequestBody MeetingRoom meetingRoom){
-        MeetingRoom meetingRoom1 = meetingRoomService.findById(id);
-        if (meetingRoom1 == null){
-            System.out.println("Id  " + id + "not  found");
-            return new ResponseEntity<MeetingRoom>(HttpStatus.NOT_FOUND);
-        }
-        meetingRoom1.setName(meetingRoom.getName());
-        meetingRoom1.setFloors(meetingRoom.getFloors());
-        meetingRoom1.setArea(meetingRoom.getArea());
-        meetingRoom1.setRoomStatus(meetingRoom.getRoomStatus());
-        meetingRoom1.setTypeMeetingRoom(meetingRoom.getTypeMeetingRoom());
-        meetingRoom1.setImage_url(meetingRoom.getImage_url());
-//        meetingRoom1.setId(meetingRoom.getId());
+    public ResponseEntity<MeetingRoom> updateMeetingRoom(@PathVariable("id") long id , @RequestBody MeetingRoomDto meetingRoomDto){
 
-        meetingRoomService.updateMeetingRoom(meetingRoom1);
-        return  new ResponseEntity<>(meetingRoom1,HttpStatus.OK);
+        meetingRoomService.updateMeeting(meetingRoomDto.getName(),meetingRoomDto.getFloors(),meetingRoomDto.getArea(),meetingRoomDto.getRoomStatus(),
+                meetingRoomDto.getTypeMeetingRoom(),meetingRoomDto.getImage_url(),meetingRoomDto.getId());
+        return  new ResponseEntity<>( HttpStatus.OK);
     }
 
-    @GetMapping(value = "/listArea")
+
+    @GetMapping(value = "area")
     public List<Area> getAllListArea(){
         List<Area> areas = areaService.findAllArea();
         return areas ;
     }
 
-    @GetMapping(value = "/listTypeMeetingRoom")
+    @GetMapping(value = "typeMeetingRoom")
     public List<TypeMeetingRoom> getAllListTypeMeetingRoom(){
         List<TypeMeetingRoom> typeMeetingRooms = typeMeetingRoomService.findAllTypeMeetingRoom();
         return typeMeetingRooms ;
     }
 
-    @GetMapping(value = "/listRoomStatus")
+    @GetMapping(value = "roomStatus")
     public List<RoomStatus> getAllRoomStatus(){
         List<RoomStatus> roomStatuses = roomStatusService.findAllRoomStatus();
         return roomStatuses ;
     }
 
-    @GetMapping(value = "/listEquipment")
+    @GetMapping(value = "equipment")
     public List<Equipment> getAllEquipment(){
         List<Equipment> equipment = equipmentService.findAllEquipment();
         return equipment ;
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
-        meetingRoomService.deleteMeetingRoom(id);
+    @DeleteMapping("{id}")
+    public ResponseEntity<MeetingRoom>delete(@PathVariable long id){
+        System.out.println("Xoa thanh cong id " + id) ;
+        meetingRoomService.deleteMeeting(id);
+//        MeetingRoom user = meetingRoomService.findById(id);
+//        if (user == null) {
+//            System.out.println("Unable to delete. User with id " + id + " not found");
+//            return new ResponseEntity<MeetingRoom>(HttpStatus.NOT_FOUND);
+//        }
+//
+//        meetingRoomService.deleteMeetingRoom(id);
+        return new ResponseEntity<MeetingRoom>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping( value = "/meeting-room/{id}")
-    public ResponseEntity<?> updateMeeting(@PathVariable("id") long id , @RequestBody UpdateMeeting meetingRoom){
-        System.out.println("Hello");
-
-            return new ResponseEntity<MeetingRoom>(HttpStatus.NOT_FOUND);
-    }
+//    @PutMapping( value = "/meeting-room/{id}")
+//    public ResponseEntity<?> updateMeeting(@PathVariable("id") long id , @RequestBody UpdateMeeting meetingRoom){
+//        System.out.println("Hello");
+//
+//            return new ResponseEntity<MeetingRoom>(HttpStatus.NOT_FOUND);
+//    }
 }

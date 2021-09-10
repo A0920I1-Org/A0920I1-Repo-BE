@@ -1,11 +1,11 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
-public class Area {
+public class RoomStatusDto {
     private long id ;
 
     private String name ;
 
-    public Area() {
+    public RoomStatusDto() {
     }
 
     public long getId() {

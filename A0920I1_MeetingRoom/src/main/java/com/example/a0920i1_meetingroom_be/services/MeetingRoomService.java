@@ -12,8 +12,7 @@ import java.util.List;
 public interface MeetingRoomService {
     List<MeetingRoom> findAllMeetingRoom();
     MeetingRoom findById(long id);
-    void updateMeetingRoom(MeetingRoom meetingRoom);
-//    void updateMeetingRoom(String name , Integer floors , Area area , RoomStatus roomStatus , TypeMeetingRoom typeMeetingRoom ,String image_url ,long id);
+    void updateMeeting(String name , int floors , long area_id , long room_status_id , long type_meeting_room_id , String image_url,long id);
 
-    void  deleteMeetingRoom(long id);
+    void deleteMeeting(long id);
 }
