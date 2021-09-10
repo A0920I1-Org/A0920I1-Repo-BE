@@ -301,7 +301,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     }
 
     @Override
-    public void deleteRegister(String idOrder, String reasonDelete) {
+    public void deleteOrderMeeting(String idOrder, String reasonDelete) {
         System.out.println("ID Order : " + idOrder);
         System.out.println("reason delete: " + reasonDelete);
         Date deleteTime = Calendar.getInstance().getTime();
@@ -319,6 +319,11 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<OrderMeeting> getRegisterHistoryByIdMeetingRoom(String idMeetingRoom) {
+        return orderMeetingRepository.getRegisterHistoryByIdMeetingRoom(idMeetingRoom);
     }
 
 

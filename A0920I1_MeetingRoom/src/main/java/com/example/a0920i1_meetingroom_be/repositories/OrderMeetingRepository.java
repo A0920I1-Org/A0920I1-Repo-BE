@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.repositories;
 
+import ch.qos.logback.core.boolex.EvaluationException;
 import com.example.a0920i1_meetingroom_be.models.entity.OrderMeeting;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -180,4 +181,11 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
      List<OrderMeeting> checkIsDelete(
              @Param("idOrder")String idOrder);
 
+    @Query(
+            value = "select * " +
+                    "from order_meeting om " +
+                    "where om.meeting_room_id = :idMeetingRoom"
+            , nativeQuery = true
+    )
+    List<OrderMeeting> getRegisterHistoryByIdMeetingRoom(@Param("idMeetingRoom") String idMeetingRoom);
 }

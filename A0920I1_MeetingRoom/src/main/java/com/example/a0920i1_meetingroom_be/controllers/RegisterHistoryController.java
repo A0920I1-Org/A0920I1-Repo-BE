@@ -17,32 +17,33 @@ public class RegisterHistoryController {
     OrderMeetingService orderMeetingService;
 
     // need information account => account id
-    @GetMapping("/{accountId}")
-    public List<OrderMeeting> getOrderMeeting(@PathVariable("accountId")String accountId){
-        return orderMeetingService.getOrderMeetingByAccountId(accountId);
+    @GetMapping("/account/{idAccount}")
+    public List<OrderMeeting> getOrderMeetingListByIdAccount(@PathVariable("idAccount")String idAccount){
+        System.out.println("register account : " + idAccount);
+        return orderMeetingService.getOrderMeetingByAccountId(idAccount);
     }
 
-    @PutMapping("/searchRegistrationHistory/{accountId}")
-    public List<OrderMeeting> search(
+    @PutMapping("/searchRegistrationHistory/{idAccount}")
+    public List<OrderMeeting> searchOrderMeeting(
             @RequestBody RegisterHistory registerHistory,
-            @PathVariable("accountId")String accountId
+            @PathVariable("idAccount")String accountId
     ){
         System.out.println("AccountID:" + accountId);
         return orderMeetingService.findRegisterHistory(registerHistory, accountId);
     }
 
     @GetMapping("/findOrderById/{idOrder}")
-    public OrderMeeting findOrderById(@PathVariable("idOrder")String idOrder){
-        System.out.println(idOrder);
-        return orderMeetingService.findOrderById(idOrder);
+    public OrderMeeting findOrderMeetingById(@PathVariable("idOrder")String idOrderMeeting){
+        System.out.println(idOrderMeeting);
+        return orderMeetingService.findOrderById(idOrderMeeting);
     }
 
     @PutMapping("/deleteRegister/{idOrder}")
-    public void deleteRegister(@RequestBody DeleteRegistration reasonDelete,
+    public void deleteOrderMeeting(@RequestBody DeleteRegistration reasonDelete,
                                @PathVariable("idOrder")String idOrder){
         System.out.println(reasonDelete.getReasonDelete());
         System.out.println("Id order in Controller"+idOrder);
-         orderMeetingService.deleteRegister(idOrder,reasonDelete.getReasonDelete());
+         orderMeetingService.deleteOrderMeeting(idOrder,reasonDelete.getReasonDelete());
     }
 
     @GetMapping("/checkIsDelete/{idOrder}")
@@ -51,4 +52,11 @@ public class RegisterHistoryController {
         System.out.println(check);
         return orderMeetingService.checkIsDelete(idOrder);
     }
+
+    @GetMapping("/meetingRoom/{idMeetingRoom}")
+    public List<OrderMeeting> regiserHistoryByMeetingRoom(@PathVariable("idMeetingRoom")String idMeetingRoom){
+        System.out.println("register " + idMeetingRoom);
+        return orderMeetingService.getRegisterHistoryByIdMeetingRoom(idMeetingRoom);
+    }
+
 }

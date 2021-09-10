@@ -13,9 +13,11 @@ public interface OrderMeetingService {
     List<OrderMeeting> statisticByRoom(StatisticByRoom statisticByRoom);
     List<ChartStatistical> calculatorPerformanceByDate();
     List<ChartStatistical> totalsOfUses();
-    List<OrderMeeting> getOrderMeetingByAccountId(String accountId);
-    OrderMeeting findOrderById(String idOrder);
-    List<OrderMeeting> findRegisterHistory(RegisterHistory registerHistory, String accountId);
-    void deleteRegister(String idOrder, String reasonDelete);
+    List<OrderMeeting> getOrderMeetingByAccountId(String idAccount);
+    OrderMeeting findOrderById(String idOrderMeeting);
+    List<OrderMeeting> findRegisterHistory(RegisterHistory registerHistory, String idAccount);
+    void deleteOrderMeeting(String idOrder, String reasonDelete);
     boolean checkIsDelete(String idOrder);
+
+    List<OrderMeeting> getRegisterHistoryByIdMeetingRoom(String idMeetingRoom);
 }
