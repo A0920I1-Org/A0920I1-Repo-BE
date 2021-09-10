@@ -1,10 +1,8 @@
 package com.example.a0920i1_meetingroom_be.controllers;
 
+import com.example.a0920i1_meetingroom_be.models.dto.MeetingRoomDto;
 import com.example.a0920i1_meetingroom_be.models.entity.*;
-import com.example.a0920i1_meetingroom_be.services.AreaService;
-import com.example.a0920i1_meetingroom_be.services.MeetingRoomService;
-import com.example.a0920i1_meetingroom_be.services.RoomStatusService;
-import com.example.a0920i1_meetingroom_be.services.TypeMeetingRoomService;
+import com.example.a0920i1_meetingroom_be.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +18,9 @@ public class MeetingroomController {
 
     @Autowired
     MeetingRoomService meetingRoomService;
+
+    @Autowired
+    OrderEquipmentService orderEquipmentService;
 
     @Autowired
     AreaService areaService;
@@ -47,25 +48,30 @@ public class MeetingroomController {
     }
 
     @GetMapping("status")
-    public List<RoomStatus> findAlRoomStatusl(){
+    public List<RoomStatus> findAlRoomStatus(){
         return roomStatusService.findAll();
     }
 
-    @PostMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    @PostMapping(value = "/create")
-    public ResponseEntity<?> createMeetingRoom(@RequestBody MeetingRoom meetingRoom){
-        // validate
-        System.out.println("start create");
-        meetingRoomService.saveMeetingRoom(meetingRoom);
-        System.out.println("Create success!!");
-        return new ResponseEntity<>( HttpStatus.OK);
+
+
+    @PostMapping(value = "")
+    public ResponseEntity<?> createMeeting(@RequestBody MeetingRoomDto meetingRoom){
+        System.out.println("aaa");
+
+        meetingRoomService.saveMeetingRoom(meetingRoom.getName(),
+                meetingRoom.getFloors(),
+                meetingRoom.getImageUrl(),
+                meetingRoom.getAreaDto(),
+                meetingRoom.getRoomStatusDto(),
+                meetingRoom.getTypeMeetingRoomDto());
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public List<MeetingRoom> showDetailsMeetingRoom(@PathVariable("id") long id){
+    public List<OrderEquipment> showDetailsMeetingRoom(@PathVariable("id") long id){
         System.out.println("success!");
-        return meetingRoomService.showDetailMeetingRoom(id);
+        return orderEquipmentService.showDetailsMeetingRoom(id);
     }
 
 //    @GetMapping("")
