@@ -4,6 +4,7 @@ package com.example.a0920i1_meetingroom_be.config;
 import com.example.a0920i1_meetingroom_be.models.entity.Account;
 import com.example.a0920i1_meetingroom_be.models.entity.AccountRole;
 import com.example.a0920i1_meetingroom_be.repositories.AccountRepository;
+import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,8 +41,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     }
 
     public Account save(Account account) {
-        Account newAccount = new Account();
-        newAccount.setPassword(passwordEncoder.encode(account.getPassword()));
-        return accountRepository.save(newAccount);
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+        return accountRepository.save(account);
     }
 }

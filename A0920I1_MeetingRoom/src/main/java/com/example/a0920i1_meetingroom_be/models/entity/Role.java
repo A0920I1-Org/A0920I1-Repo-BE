@@ -15,7 +15,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +22,8 @@ public class Role {
 
     private String name;
 
-//    @JsonManagedReference
-    @OneToMany(mappedBy = "role")
+    @JsonBackReference
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<AccountRole> accountRoleList;
 
 }

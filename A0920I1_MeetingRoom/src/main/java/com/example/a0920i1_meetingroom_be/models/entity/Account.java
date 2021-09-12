@@ -1,22 +1,17 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,17 +29,15 @@ public class Account {
 
     private String imageUrl;
 
-//    @JsonManagedReference
-    @OneToMany(mappedBy = "account")
+    @JsonBackReference
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<AccountRole> accountRoleList;
 
-//    @JsonManagedReference
-    @OneToMany(mappedBy = "account")
+    @JsonBackReference
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<FeedBack> feedBackList;
 
-//    @JsonManagedReference
-    @OneToMany(mappedBy = "account")
+    @JsonBackReference
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<OrderMeeting> orderMeetingList;
-
-
 }
