@@ -13,6 +13,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
     @Autowired
     MeetingRoomRepository meetingRoomRepository;
 
+    // display list meeting room
     @Override
     public List<MeetingRoom> getMeetingRooms() {
         return meetingRoomRepository.findAll();

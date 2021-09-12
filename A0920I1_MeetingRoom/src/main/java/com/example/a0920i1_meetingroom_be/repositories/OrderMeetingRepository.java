@@ -81,7 +81,7 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
                     "and om.account_id like %:accountId% "
             , nativeQuery = true
     )
-    List<OrderMeeting> findRegisterHistory(
+    List<OrderMeeting> findRegisterHistoryByIdAccount(
             @Param("idMeetingRoom")String idMeetingRoom,
             @Param("dateCheckin")String dateCheckin,
             @Param("dateCheckout")String dateCheckout,
@@ -103,7 +103,7 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
                     "and om.account_id like %:accountId% "
             , nativeQuery = true
     )
-    List<OrderMeeting> findRegisterHistoryDateCheckinNull(
+    List<OrderMeeting> findRegisterHistoryDateCheckinNullIdAccount(
             @Param("idMeetingRoom")String idMeetingRoom,
             @Param("dateCheckout")String dateCheckout,
             @Param("idStatusRoom")String idStatusRoom,
@@ -124,7 +124,7 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
                     "and om.account_id like %:accountId% "
             , nativeQuery = true
     )
-    List<OrderMeeting> findRegisterHistoryDateCheckoutNull(
+    List<OrderMeeting> findRegisterHistoryDateCheckoutNullIdAccount(
             @Param("idMeetingRoom")String idMeetingRoom,
             @Param("dateCheckin")String dateCheckin,
             @Param("idStatusRoom")String idStatusRoom,
@@ -144,14 +144,98 @@ public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Lon
                     "and om.account_id like %:accountId% "
             , nativeQuery = true
     )
-    List<OrderMeeting> findRegisterHistoryDateCheckinAndCheckoutNull(
+    List<OrderMeeting> findRegisterHistoryDateCheckinAndCheckoutNullIdAccount(
             @Param("idMeetingRoom")String idMeetingRoom,
             @Param("idStatusRoom")String idStatusRoom,
             @Param("idTypeMeetingRoom")String idTypeMeetingRoom,
             @Param("createDate")String createDate,
             @Param("accountId")String accountId
     );
+////
+@Query(
+        value = "select * " +
+                "from order_meeting om " +
+                "inner join meeting_room mr on mr.id = om.meeting_room_id " +
+                "where mr.name like %:nameRoom% " +
+                "and om.date_checkin >= :dateCheckin " +
+                "and om.date_checkout <= :dateCheckout " +
+                "and mr.room_status_id like %:idStatusRoom% " +
+                "and mr.type_meeting_room_id like %:idTypeMeetingRoom% " +
+                "and om.create_date like %:createDate% " +
+                "and om.meeting_room_id like %:idMeetingRoom% "
+        , nativeQuery = true
+)
+List<OrderMeeting> findRegisterHistoryByIdMeetingRoom(
+        @Param("nameRoom")String nameRoom,
+        @Param("dateCheckin")String dateCheckin,
+        @Param("dateCheckout")String dateCheckout,
+        @Param("idStatusRoom")String idStatusRoom,
+        @Param("idTypeMeetingRoom")String idTypeMeetingRoom,
+        @Param("createDate")String createDate,
+        @Param("idMeetingRoom")String idMeetingRoom
+);
 
+    @Query(
+            value = "select * " +
+                    "from order_meeting om " +
+                    "inner join meeting_room mr on mr.id = om.meeting_room_id " +
+                    "where mr.name like %:nameRoom% " +
+                    "and om.date_checkout <= :dateCheckout " +
+                    "and mr.room_status_id like %:idStatusRoom% " +
+                    "and mr.type_meeting_room_id like %:idTypeMeetingRoom% " +
+                    "and om.create_date like %:createDate% " +
+                    "and om.meeting_room_id like %:idMeetingRoom% "
+            , nativeQuery = true
+    )
+    List<OrderMeeting> findRegisterHistoryDateCheckinNullIdMeetingRoom(
+            @Param("nameRoom")String nameRoom,
+            @Param("dateCheckout")String dateCheckout,
+            @Param("idStatusRoom")String idStatusRoom,
+            @Param("idTypeMeetingRoom")String idTypeMeetingRoom,
+            @Param("createDate")String createDate,
+            @Param("idMeetingRoom")String idMeetingRoom
+    );
+
+    @Query(
+            value = "select * " +
+                    "from order_meeting om " +
+                    "inner join meeting_room mr on mr.id = om.meeting_room_id " +
+                    "where mr.name like %:nameRoom% " +
+                    "and om.date_checkin >= :dateCheckin " +
+                    "and mr.room_status_id like %:idStatusRoom% " +
+                    "and mr.type_meeting_room_id like %:idTypeMeetingRoom% " +
+                    "and om.create_date like %:createDate% " +
+                    "and om.meeting_room_id like %:idMeetingRoom% "
+            , nativeQuery = true
+    )
+    List<OrderMeeting> findRegisterHistoryDateCheckoutNullIdMeetingRoom(
+            @Param("nameRoom")String nameRoom,
+            @Param("dateCheckin")String dateCheckin,
+            @Param("idStatusRoom")String idStatusRoom,
+            @Param("idTypeMeetingRoom")String idTypeMeetingRoom,
+            @Param("createDate")String createDate,
+            @Param("idMeetingRoom")String idMeetingRoom
+    );
+
+    @Query(
+            value = "select * " +
+                    "from order_meeting om " +
+                    "inner join meeting_room mr on mr.id = om.meeting_room_id " +
+                    "where mr.name like %:nameRoom% " +
+                    "and mr.room_status_id like %:idStatusRoom% " +
+                    "and mr.type_meeting_room_id like %:idTypeMeetingRoom% " +
+                    "and om.create_date like %:createDate% " +
+                    "and om.meeting_room_id like %:idMeetingRoom% "
+            , nativeQuery = true
+    )
+    List<OrderMeeting> findRegisterHistoryDateCheckinAndCheckoutNullIdMeetingRoom(
+            @Param("nameRoom")String nameRoom,
+            @Param("idStatusRoom")String idStatusRoom,
+            @Param("idTypeMeetingRoom")String idTypeMeetingRoom,
+            @Param("createDate")String createDate,
+            @Param("idMeetingRoom")String idMeetingRoom
+    );
+    ////
     @Modifying
     @Transactional
     @Query(

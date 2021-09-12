@@ -11,11 +11,11 @@ import java.util.List;
 public interface OrderMeetingService {
     List<OrderMeeting> statisticByDate(StatisticByDate statisticByDate);
     List<OrderMeeting> statisticByRoom(StatisticByRoom statisticByRoom);
-    List<ChartStatistical> calculatorPerformanceByDate();
+    List<ChartStatistical> setPerformanceWithChartList();
     List<ChartStatistical> totalsOfUses();
     List<OrderMeeting> getOrderMeetingByAccountId(String idAccount);
     OrderMeeting findOrderById(String idOrderMeeting);
-    List<OrderMeeting> findRegisterHistory(RegisterHistory registerHistory, String idAccount);
+    List<OrderMeeting> searchRegisterHistoryBy(RegisterHistory registerHistory);
     void deleteOrderMeeting(String idOrder, String reasonDelete);
     boolean checkIsDelete(String idOrder);
 

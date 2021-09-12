@@ -16,38 +16,36 @@ public class RegisterHistoryController {
     @Autowired
     OrderMeetingService orderMeetingService;
 
-    // need information account => account id
+    // need information account => account id with role user
     @GetMapping("/account/{idAccount}")
     public List<OrderMeeting> getOrderMeetingListByIdAccount(@PathVariable("idAccount")String idAccount){
         return orderMeetingService.getOrderMeetingByAccountId(idAccount);
     }
-
-    @PutMapping("/searchRegistrationHistory/{idAccount}")
+    //search
+    @PutMapping("/searchRegistrationHistory/")
     public List<OrderMeeting> searchOrderMeeting(
-            @RequestBody RegisterHistory registerHistory,
-            @PathVariable("idAccount")String accountId
-    ){
-        return orderMeetingService.findRegisterHistory(registerHistory, accountId);
+            @RequestBody RegisterHistory registerHistory){
+        return orderMeetingService.searchRegisterHistoryBy(registerHistory);
     }
-
+    // find order trans screen details delete of order
     @GetMapping("/findOrderById/{idOrder}")
     public OrderMeeting findOrderMeetingById(@PathVariable("idOrder")String idOrderMeeting){
         return orderMeetingService.findOrderById(idOrderMeeting);
     }
-
+    // delete order
     @PutMapping("/deleteRegister/{idOrder}")
     public void deleteOrderMeeting(@RequestBody DeleteRegistration reasonDelete,
                                    @PathVariable("idOrder")String idOrder){
         orderMeetingService.deleteOrderMeeting(idOrder,reasonDelete.getReasonDelete());
     }
-
+    // test , is order delete?
     @GetMapping("/checkIsDelete/{idOrder}")
     public boolean checkIsDelete(@PathVariable("idOrder")String idOrder){
         return orderMeetingService.checkIsDelete(idOrder);
     }
-
+    // display register history by id meeting room with role admin
     @GetMapping("/meetingRoom/{idMeetingRoom}")
-    public List<OrderMeeting> regiserHistoryByMeetingRoom(@PathVariable("idMeetingRoom")String idMeetingRoom){
+    public List<OrderMeeting> registerHistoryByIdMeetingRoom(@PathVariable("idMeetingRoom")String idMeetingRoom){
         return orderMeetingService.getRegisterHistoryByIdMeetingRoom(idMeetingRoom);
     }
 

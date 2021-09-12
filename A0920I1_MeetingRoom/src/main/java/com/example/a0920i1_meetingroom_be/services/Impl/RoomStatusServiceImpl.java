@@ -13,6 +13,7 @@ public class RoomStatusServiceImpl implements RoomStatusService {
     @Autowired
     RoomStatusRepository roomStatusRepository;
 
+    // display list room status
     @Override
     public List<RoomStatus> getRoomStatus() {
         return roomStatusRepository.findAll();

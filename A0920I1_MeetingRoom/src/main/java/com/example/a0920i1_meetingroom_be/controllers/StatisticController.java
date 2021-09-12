@@ -32,11 +32,10 @@ public class StatisticController {
     // tinh toan hieu suat va so lan su dung cua moi phong
     @GetMapping("/cal-performance-totals-of-uses")
     public List<ChartStatistical> calPerformanceAndUses(){
-        List<ChartStatistical> list = orderMeetingService.calculatorPerformanceByDate();
+        List<ChartStatistical> list = orderMeetingService.setPerformanceWithChartList();
         List<ChartStatistical> list1 = orderMeetingService.totalsOfUses();
         for (int i=0; i< list.size();i++){
             list.get(i).setUses(list1.get(i).getUses());
-            System.out.println(list.get(i).getUses());
         }
         return list;
     }

@@ -15,7 +15,8 @@ public class RoomStatusController {
     @Autowired
     RoomStatusService roomStatusService;
 
-    @GetMapping("listRoomStatus")
+    // list
+    @GetMapping("/listRoomStatus")
     public List<RoomStatus> getRoomStatusList(){
         return roomStatusService.getRoomStatus();
     }

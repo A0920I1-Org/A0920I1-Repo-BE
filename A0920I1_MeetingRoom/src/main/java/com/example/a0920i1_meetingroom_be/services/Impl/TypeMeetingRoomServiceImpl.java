@@ -13,7 +13,7 @@ public class TypeMeetingRoomServiceImpl implements TypeMeetingRoomService {
     @Autowired
     TypeMeetingRoomRepository typeMeetingRoomRepository;
 
-
+    // display list type meeting room
     @Override
     public List<TypeMeetingRoom> getTypeMeetingRoom() {
         return typeMeetingRoomRepository.findAll();

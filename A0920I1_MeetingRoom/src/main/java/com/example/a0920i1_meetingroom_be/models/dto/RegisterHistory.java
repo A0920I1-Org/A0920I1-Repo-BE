@@ -1,19 +1,19 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
 public class RegisterHistory {
-    private String idMeetingRoom;
+    private String nameRoom;
     private String dateCheckin;
     private String dateCheckout;
-    private String idStatusRoom;
-    private String idTypeRoom;
+    private String statusRoom;
+    private String idTypeMeetingRoom;
     private String createDate;
 
-    public String getIdMeetingRoom() {
-        return idMeetingRoom;
+    public String getNameRoom() {
+        return nameRoom;
     }
 
-    public void setIdMeetingRoom(String idMeetingRoom) {
-        this.idMeetingRoom = idMeetingRoom;
+    public void setNameRoom(String nameRoom) {
+        this.nameRoom = nameRoom;
     }
 
     public String getDateCheckin() {
@@ -32,20 +32,20 @@ public class RegisterHistory {
         this.dateCheckout = dateCheckout;
     }
 
-    public String getIdStatusRoom() {
-        return idStatusRoom;
+    public String getStatusRoom() {
+        return statusRoom;
     }
 
-    public void setIdStatusRoom(String idStatusRoom) {
-        this.idStatusRoom = idStatusRoom;
+    public void setStatusRoom(String statusRoom) {
+        this.statusRoom = statusRoom;
     }
 
-    public String getIdTypeRoom() {
-        return idTypeRoom;
+    public String getIdTypeMeetingRoom() {
+        return idTypeMeetingRoom;
     }
 
-    public void setIdTypeRoom(String idTypeRoom) {
-        this.idTypeRoom = idTypeRoom;
+    public void setIdTypeMeetingRoom(String idTypeMeetingRoom) {
+        this.idTypeMeetingRoom = idTypeMeetingRoom;
     }
 
     public String getCreateDate() {

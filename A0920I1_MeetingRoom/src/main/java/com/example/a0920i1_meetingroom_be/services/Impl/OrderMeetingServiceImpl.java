@@ -12,7 +12,6 @@ import com.example.a0920i1_meetingroom_be.services.OrderMeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -26,6 +25,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     @Autowired
     MeetingRoomRepository meetingRoomRepository;
 
+
     private List<OrderMeeting> statisticList;
     float daysBetweenBySearch = 0; //bien dem ngay sau khi search theo date or room
 
@@ -33,41 +33,45 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     // HH:mm:ss.SSSXXX
     SimpleDateFormat myTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
+    // get diff between two days
     public float getDaysBetween(String dateCheckin, String dateCheckout) {
         float daysBetween = 0;
         try {
             Date dateStart = myDateFormat.parse(dateCheckin);
             Date dateEnd = myDateFormat.parse(dateCheckout);
             long getDayDiffBySearch = (dateEnd.getTime() - dateStart.getTime());
-            daysBetween = (float) (getDayDiffBySearch / (1000 * 60 * 60 * 24));
-        } catch (ParseException e) {
+            daysBetween = (float) (getDayDiffBySearch / (1000.0 * 60.0 * 60.0 * 24.0));
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return daysBetween;
     }
 
+    // display list statictical by date
     @Override
     public List<OrderMeeting> statisticByDate(StatisticByDate statisticByDate) {
         //tinh diff : end - start
         daysBetweenBySearch = getDaysBetween(statisticByDate.getDateCheckin(), statisticByDate.getDateCheckout());
 
         // statistical by date
+        // user do not enter input data dateCheckin
         if (statisticByDate.getDateCheckin() == null) {
             statisticList = orderMeetingRepository.statisticByDateCheckinNull(statisticByDate.getDateCheckout());
-            return orderMeetingRepository.statisticByDateCheckinNull(statisticByDate.getDateCheckout());
+            return statisticList;
         }
+        // user do not enter input data dateCheckout
         if (statisticByDate.getDateCheckout() == null) {
             statisticList = orderMeetingRepository.statisticByDateCheckoutNull(statisticByDate.getDateCheckin());
-            return orderMeetingRepository.statisticByDateCheckoutNull(statisticByDate.getDateCheckin());
+            return statisticList;
         }
+        // two input dateCheckout dateCheckin valid
         statisticList = orderMeetingRepository.statisticByDate(statisticByDate.getDateCheckin(), statisticByDate.getDateCheckout());
-        return orderMeetingRepository.statisticByDate(
-                statisticByDate.getDateCheckin(),
-                statisticByDate.getDateCheckout());
+        return statisticList;
     }
 
     @Override
     public List<OrderMeeting> statisticByRoom(StatisticByRoom statisticByRoom) {
+        // test user have did enter date in box Month
         if (statisticByRoom.getMonth() != null) {
             switch (statisticByRoom.getMonth()) {
                 case "1":
@@ -86,11 +90,13 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                 case "11":
                     daysBetweenBySearch = 30;
                     break;
+                default:break;
             }
         } else {
             daysBetweenBySearch = 0;
         }
 
+        // test , have user did enter date NS field
         if (statisticByRoom.getIdMeetingRoom() == null) {
             statisticByRoom.setIdMeetingRoom("");
         }
@@ -105,14 +111,11 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                 statisticByRoom.getIdMeetingRoom(),
                 statisticByRoom.getMonth()
         );
-        return orderMeetingRepository.statisticByRoom(
-                statisticByRoom.getIdTypeMeetingRoom(),
-                statisticByRoom.getIdMeetingRoom(),
-                statisticByRoom.getMonth());
+        return statisticList;
     }
 
-
     // xu li lay gio
+    // diff time between two at time
     public long getTimeDiff(LocalDate dateCheckin, LocalTime timeStart, LocalTime timeEnd) {
         long getTimeDiff = 0;
         try {
@@ -125,6 +128,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         return getTimeDiff;
     }
 
+    // create data for display chart statistic with field name room, performance, totals of uses
     public List<ChartStatistical> getChartStatisticalList(List<MeetingRoom> meetingRooms) {
         List<ChartStatistical> chartList = new ArrayList<>();
         for (int i = 0; i < meetingRooms.size(); i++) {
@@ -134,21 +138,23 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     }
 
     // xu li tinh hieu suat
-    public float calculatorPerformance(float getTimeDiff,
-                                       float daysBetweenBySearch,
-                                       float daysBetweenForCalculator) {
-        float numberHoursUses = getTimeDiff * daysBetweenForCalculator;
+    // recipe = number hours customer used div total number hours (user enters data with start date and end date) x 100
+    public float calculatorPerformance(float numberHoursUses,
+                                       float daysBetweenBySearch) {
         float numberHoursUsesForSearch = 24 * daysBetweenBySearch;
-        return ((numberHoursUses / numberHoursUsesForSearch) % 100);
+        return ((numberHoursUses / numberHoursUsesForSearch) * 100);
     }
 
-
+    // set performance calculated into the chart list
     @Override
-    public List<ChartStatistical> calculatorPerformanceByDate() {
+    public List<ChartStatistical> setPerformanceWithChartList() {
         List<MeetingRoom> meetingRoom = meetingRoomRepository.findAll();
         List<ChartStatistical> chartStatisticalList = getChartStatisticalList(meetingRoom);
+
+        //extra array
         long[] holdTotalHours = new long[chartStatisticalList.size()];
         float[] holDays = new float[chartStatisticalList.size()];
+        float[] numberHoursUses = new float[chartStatisticalList.size()];
 //        // xu li time tinh performance
         if (statisticList != null) {
             for (int i = 0; i < statisticList.size(); i++) {
@@ -160,6 +166,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                                     statisticList.get(i).getDateCheckin(),
                                     statisticList.get(i).getTimeStart(),
                                     statisticList.get(i).getTimeEnd());
+
                             holdTotalHours[j] += getTimeDiff;
 
                             //tinh toan days register
@@ -167,6 +174,9 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                                     String.valueOf(statisticList.get(i).getDateCheckin()),
                                     String.valueOf(statisticList.get(i).getDateCheckout()));
                             holDays[j] += daysBetweenForCalculator;
+
+                            numberHoursUses[j] += getTimeDiff * daysBetweenForCalculator;
+
                             break;
 
                         } catch (Exception e) {
@@ -177,13 +187,16 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
             }
         }
 
+        //set into the chart list
         for (int i = 0; i < chartStatisticalList.size(); i++) {
-            float performance = calculatorPerformance(holdTotalHours[i], daysBetweenBySearch, holDays[i]);
+            float performance = calculatorPerformance(numberHoursUses[i], daysBetweenBySearch);
             chartStatisticalList.get(i).setPerformance(performance);
         }
         return chartStatisticalList;
     }
 
+
+    // calculator totals of user each meeting room
     @Override
     public List<ChartStatistical> totalsOfUses() {
         List<ChartStatistical> chartStatisticalList = new ArrayList<>();
@@ -208,76 +221,134 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         return chartStatisticalList;
     }
 
+    //register history
+
+    // two variable with url, admin access screen register history with idMeetingRoom
+    // user access screen register history with idAccount
+    private String idAccount;
+    private String idMeetingRoom;
+
+    // user access
     @Override
     public List<OrderMeeting> getOrderMeetingByAccountId(String accountId) {
+        idAccount=accountId;
         return orderMeetingRepository.getOrderMeetingByAccountId(accountId);
     }
-
+    // find order in DB => trans data for screen delete, display information
     @Override
     public OrderMeeting findOrderById(String idOrder) {
         return orderMeetingRepository.findOrderMeetingByIdOrder(idOrder);
     }
 
+    // func search register
     @Override
-    public List<OrderMeeting> findRegisterHistory(RegisterHistory registerHistory, String accountId) {
-        if (registerHistory.getIdMeetingRoom() == null) {
-            registerHistory.setIdMeetingRoom("");
+    public List<OrderMeeting> searchRegisterHistoryBy(RegisterHistory registerHistory) {
+        if (registerHistory.getNameRoom() == null) {
+            registerHistory.setNameRoom("");
         }
-        if (registerHistory.getIdStatusRoom() == null) {
-            registerHistory.setIdStatusRoom("");
+        if (registerHistory.getStatusRoom() == null) {
+            registerHistory.setStatusRoom("");
         }
-        if (registerHistory.getIdTypeRoom() == null) {
-            registerHistory.setIdTypeRoom("");
+        if (registerHistory.getIdTypeMeetingRoom() == null) {
+            registerHistory.setIdTypeMeetingRoom("");
         }
         if (registerHistory.getCreateDate() == null) {
             registerHistory.setCreateDate("");
         }
         if ((registerHistory.getDateCheckin() == null) && (registerHistory.getDateCheckout() == null)) {
-            return orderMeetingRepository.findRegisterHistoryDateCheckinAndCheckoutNull(
-                    registerHistory.getIdMeetingRoom(),
-                    registerHistory.getIdStatusRoom(),
-                    registerHistory.getIdTypeRoom(),
-                    registerHistory.getCreateDate(),
-                    accountId
-            );
+            if (idAccount==null){
+                return orderMeetingRepository.findRegisterHistoryDateCheckinAndCheckoutNullIdMeetingRoom(
+                        registerHistory.getNameRoom(),
+                        registerHistory.getStatusRoom(),
+                        registerHistory.getIdTypeMeetingRoom(),
+                        registerHistory.getCreateDate(),
+                        idMeetingRoom
+                );
+            }else {
+                return orderMeetingRepository.findRegisterHistoryDateCheckinAndCheckoutNullIdAccount(
+                        registerHistory.getNameRoom(),
+                        registerHistory.getStatusRoom(),
+                        registerHistory.getIdTypeMeetingRoom(),
+                        registerHistory.getCreateDate(),
+                        idAccount
+                );
+            }
         }
         if (registerHistory.getDateCheckin() == null) {
-            return orderMeetingRepository.findRegisterHistoryDateCheckinNull(
-                    registerHistory.getIdMeetingRoom(),
-                    registerHistory.getDateCheckout(),
-                    registerHistory.getIdStatusRoom(),
-                    registerHistory.getIdTypeRoom(),
-                    registerHistory.getCreateDate(),
-                    accountId
-            );
+            if (idAccount==null){
+                return orderMeetingRepository.findRegisterHistoryDateCheckinNullIdMeetingRoom(
+                        registerHistory.getNameRoom(),
+                        registerHistory.getDateCheckout(),
+                        registerHistory.getStatusRoom(),
+                        registerHistory.getIdTypeMeetingRoom(),
+                        registerHistory.getCreateDate(),
+                        idMeetingRoom
+                );
+            }
+            else {
+                return orderMeetingRepository.findRegisterHistoryDateCheckinNullIdAccount(
+                        registerHistory.getNameRoom(),
+                        registerHistory.getDateCheckout(),
+                        registerHistory.getStatusRoom(),
+                        registerHistory.getIdTypeMeetingRoom(),
+                        registerHistory.getCreateDate(),
+                        idAccount
+                );
+            }
         }
         if (registerHistory.getDateCheckout() == null) {
-            return orderMeetingRepository.findRegisterHistoryDateCheckoutNull(
-                    registerHistory.getIdMeetingRoom(),
+            if (idAccount==null){
+                return orderMeetingRepository.findRegisterHistoryDateCheckoutNullIdMeetingRoom(
+                        registerHistory.getNameRoom(),
+                        registerHistory.getDateCheckin(),
+                        registerHistory.getStatusRoom(),
+                        registerHistory.getIdTypeMeetingRoom(),
+                        registerHistory.getCreateDate(),
+                        idMeetingRoom
+                );
+            }
+            return orderMeetingRepository.findRegisterHistoryDateCheckoutNullIdAccount(
+                    registerHistory.getNameRoom(),
                     registerHistory.getDateCheckin(),
-                    registerHistory.getIdStatusRoom(),
-                    registerHistory.getIdTypeRoom(),
+                    registerHistory.getStatusRoom(),
+                    registerHistory.getIdTypeMeetingRoom(),
                     registerHistory.getCreateDate(),
-                    accountId
+                    idAccount
             );
         }
-        return orderMeetingRepository.findRegisterHistory(
-                registerHistory.getIdMeetingRoom(),
-                registerHistory.getDateCheckin(),
-                registerHistory.getDateCheckout(),
-                registerHistory.getIdStatusRoom(),
-                registerHistory.getIdTypeRoom(),
-                registerHistory.getCreateDate(),
-                accountId
-        );
+        if (idAccount==null){
+            return orderMeetingRepository.findRegisterHistoryByIdMeetingRoom(
+                    registerHistory.getNameRoom(),
+                    registerHistory.getDateCheckin(),
+                    registerHistory.getDateCheckout(),
+                    registerHistory.getStatusRoom(),
+                    registerHistory.getIdTypeMeetingRoom(),
+                    registerHistory.getCreateDate(),
+                    idMeetingRoom
+            );
+        }
+        else {
+            return orderMeetingRepository.findRegisterHistoryByIdAccount(
+                    registerHistory.getNameRoom(),
+                    registerHistory.getDateCheckin(),
+                    registerHistory.getDateCheckout(),
+                    registerHistory.getStatusRoom(),
+                    registerHistory.getIdTypeMeetingRoom(),
+                    registerHistory.getCreateDate(),
+                    idAccount
+            );
+        }
     }
 
+    // func when user unsubcribe
     @Override
     public void deleteOrderMeeting(String idOrder, String reasonDelete) {
         Date deleteTime = Calendar.getInstance().getTime();
         orderMeetingRepository.deleteRegister(idOrder, reasonDelete, deleteTime);
     }
 
+
+    // check were the order delete?
     @Override
     public boolean checkIsDelete(String idOrder) {
         OrderMeeting orderMeeting = orderMeetingRepository.checkIsDelete(idOrder).get(0);
@@ -288,9 +359,10 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         }
         return true;
     }
-
+    // admin access register history
     @Override
-    public List<OrderMeeting> getRegisterHistoryByIdMeetingRoom(String idMeetingRoom) {
+    public List<OrderMeeting> getRegisterHistoryByIdMeetingRoom(String idRoom) {
+        idMeetingRoom = idRoom;
         return orderMeetingRepository.getRegisterHistoryByIdMeetingRoom(idMeetingRoom);
     }
 }
