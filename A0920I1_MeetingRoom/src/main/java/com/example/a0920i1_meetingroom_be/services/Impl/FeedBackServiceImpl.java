@@ -1,4 +1,5 @@
 package com.example.a0920i1_meetingroom_be.services.Impl;
+
 import com.example.a0920i1_meetingroom_be.models.dto.FeedbackDTO;
 import com.example.a0920i1_meetingroom_be.models.entity.FeedBack;
 import com.example.a0920i1_meetingroom_be.repositories.FeedBackRepository;
@@ -14,20 +15,9 @@ public class FeedBackServiceImpl implements FeedBackService {
     @Autowired
     private FeedBackRepository feedBackRepository;
 
-    /*public FeedBackServiceImpl(FeedBackRepository feedBackRepository) {
-        this.feedBackRepository = feedBackRepository;
-    }*/
-
-
     @Override
     public List<FeedBack> findAll() {
         return feedBackRepository.findAll();
-    }
-
-
-    @Override
-    public FeedBack save(FeedBack feedBack) {
-        return feedBackRepository.save(feedBack);
     }
 
     @Override
@@ -36,14 +26,15 @@ public class FeedBackServiceImpl implements FeedBackService {
     }
 
     @Override
-    public void updateFeedBack(FeedbackDTO feedbackDTO) {
-        feedBackRepository.updateFeedBack(feedbackDTO.getId());
+    public void updateFeedBack(Long id) {
+        feedBackRepository.updateFeedBack(id);
     }
 
     @Override
-    public void createFeedBack(FeedbackDTO feedbackDTO) {
-        feedBackRepository.createFeedBack(feedbackDTO.getDescription(),feedbackDTO.getDateFeedback(),
-                feedbackDTO.isHandle(),feedbackDTO.getFeedBackType(),feedbackDTO.getAccount(),feedbackDTO.getNotification());
+    public FeedbackDTO createFeedBack(FeedbackDTO feedbackDTO) {
+        feedBackRepository.createFeedBack(feedbackDTO.getDescription(), feedbackDTO.getDateFeedback(),
+                feedbackDTO.isHandle(), feedbackDTO.getAccount(), feedbackDTO.getFeedBackType(), feedbackDTO.getMeetingRoom());
+        return feedbackDTO;
     }
 
 }

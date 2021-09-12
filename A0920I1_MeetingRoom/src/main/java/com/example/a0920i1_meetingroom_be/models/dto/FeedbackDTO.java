@@ -1,35 +1,35 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
-import com.example.a0920i1_meetingroom_be.models.entity.Account;
-import com.example.a0920i1_meetingroom_be.models.entity.FeedBackType;
-import com.example.a0920i1_meetingroom_be.models.entity.Notification;
-
 import java.time.LocalDate;
 
+
 public class FeedbackDTO {
-    private String  id;
+    private Long  id;
     private String description;
     private LocalDate dateFeedback;
     private boolean isHandle;
     private int feedBackType;
     private int account;
-    private int notification;
+    private int meetingRoom;
 
-    public FeedbackDTO(String id, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int account, int notification) {
+    public FeedbackDTO() {
+    }
+
+    public FeedbackDTO(Long id, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int account, int meetingRoom) {
         this.id = id;
         this.description = description;
         this.dateFeedback = dateFeedback;
         this.isHandle = isHandle;
         this.feedBackType = feedBackType;
         this.account = account;
-        this.notification = notification;
+        this.meetingRoom = meetingRoom;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -73,11 +73,11 @@ public class FeedbackDTO {
         this.account = account;
     }
 
-    public int getNotification() {
-        return notification;
+    public int getMeetingRoom() {
+        return meetingRoom;
     }
 
-    public void setNotification(int notification) {
-        this.notification = notification;
+    public void setMeetingRoom(int meetingRoom) {
+        this.meetingRoom = meetingRoom;
     }
 }

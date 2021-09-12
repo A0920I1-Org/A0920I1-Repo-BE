@@ -3,7 +3,6 @@ package com.example.a0920i1_meetingroom_be.controllers;
 import com.example.a0920i1_meetingroom_be.models.dto.FeedbackDTO;
 import com.example.a0920i1_meetingroom_be.models.entity.FeedBack;
 import com.example.a0920i1_meetingroom_be.services.FeedBackService;
-import com.example.a0920i1_meetingroom_be.services.FeedBackTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/feedback")
+@CrossOrigin("http://localhost:4200")
 public class TechnicalFeedbackController {
 
     @Autowired
@@ -31,11 +31,16 @@ public class TechnicalFeedbackController {
     }
 
     @PutMapping("/update/{id}")
-    void updateEmployee(@RequestBody FeedbackDTO feedbackDTO) {
-        feedBackService.updateFeedBack(feedbackDTO);
+    public ResponseEntity<Long> updateEmployee(@PathVariable("id") Long id) {
+        feedBackService.updateFeedBack(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PostMapping("/add")
-    void createFeedBack(@RequestBody FeedbackDTO feedbackDTO){
+    public ResponseEntity<Void> createFeedbackTech(@RequestBody FeedbackDTO feedbackDTO) {
         feedBackService.createFeedBack(feedbackDTO);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
+
+
 }
