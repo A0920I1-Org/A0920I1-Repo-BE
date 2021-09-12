@@ -2,16 +2,12 @@ package com.example.a0920i1_meetingroom_be.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
+
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@Data
-//@NoArgsConstructor
 public class MeetingRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,30 +17,30 @@ public class MeetingRoom {
     private Integer floors;
     private String imageUrl;
 
-    @JsonBackReference(value = "order_meeting_id")
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderMeeting> orderMeetingList;
 
-    @JsonManagedReference(value = "type_meeting_room")
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "typeMeetingRoom_id" , referencedColumnName = "id")
     private TypeMeetingRoom typeMeetingRoom;
 
-    @JsonManagedReference(value = "room_status")
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "roomStatus_id" , referencedColumnName = "id")
     private RoomStatus roomStatus;
 
-    @JsonManagedReference(value = "area")
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "area_id" , referencedColumnName = "id")
     private Area area;
 
-    @JsonBackReference(value = "order_equipment")
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
 
-    @JsonBackReference(value = "feed_back")
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<FeedBack> feedBackList;
 

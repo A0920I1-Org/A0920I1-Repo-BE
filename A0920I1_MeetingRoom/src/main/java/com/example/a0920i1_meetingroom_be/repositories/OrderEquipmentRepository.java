@@ -12,6 +12,10 @@ public interface OrderEquipmentRepository extends JpaRepository<OrderEquipment ,
 
     // huệ tạo ngày 9/9/2021
     @Query(value = "select * from order_equipment " +
-            "where order_equipment.meeting_room_id = ?1", nativeQuery = true)
-    List<OrderEquipment> showDetailsMeetingRoom(long id);
+            "where meeting_room_id = ?1", nativeQuery = true)
+    OrderEquipment showDetailsMeetingRoom(long id);
+
+
+    @Query(value = "select * from order_equipment where order_equipment.meeting_room_id = ?1", nativeQuery = true)
+    List<OrderEquipment> listEquipmentByIdMeetingRoom(long id);
 }

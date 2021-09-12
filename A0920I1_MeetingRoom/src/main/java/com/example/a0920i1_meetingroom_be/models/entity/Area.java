@@ -2,7 +2,6 @@ package com.example.a0920i1_meetingroom_be.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +16,7 @@ public class Area {
 
     private String name;
 
-    @JsonBackReference(value = "meeting_room")
+    @JsonBackReference
     @OneToMany(mappedBy = "area")
     private List<MeetingRoom> meetingRoomList;
 

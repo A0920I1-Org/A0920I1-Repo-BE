@@ -15,13 +15,16 @@ public class OrderEquipment {
     private long id;
     private long quantity;
 
-    @JsonManagedReference(value = "equipment")
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "equipment_id" , referencedColumnName = "id")
     private Equipment equipment;
 
-    @JsonManagedReference(value = "meeting_room")
-    @ManyToOne
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;
+
+
+
 }

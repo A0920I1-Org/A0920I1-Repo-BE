@@ -18,7 +18,7 @@ public class RoomStatus {
 
     private String name;
 
-    @JsonBackReference(value = "meeting_room")
+    @JsonBackReference
     @OneToMany(mappedBy = "roomStatus")
     private List<MeetingRoom> meetingRoomList;
 

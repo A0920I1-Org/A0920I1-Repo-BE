@@ -10,12 +10,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+
 public class OrderEquipmentServiceImpl implements OrderEquipmentService {
     @Autowired
     OrderEquipmentRepository equipmentRepository;
 
     @Override
-    public List<OrderEquipment> showDetailsMeetingRoom(long id) {
+    public OrderEquipment showDetailsMeetingRoom(long id) {
         return equipmentRepository.showDetailsMeetingRoom(id);
+    }
+
+    @Override
+    public List<OrderEquipment> listEquipmentByIdMeeting(long id) {
+        return equipmentRepository.listEquipmentByIdMeetingRoom(id);
     }
 }

@@ -8,19 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Repository
 public interface MeetingRoomRepository extends JpaRepository<MeetingRoom, Long> {
 
-    @Query(value = "select u from MeetingRoom u where u.id = ?1")
-    List<MeetingRoom> showDetailMeetingRoom(long id);
-
-
-
-    // huệ tạo ngày 9/9/2021
-    @Query(value = "select * from equipment " , nativeQuery = true)
-    List<Equipment> listOrderEquipment();
+    @Query(value = "select * from meeting_room " +
+            "where meeting_room.id = ?1", nativeQuery = true)
+    MeetingRoom showDetailMeetingRoom(long id);
 
     // huệ tạo ngày 9/9/2021
     @Transactional

@@ -1,11 +1,5 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
-import com.example.a0920i1_meetingroom_be.models.entity.Area;
-import com.example.a0920i1_meetingroom_be.models.entity.RoomStatus;
-import com.example.a0920i1_meetingroom_be.models.entity.TypeMeetingRoom;
-
-import java.util.List;
-
 public class MeetingRoomDto {
     private long id;
 
@@ -75,8 +69,6 @@ public class MeetingRoomDto {
     public void setTypeMeetingRoomDto(long typeMeetingRoomDto) {
         this.typeMeetingRoomDto = typeMeetingRoomDto;
     }
-
-    //    private AreaDto areaDto;
 
 
 }
