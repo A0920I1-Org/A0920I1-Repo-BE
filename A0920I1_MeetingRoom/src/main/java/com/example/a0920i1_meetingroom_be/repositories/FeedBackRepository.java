@@ -22,9 +22,10 @@ public interface FeedBackRepository extends JpaRepository<FeedBack , Long> {
     @Modifying
     @Transactional
     @Query(
-            value = "INSERT INTO feed_back( description,date_feedback, is_handle, account_id,feed_back_type_id,meeting_room_id)VALUES (?1,?2,?3,?4,?5,?6)",
+            value = "INSERT INTO feed_back(content, description,date_feedback, is_handle,title, account_id,feed_back_type_id,meetingroom_id)VALUES (?1,?2,?3,?4,?5,?6,?7,?8)",
             nativeQuery = true
     )
-    void createFeedBack(String description, LocalDate dateFeedback, boolean isHandle, int account, int feedBackType, int meeting_room_id);
+    void createFeedBack(String content,String description, LocalDate dateFeedback, boolean isHandle,String title,
+                        int account, int feedBackType, int meetingroom_id,String imageFeedBackList);
 }
 

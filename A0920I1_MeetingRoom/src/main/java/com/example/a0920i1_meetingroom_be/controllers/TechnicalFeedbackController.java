@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/feedback")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins ="http://localhost:4200")
 public class TechnicalFeedbackController {
 
     @Autowired
@@ -37,9 +37,9 @@ public class TechnicalFeedbackController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Void> createFeedbackTech(@RequestBody FeedbackDTO feedbackDTO) {
-        feedBackService.createFeedBack(feedbackDTO);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    public ResponseEntity<FeedbackDTO> createFeedbackTech(@RequestBody FeedbackDTO feedbackDTO) {
+        FeedbackDTO newFeedbackDTO=feedBackService.createFeedBack(feedbackDTO);
+        return new ResponseEntity<>(newFeedbackDTO,HttpStatus.CREATED);
     }
 
 

@@ -1,28 +1,23 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
+import com.example.a0920i1_meetingroom_be.models.entity.ImageFeedBack;
+
 import java.time.LocalDate;
 
 
 public class FeedbackDTO {
     private Long  id;
+    private String title;
     private String description;
     private LocalDate dateFeedback;
     private boolean isHandle;
     private int feedBackType;
-    private int account;
     private int meetingRoom;
+    private int account;
+    private String content;
+    private String imageFeedBackList;
 
     public FeedbackDTO() {
-    }
-
-    public FeedbackDTO(Long id, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int account, int meetingRoom) {
-        this.id = id;
-        this.description = description;
-        this.dateFeedback = dateFeedback;
-        this.isHandle = isHandle;
-        this.feedBackType = feedBackType;
-        this.account = account;
-        this.meetingRoom = meetingRoom;
     }
 
     public Long getId() {
@@ -31,6 +26,14 @@ public class FeedbackDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -65,6 +68,14 @@ public class FeedbackDTO {
         this.feedBackType = feedBackType;
     }
 
+    public int getMeetingRoom() {
+        return meetingRoom;
+    }
+
+    public void setMeetingRoom(int meetingRoom) {
+        this.meetingRoom = meetingRoom;
+    }
+
     public int getAccount() {
         return account;
     }
@@ -73,11 +84,32 @@ public class FeedbackDTO {
         this.account = account;
     }
 
-    public int getMeetingRoom() {
-        return meetingRoom;
+    public String getContent() {
+        return content;
     }
 
-    public void setMeetingRoom(int meetingRoom) {
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getImageFeedBackList() {
+        return imageFeedBackList;
+    }
+
+    public void setImageFeedBackList(String imageFeedBackList) {
+        this.imageFeedBackList = imageFeedBackList;
+    }
+
+    public FeedbackDTO(Long id, String title, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int meetingRoom, int account, String content, String imageFeedBackList) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.dateFeedback = dateFeedback;
+        this.isHandle = isHandle;
+        this.feedBackType = feedBackType;
         this.meetingRoom = meetingRoom;
+        this.account = account;
+        this.content = content;
+        this.imageFeedBackList = imageFeedBackList;
     }
 }

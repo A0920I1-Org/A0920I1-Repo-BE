@@ -32,9 +32,10 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public FeedbackDTO createFeedBack(FeedbackDTO feedbackDTO) {
-        feedBackRepository.createFeedBack(feedbackDTO.getDescription(), feedbackDTO.getDateFeedback(),
-                feedbackDTO.isHandle(), feedbackDTO.getAccount(), feedbackDTO.getFeedBackType(), feedbackDTO.getMeetingRoom());
+        feedBackRepository.createFeedBack(feedbackDTO.getContent(),feedbackDTO.getDescription(),feedbackDTO.getDateFeedback(),feedbackDTO.isHandle(),
+                feedbackDTO.getTitle(),feedbackDTO.getAccount(),feedbackDTO.getFeedBackType(),feedbackDTO.getMeetingRoom(),feedbackDTO.getImageFeedBackList());
         return feedbackDTO;
     }
+
 
 }
