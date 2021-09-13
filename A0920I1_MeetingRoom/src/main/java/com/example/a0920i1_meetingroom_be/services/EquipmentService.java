@@ -7,11 +7,10 @@ import java.util.List;
 
 public interface EquipmentService {
     List<Equipment> getAllEquipment();
-    void save(Equipment equipment);
-    void delete(long id);
     Equipment findById(long id);
     void createEquipment(EquipmentDto equipmentDto);
     Equipment showDetailEquipment(long id);
     void deleteEquipmentById(long id);
-
+    void updateEquipment(EquipmentDto equipmentDto);
+    List<Equipment> searchName(String name);
 }

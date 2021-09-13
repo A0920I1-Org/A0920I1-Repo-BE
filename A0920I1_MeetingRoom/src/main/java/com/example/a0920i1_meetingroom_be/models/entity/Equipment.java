@@ -29,7 +29,6 @@ public class Equipment {
     private String imageUrl;
 
     @JsonBackReference
-//    @Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
     @OneToMany(mappedBy = "equipment")
     private List<OrderEquipment> orderEquipmentList;
 

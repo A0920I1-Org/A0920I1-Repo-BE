@@ -23,16 +23,6 @@ public class EquipmentServiceImpl  implements EquipmentService {
     }
 
     @Override
-    public void save(Equipment equipment) {
-        equipmentRepository.save(equipment);
-    }
-
-    @Override
-    public void delete(long id) {
-        equipmentRepository.deleteById(id);
-    }
-
-    @Override
     public Equipment findById(long id) {
         return equipmentRepository.findById(id).orElse(null);
     }
@@ -52,5 +42,16 @@ public class EquipmentServiceImpl  implements EquipmentService {
     public void deleteEquipmentById(long id) {
         orderEquipmentRepository.deleteOrderEquipmentById(id);
         equipmentRepository.deleteEquipmentById(id);
+    }
+
+    @Override
+    public void updateEquipment(EquipmentDto equipmentDto) {
+        equipmentRepository.updateEquipment(equipmentDto.getName(),equipmentDto.getStock(),
+                equipmentDto.getRepairQuantity(),equipmentDto.getImageUrl(),equipmentDto.getId());
+    }
+
+    @Override
+    public List<Equipment> searchName(String name) {
+        return equipmentRepository.searchName(name);
     }
 }

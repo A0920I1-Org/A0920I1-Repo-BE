@@ -1,6 +1,7 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
 public class EquipmentDto {
+    private long id;
     private String name;
     private int stock;
     private int repairQuantity;
@@ -9,6 +10,13 @@ public class EquipmentDto {
     public EquipmentDto() {
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

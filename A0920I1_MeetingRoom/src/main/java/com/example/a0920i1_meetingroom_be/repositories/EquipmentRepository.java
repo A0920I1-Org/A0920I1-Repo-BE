@@ -27,4 +27,15 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     @Modifying
     @Query(value = "delete from Equipment where id = ?1",nativeQuery = true)
     void deleteEquipmentById(long id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update equipment set name = ?1,  stock = ?2, repair_quantity = ?3 ," +
+            " image_url = ?4  where equipment.id = ?5", nativeQuery = true)
+
+    void updateEquipment(String name , int stock , int repair_quantity , String image_url, long id);
+
+    @Query(value = "select * from meetingroom.equipment where equipment.name like %?1% ",nativeQuery = true)
+   List<Equipment> searchName(String name);
+
 }

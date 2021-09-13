@@ -30,21 +30,22 @@ public class MeetingRoom {
     private List<OrderMeeting> orderMeetingList;
 
     @ManyToOne
-    @JoinColumn(name = "typeMeetingRoom_id" , referencedColumnName = "id")
+    @JoinColumn(name = "typeMeetingRoom_id", referencedColumnName = "id")
     private TypeMeetingRoom typeMeetingRoom;
 
     @ManyToOne
-    @JoinColumn(name = "roomStatus_id" , referencedColumnName = "id")
+    @JoinColumn(name = "roomStatus_id", referencedColumnName = "id")
     private RoomStatus roomStatus;
 
     @ManyToOne
-    @JoinColumn(name = "area_id" , referencedColumnName = "id")
+    @JoinColumn(name = "area_id", referencedColumnName = "id")
     private Area area;
 
     @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<FeedBack> feedBackList;
 

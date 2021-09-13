@@ -24,7 +24,7 @@ public class FeedBack {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFeedback;
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean ísHandle;
+    private boolean isHandle;
 
     @ManyToOne
     @JoinColumn(name="feedBackType_id" , referencedColumnName = "id")
