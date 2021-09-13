@@ -23,10 +23,7 @@ public class MeetingRoom {
 
     private String image_url;
 
-//    @Type(type = "org.hibernate.type.NumericBooleanType")
-//    private Boolean status;
-
-    @JsonBackReference(value = "order_meeting_id")
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderMeeting> orderMeetingList;
 
@@ -42,7 +39,7 @@ public class MeetingRoom {
     @JoinColumn(name = "area_id" , referencedColumnName = "id")
     private Area area;
 
-    @JsonBackReference(value = "order_equipment_id")
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
 

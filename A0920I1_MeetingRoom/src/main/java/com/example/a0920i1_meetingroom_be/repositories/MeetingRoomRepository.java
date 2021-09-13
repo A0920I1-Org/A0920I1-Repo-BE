@@ -33,4 +33,14 @@ public interface MeetingRoomRepository extends JpaRepository<MeetingRoom, Long> 
     @Query( value = " delete from meeting_room where meeting_room.id = ?1 " , nativeQuery = true
     )
     void deleteMeetingRoomById(long id);
+
+    @Query(value = "select * from meeting_room join type_meeting_room on type_meeting_room.id = type_meeting_room_id" +
+            " where meeting_room.name like %?1% " +
+            "and floors like %?2% " +
+            "and meeting_room.area_id like %?3% " +
+            "and meeting_room.room_status_id like %?4% " +
+            "and meeting_room.type_meeting_room_id like %?5% " +
+            "and type_meeting_room.capacity like %?6%" , nativeQuery = true)
+    List<MeetingRoom> searchMeetingRoom(String name ,Integer floors,long area_id , long room_status_id,long type_meeting_room_id,Integer capacity );
+
 }

@@ -32,7 +32,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
     }
 
     @Override
-    public void updateMeeting(String name, int floors, long area_id, long room_status_id, long type_meeting_room_id, String image_url,long id) {
+    public void updateMeeting(String name, Integer floors, long area_id, long room_status_id, long type_meeting_room_id, String image_url,long id) {
         meetingRoomRepository.updateMeeting(name, floors, area_id, room_status_id, type_meeting_room_id, image_url, id);
     }
 
@@ -42,5 +42,12 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
         orderEquipmentRepository.deleteOrderEquipmentByMeetingRoomId(id);
         meetingRoomRepository.deleteMeetingRoomById(id);
     }
+
+
+    @Override
+    public List<MeetingRoom> searchMeetingRoom(String name ,Integer floors,long area_id , long room_status_id,long type_meeting_room_id,Integer capacity) {
+        return meetingRoomRepository.searchMeetingRoom(name, floors, area_id, room_status_id, type_meeting_room_id, capacity);
+    }
+
 
 }
