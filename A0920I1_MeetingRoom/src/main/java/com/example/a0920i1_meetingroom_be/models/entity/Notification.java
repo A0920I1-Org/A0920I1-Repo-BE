@@ -20,7 +20,7 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private LocalDate date_notification;
+    private LocalDate dateNotification;
 
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isSeen;
