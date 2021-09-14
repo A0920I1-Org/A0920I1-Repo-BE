@@ -17,4 +17,10 @@ public class EquipmentServiceImpl implements EquipmentService {
     public List<Equipment> listEquipment() {
         return equipmentRepository.listEquipment();
     }
+
+    @Override
+    public List<Equipment> findEquipmentByName(String name) {
+        return equipmentRepository.findEquipmentByName(name);
+    }
+
 }

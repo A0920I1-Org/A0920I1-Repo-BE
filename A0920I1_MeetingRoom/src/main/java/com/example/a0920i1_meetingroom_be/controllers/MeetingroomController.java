@@ -1,6 +1,7 @@
 package com.example.a0920i1_meetingroom_be.controllers;
 
 import com.example.a0920i1_meetingroom_be.models.dto.MeetingRoomDto;
+import com.example.a0920i1_meetingroom_be.models.dto.OrderEquipmentDto;
 import com.example.a0920i1_meetingroom_be.models.entity.*;
 import com.example.a0920i1_meetingroom_be.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/meeting")
@@ -37,11 +39,17 @@ public class MeetingroomController {
     @Autowired
     RoomStatusService roomStatusService;
 
-    // huệ tạo 9/9/2021, chức năng hiển thị danh sách tài sản
+    // huệ tạo 9/9/2021, chức năng tìm kiếm và hiển thị danh sách tài sản
     @GetMapping("equipment")
-    public List<Equipment> findAllEquipment(){
-        System.out.println("aaa");
-        return equipmentService.listEquipment();
+    public List<Equipment> findAllEquipment(@RequestParam Optional<String> name){
+        String stringAfterCheck = "";
+        if(!name.isPresent()){
+            return equipmentService.listEquipment();
+        }
+        else{
+            stringAfterCheck = name.get();
+            return equipmentService.findEquipmentByName(stringAfterCheck);
+        }
     }
 
     // huệ tạo 9/9/2021, chức năng hiển thị danh sách khu vực phòng họp
@@ -77,10 +85,7 @@ public class MeetingroomController {
     }
 
     // huệ tạo 9/9/2021, chức năng hiển thị phòng họp chi tiết
-//    @GetMapping("/details-meeting-room/{id}")
-//    public OrderEquipment showDetailsMeetingRoom(@PathVariable("id") long id){
-//        return orderEquipmentService.showDetailsMeetingRoom(id);
-//    }
+
     @GetMapping("/details-meeting-room/{id}")
     public MeetingRoom showDetailsMeetingRoom(@PathVariable("id") long id){
         return meetingRoomService.showDetailMeetingRoom(id);
@@ -92,8 +97,18 @@ public class MeetingroomController {
         return meetingRoomService.findAll();
     }
 
+    // huệ tạo 10/9/2021, chức năng hiển thị thông tin tài sản của id phòng họp thông qua bảng order
     @GetMapping("/equipment/{id}")
     public List<OrderEquipment> getAllEquipmentByIdMeetingRoom(@PathVariable(value = "id") long id){
         return orderEquipmentService.listEquipmentByIdMeeting(id);
     }
+
+    @PostMapping("/order-equipment")
+    public ResponseEntity<?> insertOrderEquipment(@RequestBody OrderEquipmentDto orderEquipmentDto){
+
+        orderEquipmentService.insertOrderEquipment(orderEquipmentDto.getEquipment_id(),orderEquipmentDto.getEquipment_id(),orderEquipmentDto.getMeeting_room_id());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

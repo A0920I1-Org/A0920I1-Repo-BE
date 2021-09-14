@@ -7,6 +7,8 @@ import java.util.List;
 public interface OrderEquipmentService {
     OrderEquipment showDetailsMeetingRoom(long id);
 
+    void insertOrderEquipment(long quantity, long equipment_id, long meeting_room_id);
+
     List<OrderEquipment> listEquipmentByIdMeeting(long id);
 
 }

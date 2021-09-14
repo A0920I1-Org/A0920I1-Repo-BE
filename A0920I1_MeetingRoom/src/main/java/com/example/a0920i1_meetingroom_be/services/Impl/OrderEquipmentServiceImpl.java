@@ -21,6 +21,11 @@ public class OrderEquipmentServiceImpl implements OrderEquipmentService {
     }
 
     @Override
+    public void insertOrderEquipment(long quantity, long equipment_id, long meeting_room_id) {
+        equipmentRepository.insertOrderEquipment(quantity, equipment_id, meeting_room_id);
+    }
+
+    @Override
     public List<OrderEquipment> listEquipmentByIdMeeting(long id) {
         return equipmentRepository.listEquipmentByIdMeetingRoom(id);
     }
