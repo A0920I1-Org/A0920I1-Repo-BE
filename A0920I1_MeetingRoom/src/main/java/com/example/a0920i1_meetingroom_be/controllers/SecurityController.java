@@ -47,9 +47,9 @@ public class SecurityController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
-        final String role = String.valueOf(userDetails.getAuthorities());
+//        final String role = String.valueOf(userDetails.getAuthorities());
 
-        return ResponseEntity.ok(new AuthenticationResponse(token, role));
+        return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 
 
