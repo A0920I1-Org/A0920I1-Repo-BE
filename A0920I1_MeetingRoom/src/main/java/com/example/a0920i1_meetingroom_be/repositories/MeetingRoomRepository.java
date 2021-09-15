@@ -34,6 +34,8 @@ public interface MeetingRoomRepository extends JpaRepository<MeetingRoom, Long> 
     )
     void deleteMeetingRoomById(long id);
 
+
+    //Tìm kiếm đầy đủ các trường
     @Query(value = "select * from meeting_room join type_meeting_room on type_meeting_room.id = type_meeting_room_id" +
             " where meeting_room.name like %?1% " +
             "and floors like %?2% " +
@@ -42,5 +44,8 @@ public interface MeetingRoomRepository extends JpaRepository<MeetingRoom, Long> 
             "and meeting_room.type_meeting_room_id like %?5% " +
             "and type_meeting_room.capacity like %?6%" , nativeQuery = true)
     List<MeetingRoom> searchMeetingRoom(String name ,Integer floors,long area_id , long room_status_id,long type_meeting_room_id,Integer capacity );
+
+
+    //tìm kiếm 1 trường tên phòng họp
 
 }

@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface RoomStatusRepository extends JpaRepository<RoomStatus , Long> {
-//    @Query(value = "SELECT * FROM room_status " , nativeQuery = true)
-//    List<RoomStatus> findAllRoomStatus();
+    @Query(value = "SELECT * FROM room_status " , nativeQuery = true)
+    List<RoomStatus> findAllRoomStatus();
 }

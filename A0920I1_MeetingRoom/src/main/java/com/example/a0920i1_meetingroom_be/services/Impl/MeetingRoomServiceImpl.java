@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.services.Impl;
 
+import com.example.a0920i1_meetingroom_be.models.dto.MeetingRoomDto;
 import com.example.a0920i1_meetingroom_be.models.entity.MeetingRoom;
 import com.example.a0920i1_meetingroom_be.repositories.MeetingRoomRepository;
 import com.example.a0920i1_meetingroom_be.repositories.OrderEquipmentRepository;
@@ -32,9 +33,10 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
     }
 
     @Override
-    public void updateMeeting(String name, Integer floors, long area_id, long room_status_id, long type_meeting_room_id, String image_url,long id) {
-        meetingRoomRepository.updateMeeting(name, floors, area_id, room_status_id, type_meeting_room_id, image_url, id);
+    public void updateMeeting(MeetingRoomDto meetingRoomDto) {
+        meetingRoomRepository.updateMeeting(meetingRoomDto.getName(),meetingRoomDto.getFloors(),meetingRoomDto.getArea(),meetingRoomDto.getRoomStatus(),meetingRoomDto.getTypeMeetingRoom(),meetingRoomDto.getImageUrl(),meetingRoomDto.getId());
     }
+
 
     @Override
     public void deleteMeeting(long id) {

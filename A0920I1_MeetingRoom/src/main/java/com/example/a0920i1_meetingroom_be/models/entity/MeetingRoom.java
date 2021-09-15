@@ -21,7 +21,7 @@ public class MeetingRoom {
 
     private Integer floors;
 
-    private String image_url;
+    private String imageUrl;
 
     @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
@@ -70,12 +70,12 @@ public class MeetingRoom {
         this.floors = floors;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public List<OrderMeeting> getOrderMeetingList() {

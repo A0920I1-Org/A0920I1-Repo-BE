@@ -14,6 +14,6 @@ public class TypeMeetingRoomServiceImpl implements TypeMeetingRoomService {
     private TypeMeetingRoomRepository typeMeetingRoomRepository ;
     @Override
     public List<TypeMeetingRoom> findAllTypeMeetingRoom() {
-        return typeMeetingRoomRepository.findAll();
+        return typeMeetingRoomRepository.findAllTypeMeetingRoom();
     }
 }

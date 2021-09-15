@@ -11,7 +11,7 @@ public class MeetingRoomDto {
 
     private Integer floors;
 
-    private String image_url;
+    private String imageUrl;
 
     private long area;
 
@@ -48,12 +48,12 @@ public class MeetingRoomDto {
         this.floors = floors;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public long getArea() {

@@ -55,11 +55,10 @@ public class MeetingRoomController {
     }
 
     // chỉnh sửa phòng họp (Hoàng)
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<MeetingRoom> updateMeetingRoom(@PathVariable("id") long id, @RequestBody MeetingRoomDto meetingRoomDto) {
+    @PutMapping(value = "/edit/{id}")
+    public ResponseEntity<?> updateMeetingRoom(@PathVariable("id") long id, @RequestBody MeetingRoomDto meetingRoomDto) {
 
-        meetingRoomService.updateMeeting(meetingRoomDto.getName(), meetingRoomDto.getFloors(), meetingRoomDto.getArea(), meetingRoomDto.getRoomStatus(),
-                meetingRoomDto.getTypeMeetingRoom(), meetingRoomDto.getImage_url(), id);
+        meetingRoomService.updateMeeting(meetingRoomDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -90,10 +89,10 @@ public class MeetingRoomController {
 
     //Xóa phòng họp theo id (Hoàng)
     @DeleteMapping("{id}")
-    public void delete(@PathVariable long id) {
+    public ResponseEntity<MeetingRoom> delete(@PathVariable long id) {
         System.out.println("Xoa thanh cong id " + id);
         meetingRoomService.deleteMeeting(id);
-//        return meetingRoomService.deleteMeeting(id);
+        return  new ResponseEntity<MeetingRoom>(HttpStatus.OK);
     }
 
     //tìm kiếm phòng họp

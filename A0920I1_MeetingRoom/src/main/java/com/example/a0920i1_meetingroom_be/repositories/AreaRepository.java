@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AreaRepository extends JpaRepository<Area , Long> {
-//    @Query(value = "SELECT * FROM Area " , nativeQuery = true)
-//    List<Area> findAllArea();
+    @Query(value = "SELECT * FROM area " , nativeQuery = true)
+    List<Area> findAllArea();
 }
