@@ -14,11 +14,12 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
 
+//    TuHC
     @Override
     public Account findAccountByUsername(String username) {
         return accountRepository.findByUsername(username);
     }
-
+//TuHC
     @Override
     public List<Account> findAllAccount() {
         return accountRepository.findAll();

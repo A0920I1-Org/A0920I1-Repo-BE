@@ -39,6 +39,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+//    TuHC
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
@@ -59,6 +60,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.cors();
     }
 
+//    TuHC
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // configure AuthenticationManager so that it knows from where to load

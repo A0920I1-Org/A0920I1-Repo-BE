@@ -22,6 +22,7 @@ public class CustomJwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtTokenUtil;
 
+//    TuHC
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         try {
@@ -59,6 +60,7 @@ public class CustomJwtAuthenticationFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
+//    TuHC
     private void allowForRefreshToken(ExpiredJwtException ex, HttpServletRequest request) {
 
         // create a UsernamePasswordAuthenticationToken with null values.
@@ -74,6 +76,7 @@ public class CustomJwtAuthenticationFilter extends OncePerRequestFilter {
 
     }
 
+//    TuHC
     private String extractJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {

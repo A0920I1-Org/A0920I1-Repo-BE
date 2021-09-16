@@ -14,6 +14,7 @@ import java.util.Collections;
 
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint{
+//    TuHC
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
