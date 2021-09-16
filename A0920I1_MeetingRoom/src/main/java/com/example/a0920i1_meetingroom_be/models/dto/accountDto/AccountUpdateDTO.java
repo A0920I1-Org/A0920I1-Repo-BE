@@ -1,16 +1,21 @@
 package com.example.a0920i1_meetingroom_be.models.dto.accountDto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class AccountCreateDTO {
+public class AccountUpdateDTO {
 
     String division;
     String email;
-    String fullName;
+    String fullname;
     String username;
     String phone;
     String imageUrl;
-    String password;
     Long roleId;
+    Long id;
+
 }
