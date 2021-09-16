@@ -1,6 +1,5 @@
 package com.example.a0920i1_meetingroom_be.services.Impl;
 
-import com.example.a0920i1_meetingroom_be.models.dto.OrderEquipmentDto;
 import com.example.a0920i1_meetingroom_be.models.entity.OrderEquipment;
 import com.example.a0920i1_meetingroom_be.repositories.OrderEquipmentRepository;
 import com.example.a0920i1_meetingroom_be.services.OrderEquipmentService;
@@ -23,6 +22,19 @@ public class OrderEquipmentServiceImpl implements OrderEquipmentService {
     @Override
     public List<OrderEquipment>  findByOrderEquipment(long id) {
         return orderEquipmentRepository.findByOrderEquipment(id);
+    }
+
+
+    OrderEquipmentRepository equipmentRepository;
+
+    @Override
+    public void insertOrderEquipment(long quantity, long equipment_id, long meeting_room_id) {
+        equipmentRepository.insertOrderEquipment(quantity, equipment_id, meeting_room_id);
+    }
+
+    @Override
+    public List<OrderEquipment> listEquipmentByIdMeeting(long id) {
+        return equipmentRepository.listEquipmentByIdMeetingRoom(id);
     }
 
 }

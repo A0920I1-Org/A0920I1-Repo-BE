@@ -59,7 +59,7 @@ public class EquipmentController {
     //Hiển thị danh sách MeetingRoom - PhapNT.
     @GetMapping("/meeting-room")
     public ResponseEntity<List<MeetingRoom>> listAllMeetingRoom() {
-        List<MeetingRoom> meetingRooms = meetingRoomService.getAllMeetingRoom();
+        List<MeetingRoom> meetingRooms = meetingRoomService.findAllMeetingRoom();
         if (meetingRooms.isEmpty()) {
             return new ResponseEntity<List<MeetingRoom>>(HttpStatus.NO_CONTENT);
         }

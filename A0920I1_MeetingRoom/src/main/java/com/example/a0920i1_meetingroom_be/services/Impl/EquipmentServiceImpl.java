@@ -4,6 +4,7 @@ import com.example.a0920i1_meetingroom_be.models.dto.EquipmentDto;
 import com.example.a0920i1_meetingroom_be.models.entity.Equipment;
 import com.example.a0920i1_meetingroom_be.repositories.EquipmentRepository;
 import com.example.a0920i1_meetingroom_be.repositories.OrderEquipmentRepository;
+
 import com.example.a0920i1_meetingroom_be.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,4 +55,16 @@ public class EquipmentServiceImpl  implements EquipmentService {
     public List<Equipment> searchName(String name) {
         return equipmentRepository.searchName(name);
     }
+
+    @Override
+    public List<Equipment> listEquipment() {
+        return equipmentRepository.listEquipment();
+    }
+
+    @Override
+    public List<Equipment> findEquipmentByName(String name) {
+        return equipmentRepository.findEquipmentByName(name);
+    }
+
+
 }

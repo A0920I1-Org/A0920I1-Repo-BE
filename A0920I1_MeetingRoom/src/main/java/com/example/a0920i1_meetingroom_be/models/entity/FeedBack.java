@@ -1,6 +1,7 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
@@ -20,15 +21,19 @@ public class FeedBack {
 
     private String description;
 
+    private String title;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateFeedback;
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isHandle;
 
+    @JsonManagedReference(value = "feed_back_type")
     @ManyToOne
     @JoinColumn(name="feedBackType_id" , referencedColumnName = "id")
     private FeedBackType feedBackType;
 
+    @JsonManagedReference(value = "account")
     @ManyToOne
     @JoinColumn(name="account_id" , referencedColumnName = "id")
     private Account account;
@@ -36,10 +41,13 @@ public class FeedBack {
     @OneToOne(mappedBy = "feedBack")
     private Notification notification;
 
+
     @JsonBackReference
     @OneToMany(mappedBy = "feedBack")
     private List<ImageFeedBack> imageFeedBackList;
 
+
+    @JsonManagedReference(value = "meeting_room")
     @ManyToOne
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;

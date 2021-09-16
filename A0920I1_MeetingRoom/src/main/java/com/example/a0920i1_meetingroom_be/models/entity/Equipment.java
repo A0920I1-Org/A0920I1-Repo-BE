@@ -18,7 +18,7 @@ public class Equipment {
     private int repairQuantity;
     private String imageUrl;
 
-    @JsonBackReference
+    @JsonBackReference(value = "equipment_id")
     @OneToMany(mappedBy = "equipment")
     private List<OrderEquipment> orderEquipmentList;
 

@@ -1,15 +1,13 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
-import com.example.a0920i1_meetingroom_be.models.entity.Equipment;
-import com.example.a0920i1_meetingroom_be.models.entity.MeetingRoom;
-
 public class OrderEquipmentDto {
     private long id;
-    private int quantity;
-    private String equipment;
-    private String meetingRoom;
+    private long quantity;
+    private long equipment_id;
+    private long meeting_room_id;
 
-    public OrderEquipmentDto() {
+    public OrderEquipmentDto(){
+
     }
 
     public long getId() {
@@ -19,28 +17,28 @@ public class OrderEquipmentDto {
     public void setId(long id) {
         this.id = id;
     }
-
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
-    public String getEquipment() {
-        return equipment;
+    public long getEquipment_id() {
+        return equipment_id;
     }
 
-    public void setEquipment(String equipment) {
-        this.equipment = equipment;
+    public void setEquipment_id(long equipment_id) {
+        this.equipment_id = equipment_id;
     }
 
-    public String getMeetingRoom() {
-        return meetingRoom;
+    public long getMeeting_room_id() {
+        return meeting_room_id;
     }
 
-    public void setMeetingRoom(String meetingRoom) {
-        this.meetingRoom = meetingRoom;
+    public void setMeeting_room_id(long meeting_room_id) {
+        this.meeting_room_id = meeting_room_id;
     }
+
 }
