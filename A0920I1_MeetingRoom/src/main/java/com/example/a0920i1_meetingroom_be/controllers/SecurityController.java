@@ -55,7 +55,6 @@ public class SecurityController {
     @GetMapping(value = "/findAccount")
     public ResponseEntity<?> findAccountByUser(@RequestParam String username) {
         Account account = accountService.findAccountByUsername(username);
-
         if (account != null) {
             return ResponseEntity.ok(account);
         } else {
