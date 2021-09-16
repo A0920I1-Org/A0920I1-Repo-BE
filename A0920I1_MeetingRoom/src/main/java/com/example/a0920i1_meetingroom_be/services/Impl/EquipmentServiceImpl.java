@@ -16,12 +16,12 @@ public class EquipmentServiceImpl  implements EquipmentService {
     EquipmentRepository equipmentRepository;
     @Autowired
     OrderEquipmentRepository orderEquipmentRepository;
-
+    //PhapNT- listEquipment
     @Override
     public List<Equipment> getAllEquipment() {
         return equipmentRepository.findAllEquipment();
     }
-
+    //PhapNT- findByIdEquipment
     @Override
     public Equipment findById(long id) {
         return equipmentRepository.findById(id).orElse(null);
@@ -32,24 +32,24 @@ public class EquipmentServiceImpl  implements EquipmentService {
         equipmentRepository.createEquipment(equipmentDto.getName(),equipmentDto.getStock(),
                 equipmentDto.getRepairQuantity(),equipmentDto.getImageUrl());
     }
-
+    //PhapNT-DetailEquipment
     @Override
     public Equipment showDetailEquipment(long id) {
         return equipmentRepository.showDetailEquipment(id);
     }
-
+    //PhapNT-deleteEquipment
     @Override
     public void deleteEquipmentById(long id) {
         orderEquipmentRepository.deleteOrderEquipmentById(id);
         equipmentRepository.deleteEquipmentById(id);
     }
-
+    //PhapNT-UpdateEquipment
     @Override
     public void updateEquipment(EquipmentDto equipmentDto) {
         equipmentRepository.updateEquipment(equipmentDto.getName(),equipmentDto.getStock(),
                 equipmentDto.getRepairQuantity(),equipmentDto.getImageUrl(),equipmentDto.getId());
     }
-
+    //PhapNT-searchNameEquipment.
     @Override
     public List<Equipment> searchName(String name) {
         return equipmentRepository.searchName(name);

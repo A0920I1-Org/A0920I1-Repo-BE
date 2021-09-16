@@ -1,19 +1,11 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
 @Getter
 @Setter
 public class Equipment {
