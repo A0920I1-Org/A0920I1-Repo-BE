@@ -14,7 +14,7 @@ import java.util.List;
 public class TypeMeetingRoomController {
     @Autowired
     TypeMeetingRoomService typeMeetingRoomService;
-
+    //AnhLT
     //display list
     @GetMapping("/listTypeMeetingRoom")
     public List<TypeMeetingRoom> getTypeMeetingRoomList(){

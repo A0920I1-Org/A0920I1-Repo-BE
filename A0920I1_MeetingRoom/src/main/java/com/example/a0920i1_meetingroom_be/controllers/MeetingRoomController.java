@@ -13,7 +13,7 @@ import java.util.List;
 public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService;
-
+    //AnhLT
     @GetMapping("")
     public List<MeetingRoom> getMeetingRoom(){
         return meetingRoomService.getMeetingRooms();

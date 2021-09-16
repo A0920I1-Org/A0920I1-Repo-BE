@@ -15,6 +15,7 @@ public class RoomStatusController {
     @Autowired
     RoomStatusService roomStatusService;
 
+    //AnhLT
     // list
     @GetMapping("/listRoomStatus")
     public List<RoomStatus> getRoomStatusList(){

@@ -25,18 +25,21 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     @Autowired
     MeetingRoomRepository meetingRoomRepository;
 
-
+    //AnhLT
     private List<OrderMeeting> statisticList;
     float daysBetweenBySearch = 0; //bien dem ngay sau khi search theo date or room
-
+    //AnhLT
     SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     // HH:mm:ss.SSSXXX
     SimpleDateFormat myTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
+    //AnhLT
     // get diff between two days
     public float getDaysBetween(String dateCheckin, String dateCheckout) {
         float daysBetween = 0;
         try {
+            if(dateCheckin==null||dateCheckout==null|| dateCheckin.equals("") | dateCheckout.equals("")){
+                return daysBetween;
+            }
             Date dateStart = myDateFormat.parse(dateCheckin);
             Date dateEnd = myDateFormat.parse(dateCheckout);
             long getDayDiffBySearch = (dateEnd.getTime() - dateStart.getTime());
@@ -46,7 +49,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         }
         return daysBetween;
     }
-
+    //AnhLT
     // display list statictical by date
     @Override
     public List<OrderMeeting> statisticByDate(StatisticByDate statisticByDate) {
@@ -55,12 +58,12 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
 
         // statistical by date
         // user do not enter input data dateCheckin
-        if (statisticByDate.getDateCheckin() == null) {
+        if (statisticByDate.getDateCheckin() == null|| statisticByDate.getDateCheckin().equals("")) {
             statisticList = orderMeetingRepository.statisticByDateCheckinNull(statisticByDate.getDateCheckout());
             return statisticList;
         }
         // user do not enter input data dateCheckout
-        if (statisticByDate.getDateCheckout() == null) {
+        if (statisticByDate.getDateCheckout() == null || statisticByDate.getDateCheckout().equals("")) {
             statisticList = orderMeetingRepository.statisticByDateCheckoutNull(statisticByDate.getDateCheckin());
             return statisticList;
         }
@@ -68,7 +71,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         statisticList = orderMeetingRepository.statisticByDate(statisticByDate.getDateCheckin(), statisticByDate.getDateCheckout());
         return statisticList;
     }
-
+    //AnhLT
     @Override
     public List<OrderMeeting> statisticByRoom(StatisticByRoom statisticByRoom) {
         // test user have did enter date in box Month
@@ -113,7 +116,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         );
         return statisticList;
     }
-
+    //AnhLT
     // xu li lay gio
     // diff time between two at time
     public long getTimeDiff(LocalDate dateCheckin, LocalTime timeStart, LocalTime timeEnd) {
@@ -127,7 +130,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         }
         return getTimeDiff;
     }
-
+    //AnhLT
     // create data for display chart statistic with field name room, performance, totals of uses
     public List<ChartStatistical> getChartStatisticalList(List<MeetingRoom> meetingRooms) {
         List<ChartStatistical> chartList = new ArrayList<>();
@@ -136,7 +139,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         }
         return chartList;
     }
-
+    //AnhLT
     // xu li tinh hieu suat
     // recipe = number hours customer used div total number hours (user enters data with start date and end date) x 100
     public float calculatorPerformance(float numberHoursUses,
@@ -144,7 +147,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         float numberHoursUsesForSearch = 24 * daysBetweenBySearch;
         return ((numberHoursUses / numberHoursUsesForSearch) * 100);
     }
-
+    //AnhLT
     // set performance calculated into the chart list
     @Override
     public List<ChartStatistical> setPerformanceWithChartList() {
@@ -195,7 +198,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         return chartStatisticalList;
     }
 
-
+    //AnhLT
     // calculator totals of user each meeting room
     @Override
     public List<ChartStatistical> totalsOfUses() {
@@ -227,19 +230,20 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
     // user access screen register history with idAccount
     private String idAccount;
     private String idMeetingRoom;
-
+    //AnhLT
     // user access
     @Override
     public List<OrderMeeting> getOrderMeetingByAccountId(String accountId) {
         idAccount=accountId;
         return orderMeetingRepository.getOrderMeetingByAccountId(accountId);
     }
+    //AnhLT
     // find order in DB => trans data for screen delete, display information
     @Override
     public OrderMeeting findOrderById(String idOrder) {
         return orderMeetingRepository.findOrderMeetingByIdOrder(idOrder);
     }
-
+    //AnhLT
     // func search register
     @Override
     public List<OrderMeeting> searchRegisterHistoryBy(RegisterHistory registerHistory) {
@@ -339,7 +343,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
             );
         }
     }
-
+    //AnhLT
     // func when user unsubcribe
     @Override
     public void deleteOrderMeeting(String idOrder, String reasonDelete) {
@@ -347,7 +351,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         orderMeetingRepository.deleteRegister(idOrder, reasonDelete, deleteTime);
     }
 
-
+    //AnhLT
     // check were the order delete?
     @Override
     public boolean checkIsDelete(String idOrder) {
@@ -359,6 +363,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
         }
         return true;
     }
+    //AnhLT
     // admin access register history
     @Override
     public List<OrderMeeting> getRegisterHistoryByIdMeetingRoom(String idRoom) {

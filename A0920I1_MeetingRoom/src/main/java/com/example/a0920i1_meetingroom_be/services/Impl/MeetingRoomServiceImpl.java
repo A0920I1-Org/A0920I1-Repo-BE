@@ -12,7 +12,7 @@ import java.util.List;
 public class MeetingRoomServiceImpl implements MeetingRoomService {
     @Autowired
     MeetingRoomRepository meetingRoomRepository;
-
+    //AnhLT
     // display list meeting room
     @Override
     public List<MeetingRoom> getMeetingRooms() {

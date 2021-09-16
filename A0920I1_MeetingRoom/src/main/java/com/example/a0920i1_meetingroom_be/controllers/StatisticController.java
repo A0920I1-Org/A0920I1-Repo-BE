@@ -16,19 +16,21 @@ import java.util.List;
 public class StatisticController {
     @Autowired
     OrderMeetingService orderMeetingService;
+
+    //AnhLT
     //push 12/9
     //thong ke theo ngay
     @PutMapping("/statistic-by-date")
     public List<OrderMeeting> statisticByDate(@RequestBody StatisticByDate statisticByDate){
         return orderMeetingService.statisticByDate(statisticByDate);
     }
-
+    //AnhLT
     // thong ke theo phong
     @PutMapping("/statistic-by-room")
     public List<OrderMeeting> statisticByDate(@RequestBody StatisticByRoom statisticByRoom){
         return orderMeetingService.statisticByRoom(statisticByRoom);
     }
-
+    //AnhLT
     // tinh toan hieu suat va so lan su dung cua moi phong
     @GetMapping("/cal-performance-totals-of-uses")
     public List<ChartStatistical> calPerformanceAndUses(){

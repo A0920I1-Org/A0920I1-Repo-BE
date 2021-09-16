@@ -12,7 +12,7 @@ import java.util.List;
 public class RoomStatusServiceImpl implements RoomStatusService {
     @Autowired
     RoomStatusRepository roomStatusRepository;
-
+    //AnhLT
     // display list room status
     @Override
     public List<RoomStatus> getRoomStatus() {

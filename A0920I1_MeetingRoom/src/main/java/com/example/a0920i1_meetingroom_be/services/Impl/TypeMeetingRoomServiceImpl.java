@@ -12,7 +12,7 @@ import java.util.List;
 public class TypeMeetingRoomServiceImpl implements TypeMeetingRoomService {
     @Autowired
     TypeMeetingRoomRepository typeMeetingRoomRepository;
-
+    //AnhLT
     // display list type meeting room
     @Override
     public List<TypeMeetingRoom> getTypeMeetingRoom() {
