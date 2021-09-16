@@ -9,10 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,12 +67,12 @@ public class MeetingroomController {
     }
 
     // huệ tạo 9/9/2021, chức năng thêm mới phòng họp bằng cách sử dụng đối tượng dto
-    @PostMapping(value = "")
+    @PostMapping(value = "/create-meeting")
     public ResponseEntity<?> createMeeting(@RequestBody MeetingRoomDto meetingRoom){
 
-        meetingRoomService.saveMeetingRoom(meetingRoom.getName(),
+        meetingRoomService.saveMeetingRoom(meetingRoom.getName().trim(),
                 meetingRoom.getFloors(),
-                meetingRoom.getImageUrl(),
+                meetingRoom.getImageUrl().trim(),
                 meetingRoom.getAreaDto(),
                 meetingRoom.getRoomStatusDto(),
                 meetingRoom.getTypeMeetingRoomDto());
@@ -84,8 +80,7 @@ public class MeetingroomController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    // huệ tạo 9/9/2021, chức năng hiển thị phòng họp chi tiết
-
+    // huệ tạo 9/9/2021, chức năng hiển thị phòng họp chi tiết theo id phòng họp
     @GetMapping("/details-meeting-room/{id}")
     public MeetingRoom showDetailsMeetingRoom(@PathVariable("id") long id){
         return meetingRoomService.showDetailMeetingRoom(id);
@@ -103,6 +98,7 @@ public class MeetingroomController {
         return orderEquipmentService.listEquipmentByIdMeeting(id);
     }
 
+    // huệ tạo 10/9/2021, chức năng thêm mới 1 tài sản của phòng họp
     @PostMapping("/order-equipment")
     public ResponseEntity<?> insertOrderEquipment(@RequestBody OrderEquipmentDto orderEquipmentDto){
 
