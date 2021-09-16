@@ -6,6 +6,7 @@ import com.example.a0920i1_meetingroom_be.models.entity.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -51,6 +52,17 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
     @Query(value = "select * from account", nativeQuery = true)
     List<Account> getAllAccount();
+
+
+    @Query(value = "SELECT * FROM meetingroom.account where username = ?1", nativeQuery = true)
+    Account findByUsername(String username);
+
+    @Query(value = "SELECT * FROM meetingroom.account", nativeQuery = true)
+    List<Account> findAll();
+
+    Account findByEmail(String email);
+
+    boolean existsByEmail(String email);
 
 }
 

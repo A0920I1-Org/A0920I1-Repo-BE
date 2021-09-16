@@ -1,6 +1,5 @@
 package com.example.a0920i1_meetingroom_be.services.Impl;
 
-
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountListDTO;
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountQueryDto;
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountUpdateDTO;
@@ -13,6 +12,7 @@ import com.example.a0920i1_meetingroom_be.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -79,4 +79,10 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getAllAccount() {
         return accountRepository.findAll();
     }
+//    TuHC
+    @Override
+    public Account findAccountByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
+
 }

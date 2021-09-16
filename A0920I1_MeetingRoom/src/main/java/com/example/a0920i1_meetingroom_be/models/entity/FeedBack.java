@@ -30,6 +30,7 @@ public class FeedBack {
     @JoinColumn(name = "feedBackType_id", referencedColumnName = "id")
     private FeedBackType feedBackType;
 
+
     @JsonManagedReference(value = "account")
     @ManyToOne
     @JoinColumn(name="account_id" , referencedColumnName = "id")

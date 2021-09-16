@@ -1,10 +1,10 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 import javax.persistence.*;
 
@@ -28,6 +28,7 @@ public class OrderMeeting {
     @ManyToOne
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;
+
 
     @JsonManagedReference
     @ManyToOne

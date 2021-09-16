@@ -27,4 +27,12 @@ public interface AccountService {
     void createAccountRole(Long accountId, Long roleId);
 
     List<Account> getAllAccount();
+
+
+//    TuHC
+    Account findAccountByUsername(String username);
+
+//    Account findAccountByEmail(String email);
+//    Optional<Account> findAccountById(Long id);
+
 }
