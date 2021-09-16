@@ -14,6 +14,7 @@ public class OrderEquipment {
     private long id;
     private long quantity;
 
+    private long quantity;
     @ManyToOne
     @JoinColumn(name = "equipment_id" , referencedColumnName = "id")
     private Equipment equipment;
@@ -21,4 +22,5 @@ public class OrderEquipment {
     @ManyToOne
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;
+
 }

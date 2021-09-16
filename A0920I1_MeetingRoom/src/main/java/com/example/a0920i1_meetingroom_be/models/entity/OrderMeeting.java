@@ -33,6 +33,7 @@ public class OrderMeeting {
     @JoinColumn(name = "account_id" , referencedColumnName = "id")
     private Account account;
 
+<<<<<<< HEAD
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime timeStart;
 
@@ -52,4 +53,6 @@ public class OrderMeeting {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate createDate;
 
+=======
+>>>>>>> HoangLV_ListMeetingRoom
 }

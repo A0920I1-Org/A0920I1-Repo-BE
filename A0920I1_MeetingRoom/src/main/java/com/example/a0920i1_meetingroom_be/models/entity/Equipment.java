@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -19,15 +20,15 @@ public class Equipment {
     private String name;
     private int stock;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> HoangLV_ListMeetingRoom
     private int repairQuantity;
 
     private String imageUrl;
 
-    @JsonBackReference
+    @JsonBackReference(value = "equipment_id")
     @OneToMany(mappedBy = "equipment")
     private List<OrderEquipment> orderEquipmentList;
-
-
-
-
 }
