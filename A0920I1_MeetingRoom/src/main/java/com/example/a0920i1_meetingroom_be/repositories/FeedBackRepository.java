@@ -8,13 +8,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 @Repository
+//feedback repo TriNH
 public interface FeedBackRepository extends JpaRepository<FeedBack , Long> {
     @Modifying
     @Transactional
     @Query(
             value = "UPDATE feed_back " +
                     "SET feed_back.is_handle = 1 " +
-                    "WHERE feed_back.feed_back_type_id=2 and feed_back.id = :id"
+                    "WHERE feed_back.feed_back_type_id= 2 and feed_back.id = :id"
             ,nativeQuery = true
     )
     void updateFeedBack(@Param("id") Long id);
@@ -22,7 +23,7 @@ public interface FeedBackRepository extends JpaRepository<FeedBack , Long> {
     @Modifying
     @Transactional
     @Query(
-            value = "INSERT INTO feed_back(content, description,date_feedback, is_handle,title, account_id,feed_back_type_id,meetingroom_id)VALUES (?1,?2,?3,?4,?5,?6,?7,?8)",
+            value = "INSERT INTO feed_back(content, description,date_feedback, is_handle,title, account_id,feed_back_type_id,meetingroom_id )VALUES (?1,?2,?3,?4,?5,?6,?7,?8)",
             nativeQuery = true
     )
     void createFeedBack(String content,String description, LocalDate dateFeedback, boolean isHandle,String title,

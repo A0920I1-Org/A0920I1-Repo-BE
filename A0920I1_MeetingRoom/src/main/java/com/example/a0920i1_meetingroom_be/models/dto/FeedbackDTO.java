@@ -4,7 +4,7 @@ import com.example.a0920i1_meetingroom_be.models.entity.ImageFeedBack;
 
 import java.time.LocalDate;
 
-
+//class TriNH
 public class FeedbackDTO {
     private Long  id;
     private String title;

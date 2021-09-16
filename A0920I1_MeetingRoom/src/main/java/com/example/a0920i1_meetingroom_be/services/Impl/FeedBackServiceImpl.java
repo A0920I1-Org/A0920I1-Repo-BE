@@ -7,9 +7,11 @@ import com.example.a0920i1_meetingroom_be.services.FeedBackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
+//feedbackTech TriNH
 public class FeedBackServiceImpl implements FeedBackService {
 
     @Autowired
@@ -31,10 +33,9 @@ public class FeedBackServiceImpl implements FeedBackService {
     }
 
     @Override
-    public FeedbackDTO createFeedBack(FeedbackDTO feedbackDTO) {
-        feedBackRepository.createFeedBack(feedbackDTO.getContent(),feedbackDTO.getDescription(),feedbackDTO.getDateFeedback(),feedbackDTO.isHandle(),
-                feedbackDTO.getTitle(),feedbackDTO.getAccount(),feedbackDTO.getFeedBackType(),feedbackDTO.getMeetingRoom(),feedbackDTO.getImageFeedBackList());
-        return feedbackDTO;
+    public void createFeedBack(String content, String description, LocalDate dateFeedback, boolean isHandle, String title, int account, int feedBackType, int meetingroom_id, String imageFeedBackList) {
+        System.out.println(account);
+        feedBackRepository.createFeedBack(content,description,dateFeedback,isHandle,title,account,feedBackType,meetingroom_id,imageFeedBackList);
     }
 
 

@@ -13,33 +13,40 @@ import java.util.List;
 @RestController
 @RequestMapping("/feedback")
 @CrossOrigin(origins ="http://localhost:4200")
+//chuc nang TriNH
 public class TechnicalFeedbackController {
 
     @Autowired
     private FeedBackService feedBackService;
-
+//chuc nang list TriNH
     @GetMapping("/list")
     public ResponseEntity<List<FeedBack>> getAllFeed() {
         List<FeedBack> feedBacks = feedBackService.findAll();
         return new ResponseEntity<>(feedBacks, HttpStatus.OK);
     }
+//chuc nang findID TriNH
 
     @GetMapping("/find/{id}")
     public ResponseEntity<FeedBack> getFeedbackById(@PathVariable("id") Long id) {
         FeedBack feedBack = feedBackService.findFeedbackId(id);
         return new ResponseEntity<>(feedBack, HttpStatus.OK);
     }
+//chuc nang update TriNH
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Long> updateEmployee(@PathVariable("id") Long id) {
         feedBackService.updateFeedBack(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+//chuc nang add TriNH
     @PostMapping("/add")
     public ResponseEntity<FeedbackDTO> createFeedbackTech(@RequestBody FeedbackDTO feedbackDTO) {
-        FeedbackDTO newFeedbackDTO=feedBackService.createFeedBack(feedbackDTO);
-        return new ResponseEntity<>(newFeedbackDTO,HttpStatus.CREATED);
+        System.out.println(feedbackDTO.getAccount());
+        feedBackService.createFeedBack(feedbackDTO.getContent(),feedbackDTO.getDescription(),
+                feedbackDTO.getDateFeedback(),feedbackDTO.isHandle(),feedbackDTO.getTitle(),feedbackDTO.getAccount(),
+                feedbackDTO.getFeedBackType(),feedbackDTO.getMeetingRoom(),feedbackDTO.getImageFeedBackList());
+        return new ResponseEntity<>(HttpStatus.CREATED);
+
     }
 
 
