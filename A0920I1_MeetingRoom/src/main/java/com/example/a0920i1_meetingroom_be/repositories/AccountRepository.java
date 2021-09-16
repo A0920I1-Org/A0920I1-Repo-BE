@@ -15,5 +15,8 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
     @Query(value = "SELECT * FROM meetingroom.account", nativeQuery = true)
     List<Account> findAll();
 
+    Account findByEmail(String email);
+
+    boolean existsByEmail(String email);
 }
 
