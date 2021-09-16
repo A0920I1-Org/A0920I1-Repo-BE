@@ -82,7 +82,7 @@ public class MeetingRoomController {
 
     //Xóa phòng họp theo id (Hoàng)
     @DeleteMapping("{id}")
-    public ResponseEntity<MeetingRoom> delete(@PathVariable long id) {
+    public ResponseEntity<MeetingRoom> deleteMeetingRoom(@PathVariable long id) {
         System.out.println("Xoa thanh cong id " + id);
         meetingRoomService.deleteMeeting(id);
         return  new ResponseEntity<MeetingRoom>(HttpStatus.OK);
