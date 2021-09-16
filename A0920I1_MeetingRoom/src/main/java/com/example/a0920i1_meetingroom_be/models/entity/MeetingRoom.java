@@ -1,43 +1,34 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
-import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
-//@Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class MeetingRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
-
     private Integer floors;
-<<<<<<< HEAD
-=======
 
->>>>>>> HoangLV_ListMeetingRoom
     private String imageUrl;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "meetingRoom")
-    private List<OrderMeeting> orderMeetingList;
-
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "typeMeetingRoom_id" , referencedColumnName = "id")
     private TypeMeetingRoom typeMeetingRoom;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "roomStatus_id" , referencedColumnName = "id")
     private RoomStatus roomStatus;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "area_id" , referencedColumnName = "id")
     private Area area;
@@ -46,13 +37,13 @@ public class MeetingRoom {
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
 
-<<<<<<< HEAD
+
+    @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<FeedBack> feedBackList;
 
-
-=======
     public MeetingRoom() {
+
     }
 
     public long getId() {
@@ -87,14 +78,6 @@ public class MeetingRoom {
         this.imageUrl = imageUrl;
     }
 
-    public List<OrderMeeting> getOrderMeetingList() {
-        return orderMeetingList;
-    }
-
-    public void setOrderMeetingList(List<OrderMeeting> orderMeetingList) {
-        this.orderMeetingList = orderMeetingList;
-    }
-
     public TypeMeetingRoom getTypeMeetingRoom() {
         return typeMeetingRoom;
     }
@@ -126,5 +109,14 @@ public class MeetingRoom {
     public void setOrderEquipmentList(List<OrderEquipment> orderEquipmentList) {
         this.orderEquipmentList = orderEquipmentList;
     }
->>>>>>> HoangLV_ListMeetingRoom
+
+    public List<FeedBack> getFeedBackList() {
+        return feedBackList;
+    }
+
+    public void setFeedBackList(List<FeedBack> feedBackList) {
+        this.feedBackList = feedBackList;
+    }
 }
+
+

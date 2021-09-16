@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class RoomStatusServiceImpl implements RoomStatusService {
+
     @Autowired
     private RoomStatusRepository roomStatusRepository ;
     //(Hoàng)

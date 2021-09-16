@@ -1,6 +1,5 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
-
 import java.util.List;
 
 public class MeetingRoomDto {
@@ -20,9 +19,6 @@ public class MeetingRoomDto {
     private long typeMeetingRoom;
 
     private long roomStatus;
-
-    public MeetingRoomDto() {
-    }
 
     public long getId() {
         return id;

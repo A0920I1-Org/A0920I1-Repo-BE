@@ -7,4 +7,6 @@ import java.util.List;
 public interface AreaService {
     // lấy danh sách khu vực (Hoàng)
     List<Area> findAllArea();
+
+
 }

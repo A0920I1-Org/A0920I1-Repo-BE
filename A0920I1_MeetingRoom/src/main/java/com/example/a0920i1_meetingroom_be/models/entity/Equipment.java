@@ -3,10 +3,8 @@ package com.example.a0920i1_meetingroom_be.models.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -20,10 +18,6 @@ public class Equipment {
     private String name;
     private int stock;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> HoangLV_ListMeetingRoom
     private int repairQuantity;
 
     private String imageUrl;

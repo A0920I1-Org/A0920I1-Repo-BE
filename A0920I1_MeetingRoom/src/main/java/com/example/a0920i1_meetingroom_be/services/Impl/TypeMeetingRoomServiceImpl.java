@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class TypeMeetingRoomServiceImpl implements TypeMeetingRoomService {
+
     @Autowired
     private TypeMeetingRoomRepository typeMeetingRoomRepository ;
     //(Hoàng)

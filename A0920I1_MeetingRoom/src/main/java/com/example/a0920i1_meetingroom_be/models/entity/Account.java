@@ -28,15 +28,15 @@ public class Account {
 
     private String imageUrl;
 
-    @JsonBackReference
+    @JsonBackReference(value = "acc-accrole")
     @OneToMany(mappedBy = "account")
     private List<AccountRole> accountRoleList;
 
-    @JsonBackReference
+    @JsonBackReference(value = "acc-feedback")
     @OneToMany(mappedBy = "account")
     private List<FeedBack> feedBackList;
 
-    @JsonBackReference
+    @JsonBackReference(value = "acc-ordermeeting")
     @OneToMany(mappedBy = "account")
     private List<OrderMeeting> orderMeetingList;
 

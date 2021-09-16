@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,12 +15,14 @@ public class OrderEquipment {
     private long id;
     private long quantity;
 
-    private long quantity;
+
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "equipment_id" , referencedColumnName = "id")
     private Equipment equipment;
 
-    @ManyToOne
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;
 
