@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface TypeMeetingRoomService {
 
-
     // lấy danh sách loại phòng (Hoàng)
     List<TypeMeetingRoom> findAllTypeMeetingRoom();
 

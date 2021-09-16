@@ -17,6 +17,7 @@ import java.util.List;
 public class MeetingRoomServiceImpl implements MeetingRoomService {
     @Autowired
     MeetingRoomRepository meetingRoomRepository;
+
     @Autowired
     private OrderEquipmentRepository orderEquipmentRepository;
 
@@ -55,8 +56,10 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
         return meetingRoomRepository.searchMeetingRoom(name, floors, area_id, room_status_id, type_meeting_room_id, capacity);
     }
 
+
     @Override
     public void saveMeetingRoom(String name, int floors, String image_url, long area_id , long room_status_id, long type_meeting_room_id) {
        this.meetingRoomRepository.saveMeeting(name, floors, image_url, area_id, room_status_id, type_meeting_room_id);
     }
+
 }

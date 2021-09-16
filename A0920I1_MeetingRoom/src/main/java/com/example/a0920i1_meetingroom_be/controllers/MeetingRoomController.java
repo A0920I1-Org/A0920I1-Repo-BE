@@ -5,19 +5,21 @@ import com.example.a0920i1_meetingroom_be.models.dto.OrderEquipmentDto;
 import com.example.a0920i1_meetingroom_be.models.entity.*;
 import com.example.a0920i1_meetingroom_be.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200")
-@RestController
-@RequestMapping("/meeting")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@RequestMapping("/meetingRooms")
 public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService;
+    //AnhLT
 
     @Autowired
     OrderEquipmentService orderEquipmentService;

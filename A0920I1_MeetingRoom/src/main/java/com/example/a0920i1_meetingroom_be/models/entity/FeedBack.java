@@ -1,10 +1,7 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-
 
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,6 +47,104 @@ public class FeedBack {
     @JoinColumn(name = "meetingroom_id", referencedColumnName = "id")
     private MeetingRoom meetingRoom;
 
+
     private String content;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isHandle() {
+        return isHandle;
+    }
+
+    public void setHandle(boolean handle) {
+        isHandle = handle;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getDateFeedback() {
+        return dateFeedback;
+    }
+
+    public void setDateFeedback(LocalDate dateFeedback) {
+        this.dateFeedback = dateFeedback;
+    }
+
+    public boolean isIsHandle() {
+        return isHandle;
+    }
+
+    public void setIsHandle(boolean isHandle) {
+        this.isHandle = isHandle;
+    }
+
+    public FeedBackType getFeedBackType() {
+        return feedBackType;
+    }
+
+    public void setFeedBackType(FeedBackType feedBackType) {
+        this.feedBackType = feedBackType;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Notification getNotification() {
+        return notification;
+    }
+
+    public void setNotification(Notification notification) {
+        this.notification = notification;
+    }
+
+    public List<ImageFeedBack> getImageFeedBackList() {
+        return imageFeedBackList;
+    }
+
+    public void setImageFeedBackList(List<ImageFeedBack> imageFeedBackList) {
+        this.imageFeedBackList = imageFeedBackList;
+    }
+
+    public MeetingRoom getMeetingRoom() {
+        return meetingRoom;
+    }
+
+    public void setMeetingRoom(MeetingRoom meetingRoom) {
+        this.meetingRoom = meetingRoom;
+    }
+
 }
 
