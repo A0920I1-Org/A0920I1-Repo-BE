@@ -6,12 +6,11 @@ import java.util.List;
 
 public class AuthenticationResponse {
     private String token;
+    private String status;
 
-    public AuthenticationResponse(String token) {
+    public AuthenticationResponse(String token, String status) {
         this.token = token;
-    }
-
-    public AuthenticationResponse() {
+        this.status = status;
     }
 
     public String getToken() {
@@ -22,4 +21,11 @@ public class AuthenticationResponse {
         this.token = token;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
