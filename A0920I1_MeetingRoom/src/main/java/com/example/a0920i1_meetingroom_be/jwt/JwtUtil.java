@@ -31,7 +31,7 @@ public class JwtUtil {
         this.refreshExpirationDateInMs = refreshExpirationDateInMs;
     }
 
-    // tao token cho user
+    // tao token cho user - TuHC
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
@@ -51,7 +51,7 @@ public class JwtUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs)).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
-    //    token co t/g song 5-10p, sau do thi het han, phai refresh lai token
+    //    token co t/g song 5-10p, sau do thi het han, phai refresh lai token - TuHC
     public String doGenerateRefreshToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + refreshExpirationDateInMs))
@@ -59,6 +59,7 @@ public class JwtUtil {
 
     }
 
+//    TuHC
     public boolean validateToken(String authToken) {
         try {
             // Jwt token has not been tampered with
@@ -71,14 +72,14 @@ public class JwtUtil {
         }
     }
 
-    //    lay duoc username tu token gui len
+    //    lay duoc username tu token gui len - TuHC
     public String getUsernameFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 
         return claims.getSubject();
     }
 
-    //    lay role tu token gui len
+    //    lay role tu token gui len - TuHC
     public List<SimpleGrantedAuthority> getRolesFromToken(String authToken) {
         List<SimpleGrantedAuthority> roles = null;
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(authToken).getBody();

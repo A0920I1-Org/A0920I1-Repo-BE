@@ -51,7 +51,7 @@ public class SecurityController {
         return ResponseEntity.ok(new AuthenticationResponse(token, "OK"));
     }
 
-
+//Lay account dua theo username
     @GetMapping(value = "/findAccount")
     public ResponseEntity<?> findAccountByUser(@RequestParam String username) {
         Account account = accountService.findAccountByUsername(username);
@@ -63,14 +63,14 @@ public class SecurityController {
         }
     }
 
-    @GetMapping(value = "/getAllAccount")
-    public ResponseEntity<?> getAllAccount(){
-        return ResponseEntity.ok(accountService.findAllAccount());
-    }
-
-    @PostMapping(value = "/register")
-    public ResponseEntity<?> saveUser(@RequestBody Account account) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(account));
-    }
+//    @GetMapping(value = "/getAllAccount")
+//    public ResponseEntity<?> getAllAccount(){
+//        return ResponseEntity.ok(accountService.findAllAccount());
+//    }
+//
+//    @PostMapping(value = "/register")
+//    public ResponseEntity<?> saveUser(@RequestBody Account account) throws Exception {
+//        return ResponseEntity.ok(userDetailsService.save(account));
+//    }
 
 }

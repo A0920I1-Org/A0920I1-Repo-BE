@@ -1,9 +1,7 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.List;
-
+//TuHC
 public class AuthenticationResponse {
     private String token;
     private String status;
