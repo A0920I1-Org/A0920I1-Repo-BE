@@ -26,8 +26,6 @@ public class MeetingRoomController {
     @Autowired
     AreaService areaService;
 
-    @Autowired
-    EquipmentService equipmentService;
 
 
     // Lấy danh sách phòng họp (Hoàng)
@@ -55,7 +53,7 @@ public class MeetingRoomController {
     }
 
     // chỉnh sửa phòng họp (Hoàng)
-    @PutMapping(value = "/edit/{id}")
+    @PutMapping(value = "/update-meeting/{id}")
     public ResponseEntity<?> updateMeetingRoom(@PathVariable("id") long id, @RequestBody MeetingRoomDto meetingRoomDto) {
 
         meetingRoomService.updateMeeting(meetingRoomDto);
@@ -81,11 +79,6 @@ public class MeetingRoomController {
         return new ResponseEntity<>(roomStatuses, HttpStatus.OK);
     }
 
-    @GetMapping(value = "equipment")
-    public ResponseEntity<List<Equipment>> getAllEquipment() {
-        List<Equipment> equipment = equipmentService.findAllEquipment();
-        return new ResponseEntity<>(equipment, HttpStatus.OK);
-    }
 
     //Xóa phòng họp theo id (Hoàng)
     @DeleteMapping("{id}")
@@ -95,7 +88,7 @@ public class MeetingRoomController {
         return  new ResponseEntity<MeetingRoom>(HttpStatus.OK);
     }
 
-    //tìm kiếm phòng họp
+    //tìm kiếm phòng họp (Hoàng)
         @GetMapping("/search")
     public ResponseEntity<List<MeetingRoom>> searchMeetingRoomByName(@RequestParam(required = false) String name ,Integer floors,long area_id , long room_status_id,long type_meeting_room_id,Integer capacity ){
 

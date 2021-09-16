@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface RoomStatusRepository extends JpaRepository<RoomStatus , Long> {
+
+    //hiển thị danh sách trạng thái phòng (Hoàng)
     @Query(value = "SELECT * FROM room_status " , nativeQuery = true)
     List<RoomStatus> findAllRoomStatus();
 }

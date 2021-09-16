@@ -12,6 +12,7 @@ import java.util.List;
 public class TypeMeetingRoomServiceImpl implements TypeMeetingRoomService {
     @Autowired
     private TypeMeetingRoomRepository typeMeetingRoomRepository ;
+    //(Hoàng)
     @Override
     public List<TypeMeetingRoom> findAllTypeMeetingRoom() {
         return typeMeetingRoomRepository.findAllTypeMeetingRoom();

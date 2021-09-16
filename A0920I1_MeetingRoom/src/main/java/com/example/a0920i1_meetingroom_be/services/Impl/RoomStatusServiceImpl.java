@@ -12,6 +12,7 @@ import java.util.List;
 public class RoomStatusServiceImpl implements RoomStatusService {
     @Autowired
     private RoomStatusRepository roomStatusRepository ;
+    //(Hoàng)
     @Override
     public List<RoomStatus> findAllRoomStatus() {
         return roomStatusRepository.findAllRoomStatus();

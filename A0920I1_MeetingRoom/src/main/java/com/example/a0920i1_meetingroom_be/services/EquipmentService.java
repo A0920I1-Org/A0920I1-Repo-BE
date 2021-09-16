@@ -5,5 +5,4 @@ import com.example.a0920i1_meetingroom_be.models.entity.Equipment;
 import java.util.List;
 
 public interface EquipmentService {
-    List<Equipment> findAllEquipment();
 }

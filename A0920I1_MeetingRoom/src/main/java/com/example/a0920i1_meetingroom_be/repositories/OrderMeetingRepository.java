@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface OrderMeetingRepository extends JpaRepository<OrderMeeting , Long> {
 
+    //Xóa (Hoàng)
     @Transactional
     @Modifying
     @Query(value = "delete from order_meeting where order_meeting.meeting_room_id = ?1",nativeQuery = true)

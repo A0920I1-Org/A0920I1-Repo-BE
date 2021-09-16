@@ -22,22 +22,25 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
     @Autowired
     private OrderMeetingRepository orderMeetingRepository;
 
+    //(Hoàng) list
     @Override
     public List<MeetingRoom> findAllMeetingRoom() {
         return this.meetingRoomRepository.findAllMeetingRoom();
     }
 
+    // (Hoàng) get Id meeting
     @Override
     public MeetingRoom findById(long id) {
         return this.meetingRoomRepository.findByIdMeetingRoom(id);
     }
 
+    // (Hoàng) update
     @Override
     public void updateMeeting(MeetingRoomDto meetingRoomDto) {
         meetingRoomRepository.updateMeeting(meetingRoomDto.getName(),meetingRoomDto.getFloors(),meetingRoomDto.getArea(),meetingRoomDto.getRoomStatus(),meetingRoomDto.getTypeMeetingRoom(),meetingRoomDto.getImageUrl(),meetingRoomDto.getId());
     }
 
-
+    //(Hoàng) xóa
     @Override
     public void deleteMeeting(long id) {
         orderMeetingRepository.deleteOrderMeetingByMeetingRoomId(id);
@@ -45,7 +48,7 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
         meetingRoomRepository.deleteMeetingRoomById(id);
     }
 
-
+    // (Hoàng) search
     @Override
     public List<MeetingRoom> searchMeetingRoom(String name ,Integer floors,long area_id , long room_status_id,long type_meeting_room_id,Integer capacity) {
         return meetingRoomRepository.searchMeetingRoom(name, floors, area_id, room_status_id, type_meeting_room_id, capacity);

@@ -12,6 +12,8 @@ import java.util.List;
 public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaRepository areaRepository;
+
+    // (Hoàng)
     @Override
     public List<Area> findAllArea() {
         return areaRepository.findAllArea();

@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface TypeMeetingRoomRepository extends JpaRepository<TypeMeetingRoom , Long> {
+
+    //hiển thị danh sách loại phòng (Hoàng)
     @Query(value = "SELECT * FROM type_meeting_room " , nativeQuery = true)
     List<TypeMeetingRoom> findAllTypeMeetingRoom();
 
