@@ -40,7 +40,7 @@ public class EquipmentController {
         }
         return new ResponseEntity<List<OrderEquipment>>(orderEquipments, HttpStatus.OK);
     }
-
+//findId orderBy - PhapNT
     @GetMapping("/byOrder-equipment/{id}")
     public ResponseEntity<List<OrderEquipment> > getByOrderEquipment(@PathVariable("id") long id){
         List<OrderEquipment> orderEquipment = orderEquipmentService.findByOrderEquipment(id);
@@ -92,19 +92,19 @@ public class EquipmentController {
         equipmentService.deleteEquipmentById(id);
         return new ResponseEntity<Equipment>(HttpStatus.OK);
     }
-
+// findId equipment - PhapNT
     @GetMapping("/findById/{id}")
     public ResponseEntity<Equipment> findById(@PathVariable("id") long id){
         Equipment equipment= equipmentService.findById(id);
         return new ResponseEntity<Equipment>(equipment,HttpStatus.OK);
     }
-
+//update - PhapNT
     @PutMapping("/update-equipment/{id}")
     public ResponseEntity<?> updateEquipment(@PathVariable("id") long id, @RequestBody EquipmentDto equipmentDto){
         equipmentService.updateEquipment(equipmentDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+//search - PhapNT
     @GetMapping("/searchNameEquipment")
     public ResponseEntity<List<Equipment>> searchNameEquipment(@RequestParam String name) {
         List<Equipment> equipment = equipmentService.searchName(name);
