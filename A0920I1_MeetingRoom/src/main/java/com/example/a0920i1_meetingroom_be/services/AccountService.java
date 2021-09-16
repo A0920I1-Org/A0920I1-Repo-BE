@@ -25,5 +25,6 @@ public interface AccountService {
     void update(AccountUpdateDTO account);
 
     void createAccountRole(Long accountId, Long roleId);
-//    void update(EmployeeUpdateDTO employee);
+
+    List<Account> getAllAccount();
 }

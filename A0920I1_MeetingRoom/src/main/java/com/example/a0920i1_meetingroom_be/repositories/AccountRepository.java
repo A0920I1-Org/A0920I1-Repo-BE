@@ -2,7 +2,6 @@ package com.example.a0920i1_meetingroom_be.repositories;
 
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountListDTO;
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountQueryDto;
-import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountUpdateDTO;
 import com.example.a0920i1_meetingroom_be.models.entity.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +11,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
+//account TriNH
 @Repository
 public interface AccountRepository extends JpaRepository<Account,Long> {
 
@@ -48,6 +49,8 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
     @Query(value = "update `account` set account.is_delete = 0 where account.id=?1", nativeQuery = true)
     void deleteAccountById(Long id);
 
+    @Query(value = "select * from account", nativeQuery = true)
+    List<Account> getAllAccount();
 
 }
 

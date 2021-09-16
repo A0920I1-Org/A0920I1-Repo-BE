@@ -56,7 +56,10 @@
             <scope>test</scope>
         </dependency>
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> feedback-manager
     </dependencies>
 
     <build>
@@ -80,5 +83,14 @@
             </plugin>
         </plugins>
     </build>
-
+<<<<<<< HEAD
 </project>
+=======
+
+
+<<<<<<< HEAD
+</project>
+=======
+</project>
+>>>>>>> VietNT-feedback
+>>>>>>> feedback-manager

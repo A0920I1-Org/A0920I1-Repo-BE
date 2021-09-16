@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 
 @Entity
-//@Data
-//@NoArgsConstructor
 public class OrderEquipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

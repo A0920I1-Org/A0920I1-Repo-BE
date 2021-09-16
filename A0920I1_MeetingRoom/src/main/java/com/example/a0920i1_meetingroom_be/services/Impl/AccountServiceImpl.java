@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.services.Impl;
 
+
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountListDTO;
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountQueryDto;
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountUpdateDTO;
@@ -21,6 +22,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
+
     @Autowired
     private AccountRoleRepository accountRoleRepository;
     @Autowired
@@ -73,7 +75,8 @@ public class AccountServiceImpl implements AccountService {
         accountRoleRepository.createAccountRole(accountId,roleId);
     }
 
-
-
-
+    @Override
+    public List<Account> getAllAccount() {
+        return accountRepository.findAll();
+    }
 }

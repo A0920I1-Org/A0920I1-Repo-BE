@@ -1,6 +1,5 @@
 package com.example.a0920i1_meetingroom_be.services;
 
-
 import com.example.a0920i1_meetingroom_be.models.dto.MeetingRoomDto;
 import com.example.a0920i1_meetingroom_be.models.entity.MeetingRoom;
 import java.util.List;
@@ -25,6 +24,5 @@ public interface MeetingRoomService {
 
     // huệ tạo ngày 9/9/2021, chức năng tạo mới phòng họp
     void saveMeetingRoom(String name, int floors, String image_url, long area_id , long room_status_id, long type_meeting_room_id);
-
 
 }

@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/A0920I1-Repo-BE.iml" filepath="$PROJECT_DIR$/.idea/A0920I1-Repo-BE.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/A0920I1_MeetingRoom/A0920I1_MeetingRoom_BE.iml" filepath="$PROJECT_DIR$/A0920I1_MeetingRoom/A0920I1_MeetingRoom_BE.iml" />
+>>>>>>> feedback-manager
     </modules>
   </component>
 </project>

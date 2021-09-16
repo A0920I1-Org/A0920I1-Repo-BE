@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.controllers;
 
+
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountCreateDTO;
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountListDTO;
 import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountUpdateDTO;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserAccountController {
@@ -31,7 +34,7 @@ public class UserAccountController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/account/list")
+    @GetMapping(value = "/account/list-page")
     public ResponseEntity<Page<AccountListDTO>> getAllAccountList(@PageableDefault(value=5) Pageable pageable){
         Page<AccountListDTO> accountList = this.accountService.getPageAllAccount(pageable);
         if (accountList.isEmpty()) {
@@ -58,7 +61,7 @@ public class UserAccountController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/api/public/account/{id}")
+    @DeleteMapping(value = "/api/public/account/{id}")
     public ResponseEntity<?> deleteByEmployeeId(@PathVariable Long id) {
         if(id == null){
             return ResponseEntity.badRequest().body("Không có tài khoản này !");
@@ -67,7 +70,7 @@ public class UserAccountController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/api/public/account/{id}")
+    @GetMapping(value = "/api/public/account/{id}")
     public ResponseEntity<?> getByEmployeeId(@PathVariable Long id) {
         if(id == null){
             return ResponseEntity.badRequest().body("Không có tài khoản này !");
@@ -75,15 +78,23 @@ public class UserAccountController {
         return new ResponseEntity<>(accountService.findAccountUpdateById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/api/public/role")
+    @GetMapping(value = "/api/public/role")
     public ResponseEntity<List<Role>> findRole() {
         return ResponseEntity.ok(accountService.findAll());
     }
 
-    @PutMapping("/api/public/account")
+    @PutMapping(value = "/api/public/account")
     public ResponseEntity<?> update(@RequestBody AccountUpdateDTO accountUpdateDTO) {
         accountService.update(accountUpdateDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//lay danh sach accout TriNH
+    @GetMapping("/account/list")
+    public ResponseEntity<List<Account>> getAllAccountList() {
+        List<Account> accounts = accountService.getAllAccount();
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
+    }
+
 
 }

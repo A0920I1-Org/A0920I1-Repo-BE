@@ -6,12 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.List;
 
-
-
-
-
 @Entity
-
 public class MeetingRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,45 +14,32 @@ public class MeetingRoom {
 
     private String name;
     private Integer floors;
+
     private String imageUrl;
-
-
-    @OneToMany(mappedBy = "meetingRoom")
-    @JsonBackReference
-    private List<OrderMeeting> orderMeetingList;
-
-
 
     @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name = "typeMeetingRoom_id", referencedColumnName = "id")
+    @JoinColumn(name = "typeMeetingRoom_id" , referencedColumnName = "id")
     private TypeMeetingRoom typeMeetingRoom;
 
     @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name = "roomStatus_id", referencedColumnName = "id")
+    @JoinColumn(name = "roomStatus_id" , referencedColumnName = "id")
     private RoomStatus roomStatus;
 
     @JsonManagedReference
     @ManyToOne
-    @JoinColumn(name = "area_id", referencedColumnName = "id")
+    @JoinColumn(name = "area_id" , referencedColumnName = "id")
     private Area area;
 
     @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<OrderEquipment> orderEquipmentList;
 
+
     @JsonBackReference
     @OneToMany(mappedBy = "meetingRoom")
     private List<FeedBack> feedBackList;
-
-    public List<OrderMeeting> getOrderMeetingList() {
-        return orderMeetingList;
-    }
-
-    public void setOrderMeetingList(List<OrderMeeting> orderMeetingList) {
-        this.orderMeetingList = orderMeetingList;
-    }
 
     public MeetingRoom() {
 
