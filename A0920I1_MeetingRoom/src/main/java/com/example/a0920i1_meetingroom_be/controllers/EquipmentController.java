@@ -39,7 +39,7 @@ public class EquipmentController {
         }
         return new ResponseEntity<List<OrderEquipment>>(orderEquipments, HttpStatus.OK);
     }
-//findId orderBy - PhapNT
+    //findId orderBy - PhapNT
     @GetMapping("/byOrder-equipment/{id}")
     public ResponseEntity<List<OrderEquipment> > getByOrderEquipment(@PathVariable("id") long id){
         List<OrderEquipment> orderEquipment = orderEquipmentService.findByOrderEquipment(id);
