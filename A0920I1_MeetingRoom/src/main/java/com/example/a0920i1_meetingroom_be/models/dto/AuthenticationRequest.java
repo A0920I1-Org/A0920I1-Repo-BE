@@ -1,5 +1,6 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
+//TuHC
 public class AuthenticationRequest {
     private String username;
     private String password;

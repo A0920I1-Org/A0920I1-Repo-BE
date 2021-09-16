@@ -24,6 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+//    Tim kiem user dua theo username - TuHC
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<GrantedAuthority> grantedAuthorities = null;
@@ -40,6 +41,7 @@ public class CustomUserDetailsService implements UserDetailsService{
         throw new UsernameNotFoundException("User not found with the name " + username);
     }
 
+//    Tao account - TuHC
     public Account save(Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         return accountRepository.save(account);
