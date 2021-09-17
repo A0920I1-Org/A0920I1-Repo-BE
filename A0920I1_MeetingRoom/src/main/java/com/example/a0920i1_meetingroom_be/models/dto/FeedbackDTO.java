@@ -15,12 +15,12 @@ public class FeedbackDTO {
         private int account;
         private String content;
 
-    public FeedbackDTO(String content) {
-        this.content = content;
+
+    public FeedbackDTO() {
     }
 
-    public FeedbackDTO(String title, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int meetingRoom, int account, String content) {
-
+    public FeedbackDTO(long id, String title, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int meetingRoom, int account, String content) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dateFeedback = dateFeedback;
