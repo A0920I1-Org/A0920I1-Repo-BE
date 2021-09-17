@@ -1,6 +1,6 @@
 package com.example.a0920i1_meetingroom_be.models.dto;
 
-import com.example.a0920i1_meetingroom_be.models.entity.ImageFeedBack;
+
 
 import java.time.LocalDate;
 
@@ -18,6 +18,19 @@ public class FeedbackDTO {
     private String imageFeedBackList;
 
     public FeedbackDTO() {
+    }
+
+    public FeedbackDTO(Long id, String title, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int meetingRoom, int account, String content, String imageFeedBackList) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.dateFeedback = dateFeedback;
+        this.isHandle = isHandle;
+        this.feedBackType = feedBackType;
+        this.meetingRoom = meetingRoom;
+        this.account = account;
+        this.content = content;
+        this.imageFeedBackList = imageFeedBackList;
     }
 
     public Long getId() {
@@ -97,19 +110,6 @@ public class FeedbackDTO {
     }
 
     public void setImageFeedBackList(String imageFeedBackList) {
-        this.imageFeedBackList = imageFeedBackList;
-    }
-
-    public FeedbackDTO(Long id, String title, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int meetingRoom, int account, String content, String imageFeedBackList) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.dateFeedback = dateFeedback;
-        this.isHandle = isHandle;
-        this.feedBackType = feedBackType;
-        this.meetingRoom = meetingRoom;
-        this.account = account;
-        this.content = content;
         this.imageFeedBackList = imageFeedBackList;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.a0920i1_meetingroom_be.services.Impl;
 
-import com.example.a0920i1_meetingroom_be.models.dto.FeedbackDTO;
+
+import com.example.a0920i1_meetingroom_be.models.dto.FeedbackDTO1;
 import com.example.a0920i1_meetingroom_be.models.entity.FeedBack;
 import com.example.a0920i1_meetingroom_be.repositories.FeedBackRepository;
 import com.example.a0920i1_meetingroom_be.services.FeedBackService;
@@ -11,20 +12,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-//feedbackTech TriNH
 public class FeedBackServiceImpl implements FeedBackService {
 
     @Autowired
     private FeedBackRepository feedBackRepository;
 
     @Override
-    public List<FeedBack> findAll() {
-        return feedBackRepository.findAll();
-    }
-
-    @Override
     public FeedBack findFeedbackId(long id) {
-        return feedBackRepository.findById(id).orElse(null);
+        return feedBackRepository.findById(id);
     }
 
     @Override
@@ -38,5 +33,27 @@ public class FeedBackServiceImpl implements FeedBackService {
         feedBackRepository.createFeedBack(content,description,dateFeedback,isHandle,title,account,feedBackType,meetingroom_id,imageFeedBackList);
     }
 
+    @Override
+    public void createFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, int feedBackType, int meetingRoom) {
+        feedBackRepository.createFeedback(dateFeedback,description,isHandle,title,account,feedBackType,meetingRoom);
+    }
+
+
+    public List<FeedBack> findAllFeedback() {
+        return feedBackRepository.feedbackList();
+    }
+
+
+
+
+    @Override
+    public void delete(Long id) {
+        feedBackRepository.deleteById(id);
+    }
+
+    @Override
+    public void handleFeedback(FeedbackDTO1 feedbackDTO1) {
+        feedBackRepository.handleFeedback(feedbackDTO1.getDateFeedback(),feedbackDTO1.getDescription(),feedbackDTO1.isHandle(),feedbackDTO1.getTitle(),feedbackDTO1.getAccount(),feedbackDTO1.getFeedBackType(),feedbackDTO1.getMeetingRoom(),feedbackDTO1.getContent(),String.valueOf(feedbackDTO1.getId()));
+    }
 
 }

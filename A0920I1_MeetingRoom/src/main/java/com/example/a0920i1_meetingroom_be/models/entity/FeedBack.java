@@ -37,5 +37,5 @@ public class FeedBack {
     private Account account;
 
     private String content;
-
 }
+

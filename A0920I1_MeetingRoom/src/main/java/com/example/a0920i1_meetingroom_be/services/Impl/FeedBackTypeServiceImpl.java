@@ -5,6 +5,7 @@ import com.example.a0920i1_meetingroom_be.repositories.FeedBackTypeRepository;
 import com.example.a0920i1_meetingroom_be.services.FeedBackTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 import java.util.List;
 
@@ -15,7 +16,10 @@ public class FeedBackTypeServiceImpl implements FeedBackTypeService {
     private FeedBackTypeRepository feedBackTypeRepository;
 
     @Override
-    public List<FeedBackType> findFeedBackTypeAll() {
+
+    public List<FeedBackType> findAllFeedbackType() {
         return feedBackTypeRepository.findAll();
     }
+
+
 }

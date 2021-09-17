@@ -21,7 +21,7 @@ public class TechnicalFeedbackController {
 //chuc nang list TriNH
     @GetMapping("/list")
     public ResponseEntity<List<FeedBack>> getAllFeed() {
-        List<FeedBack> feedBacks = feedBackService.findAll();
+        List<FeedBack> feedBacks = feedBackService.findAllFeedback();
         return new ResponseEntity<>(feedBacks, HttpStatus.OK);
     }
 //chuc nang findID TriNH

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 //tri NH
 @Service
+
 public class MeetingRoomServiceImpl implements MeetingRoomService {
     @Autowired
     private MeetingRoomRepository meetingRoomRepository;
-
 
 
     @Override

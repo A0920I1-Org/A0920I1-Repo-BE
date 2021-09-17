@@ -20,4 +20,6 @@ public class Area {
     @JsonBackReference
     @OneToMany(mappedBy = "area")
     private List<MeetingRoom> meetingRoomList;
+
+
 }

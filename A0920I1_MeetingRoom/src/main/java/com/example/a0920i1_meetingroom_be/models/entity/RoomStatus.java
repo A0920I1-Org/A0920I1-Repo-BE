@@ -22,5 +22,4 @@ public class RoomStatus {
     @OneToMany(mappedBy = "roomStatus")
     private List<MeetingRoom> meetingRoomList;
 
-
 }
