@@ -113,7 +113,7 @@ public class MeetingRoomController {
     }
 
     // huệ tạo 9/9/2021, chức năng thêm mới phòng họp bằng cách sử dụng đối tượng dto
-    @PostMapping(value = "/create-meeting")
+    @PostMapping(value = "")
     public ResponseEntity<?> createMeeting(@RequestBody MeetingRoomDto meetingRoom){
 
         meetingRoomService.saveMeetingRoom(meetingRoom.getName().trim(),
