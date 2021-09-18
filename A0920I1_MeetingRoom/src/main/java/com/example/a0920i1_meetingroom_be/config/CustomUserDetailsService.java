@@ -40,10 +40,4 @@ public class CustomUserDetailsService implements UserDetailsService{
         }
         throw new UsernameNotFoundException("User not found with the name " + username);
     }
-
-//    Tao account - TuHC
-    public Account save(Account account) {
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        return accountRepository.save(account);
-    }
 }
