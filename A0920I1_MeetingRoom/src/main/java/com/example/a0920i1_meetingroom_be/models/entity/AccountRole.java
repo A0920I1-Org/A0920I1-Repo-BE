@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 
 @Entity
-
 public class AccountRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -39,17 +39,15 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-//    TuHC
+    //    TuHC
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
-        httpSecurity.csrf().disable()
-                // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/login/authenticate").
-                permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
-                .permitAll().
-                // all other requests need to be authenticated
-                        anyRequest().authenticated().and().
+        httpSecurity.csrf().disable();
+        // dont authenticate this particular request
+        httpSecurity.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/login/authenticate").permitAll();
+        // all other requests need to be authenticated
+        httpSecurity.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/api/**").authenticated().and().
                 // make sure we use stateless session; session won't be used to
                 // store user's state.
                         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
@@ -57,10 +55,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // Add a filter to validate the tokens with every request
         httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        httpSecurity.cors();
     }
 
-//    TuHC
+    //    TuHC
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // configure AuthenticationManager so that it knows from where to load

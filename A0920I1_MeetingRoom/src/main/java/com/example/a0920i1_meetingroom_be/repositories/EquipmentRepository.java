@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     //PhapNT- listEquipment
-    @Query(value = " select * from Equipment;", nativeQuery = true)
+    @Query(value = " select * from meetingroom.equipment", nativeQuery = true)
     List<Equipment> findAllEquipment();
     //PhapNT-createEquipment
     @Transactional

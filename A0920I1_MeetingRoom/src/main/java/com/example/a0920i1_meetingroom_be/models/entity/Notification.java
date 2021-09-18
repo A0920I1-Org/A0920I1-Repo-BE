@@ -9,8 +9,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class Notification {
 
     @Id
@@ -25,6 +23,9 @@ public class Notification {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "feedback_id", referencedColumnName = "id")
     private FeedBack feedBack;
+
+    public Notification() {
+    }
 
     public long getId() {
         return id;
