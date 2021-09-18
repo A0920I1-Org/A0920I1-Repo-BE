@@ -23,4 +23,35 @@ public class OrderEquipment {
     @JoinColumn(name = "meetingRoom_id" , referencedColumnName = "id")
     private MeetingRoom meetingRoom;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public MeetingRoom getMeetingRoom() {
+        return meetingRoom;
+    }
+
+    public void setMeetingRoom(MeetingRoom meetingRoom) {
+        this.meetingRoom = meetingRoom;
+    }
 }

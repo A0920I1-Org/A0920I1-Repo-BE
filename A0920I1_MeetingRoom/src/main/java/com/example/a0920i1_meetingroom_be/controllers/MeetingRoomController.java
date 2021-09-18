@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-@RequestMapping("/meetingRooms")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(value = "/meetingRooms")
 public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService;
@@ -37,7 +37,7 @@ public class MeetingRoomController {
     EquipmentService equipmentService;
 
     // Lấy danh sách phòng họp (Hoàng)
-    @GetMapping("")
+    @GetMapping(value = "/list")
     public ResponseEntity<List<MeetingRoom>> getAllListMeetingRoom() {
         List<MeetingRoom> meetingRooms = meetingRoomService.findAllMeetingRoom();
         if (meetingRooms.isEmpty()) {

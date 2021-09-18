@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/feedback")
+@RequestMapping(value = "/feedback")
 
 public class FeedBackController {
     @Autowired
@@ -25,7 +25,7 @@ public class FeedBackController {
     private FeedBackTypeService feedBackTypeService;
 
     //VietNT lấy list feedback
-    @GetMapping("/feedbacklist")
+    @GetMapping(value = "/feedbacklist")
     public ResponseEntity<List<FeedBack>> getAllFeedback() {
 
         List<FeedBack> feedBackList = feedBackService.findAllFeedback();
@@ -39,7 +39,7 @@ public class FeedBackController {
     }
 
     //VietNT  Feedback
-    @PostMapping("/createFeedback")
+    @PostMapping(value = "/createFeedback")
 
     public ResponseEntity<FeedbackDTO1> createFeedback(@RequestBody FeedbackDTO1 feedbackDTO1) {
         if (feedbackDTO1 == null){
@@ -52,7 +52,7 @@ public class FeedBackController {
 
     }
     //VietNT Delete feedback
-    @DeleteMapping("/delete-feedback/{id}")
+    @DeleteMapping(value = "/delete-feedback/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
 
         feedBackService.delete(id);
@@ -60,7 +60,7 @@ public class FeedBackController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
         //VietNT lấy id feedback
-    @GetMapping("/findById/{id}")
+    @GetMapping(value = "/findById/{id}")
     public ResponseEntity<FeedBack> findById(@PathVariable long id) {
         System.out.println(id);
         FeedBack feedBack= feedBackService.findFeedbackId(id);
@@ -83,7 +83,7 @@ public class FeedBackController {
     }
 
 
-    @GetMapping("/feedbacktypelist")
+    @GetMapping(value = "/feedbacktypelist")
     public ResponseEntity<List<FeedBackType>> getAllFeedbackType() {
         List<FeedBackType> feedBackTypeList = feedBackTypeService.findAllFeedbackType();
 

@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EquipmentController {
 
@@ -47,7 +47,7 @@ public class EquipmentController {
     }
 
     //Hiển thị danh sách Equipment _ PhapNT.
-    @GetMapping("/list-equipment")
+    @GetMapping(value = "/list-equipment")
     public ResponseEntity<List<Equipment>> listAllEquipment() {
         List<Equipment> equipments = equipmentService.getAllEquipment();
         if (equipments.isEmpty()) {
