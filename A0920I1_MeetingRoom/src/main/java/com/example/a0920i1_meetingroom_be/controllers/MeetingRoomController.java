@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/meeting-room")
 @RestController
 public class MeetingRoomController {
     @Autowired

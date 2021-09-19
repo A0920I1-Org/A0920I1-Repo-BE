@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api")
+@RequestMapping(value = "/api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EquipmentController {
 

@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping(value = "/feedback")
+@RequestMapping(value = "/api/feedback")
 
 public class FeedBackController {
     @Autowired

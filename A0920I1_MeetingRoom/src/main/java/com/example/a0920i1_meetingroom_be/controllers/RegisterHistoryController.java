@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-@RequestMapping("/registerHistory")
+@RequestMapping("/api/registerHistory")
 public class RegisterHistoryController {
     @Autowired
     OrderMeetingService orderMeetingService;

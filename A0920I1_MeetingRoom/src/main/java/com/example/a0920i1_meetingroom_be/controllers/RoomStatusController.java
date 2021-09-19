@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-@RequestMapping("/status-room")
+@RequestMapping("/api/status-room")
 public class RoomStatusController {
     @Autowired
     RoomStatusService roomStatusService;

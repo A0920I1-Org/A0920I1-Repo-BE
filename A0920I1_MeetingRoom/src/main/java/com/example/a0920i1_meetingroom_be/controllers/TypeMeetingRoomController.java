@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-@RequestMapping("/types-meeting-room")
+@RequestMapping("/api/types-meeting-room")
 public class TypeMeetingRoomController {
     @Autowired
     TypeMeetingRoomService typeMeetingRoomService;
