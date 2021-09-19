@@ -49,4 +49,15 @@ public class EquipmentDto {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    @Override
+    public String toString() {
+        return "EquipmentDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", stock=" + stock +
+                ", repairQuantity=" + repairQuantity +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }

@@ -44,8 +44,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable();
+//        config CORS
+        httpSecurity.cors();
         // dont authenticate this particular request
-        httpSecurity.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/login/authenticate").permitAll();
+        httpSecurity.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/api/authenticate").permitAll();
         // all other requests need to be authenticated
         httpSecurity.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/api/**").authenticated().and().
                 // make sure we use stateless session; session won't be used to
@@ -55,6 +57,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // Add a filter to validate the tokens with every request
         httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
     }
 
     //    TuHC
