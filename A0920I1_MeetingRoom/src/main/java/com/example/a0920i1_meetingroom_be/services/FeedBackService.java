@@ -8,7 +8,7 @@ import java.util.List;
 //feedbackSER TriNH
 public interface FeedBackService{
     void delete(Long id);
-    void handleFeedback(FeedbackDTO1 feedbackDTO);
+    void handleFeedback(FeedbackDTO1 feedbackDTO1);
     List<FeedBack> findAllFeedback();
     FeedBack findFeedbackId(long id);
     void updateFeedBack(Long id);
