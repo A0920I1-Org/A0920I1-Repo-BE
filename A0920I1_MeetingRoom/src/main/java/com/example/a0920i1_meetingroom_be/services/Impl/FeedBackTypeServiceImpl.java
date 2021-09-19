@@ -21,5 +21,4 @@ public class FeedBackTypeServiceImpl implements FeedBackTypeService {
         return feedBackTypeRepository.findAll();
     }
 
-
 }
