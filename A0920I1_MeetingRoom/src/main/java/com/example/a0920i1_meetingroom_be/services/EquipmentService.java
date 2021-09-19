@@ -19,7 +19,7 @@ public interface EquipmentService {
     //PhapNT
     void deleteEquipmentById(long id);
     //PhapNT
-    void updateEquipment(EquipmentDto equipmentDto);
+    void updateEquipment(EquipmentDto equipmentDto, long id);
     //PhapNT
     List<Equipment> searchName(String name);
 

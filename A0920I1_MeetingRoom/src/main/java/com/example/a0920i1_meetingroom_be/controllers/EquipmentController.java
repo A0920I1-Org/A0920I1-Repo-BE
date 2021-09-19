@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EquipmentController {
 
@@ -100,7 +100,7 @@ public class EquipmentController {
 //update - PhapNT
     @PutMapping("/update-equipment/{id}")
     public ResponseEntity<?> updateEquipment(@PathVariable("id") long id, @RequestBody EquipmentDto equipmentDto){
-        equipmentService.updateEquipment(equipmentDto);
+        equipmentService.updateEquipment(equipmentDto, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 //search - PhapNT

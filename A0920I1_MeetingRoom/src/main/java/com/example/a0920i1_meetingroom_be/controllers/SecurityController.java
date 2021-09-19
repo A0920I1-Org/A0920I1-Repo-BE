@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "login")
+@RequestMapping(value = "api")
 @CrossOrigin("http://localhost:4200")
 public class SecurityController {
     @Autowired
@@ -63,10 +63,5 @@ public class SecurityController {
     public ResponseEntity<?> getAllAccount(){
         return ResponseEntity.ok(accountService.getAllAccount());
     }
-
-//    @PostMapping(value = "/register")
-//    public ResponseEntity<?> saveUser(@RequestBody Account account) throws Exception {
-//        return ResponseEntity.ok(userDetailsService.save(account));
-//    }
 
 }
