@@ -48,6 +48,35 @@ public class FeedBack {
     @JoinColumn(name = "meetingroom_id", referencedColumnName = "id")
     private MeetingRoom meetingRoom;
 
+    public FeedBack() {
+    }
+
+    public FeedBack(long id, String title, String description, LocalDate dateFeedback, boolean isHandle, FeedBackType feedBackType, Account account, Notification notification, MeetingRoom meetingRoom, String content) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.dateFeedback = dateFeedback;
+        this.isHandle = isHandle;
+        this.feedBackType = feedBackType;
+        this.account = account;
+        this.notification = notification;
+        this.meetingRoom = meetingRoom;
+        this.content = content;
+    }
+
+    public FeedBack(long id, String title, String description, LocalDate dateFeedback, boolean isHandle, FeedBackType feedBackType, Account account, Notification notification, List<ImageFeedBack> imageFeedBackList, MeetingRoom meetingRoom, String content) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.dateFeedback = dateFeedback;
+        this.isHandle = isHandle;
+        this.feedBackType = feedBackType;
+        this.account = account;
+        this.notification = notification;
+        this.imageFeedBackList = imageFeedBackList;
+        this.meetingRoom = meetingRoom;
+        this.content = content;
+    }
 
     private String content;
 

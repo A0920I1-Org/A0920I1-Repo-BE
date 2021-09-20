@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 //feedbackSER TriNH
 public interface FeedBackService{
-    void delete(Long id);
+    void deleteFeedback(Long id);
     void handleFeedback(FeedbackDTO1 feedbackDTO1);
     List<FeedBack> findAllFeedback();
     FeedBack findFeedbackId(long id);

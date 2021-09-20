@@ -19,7 +19,7 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public FeedBack findFeedbackId(long id) {
-        return feedBackRepository.findById(id);
+        return feedBackRepository.findFeedbackById(id);
     }
 
     @Override
@@ -44,11 +44,9 @@ public class FeedBackServiceImpl implements FeedBackService {
     }
 
 
-
-
     @Override
-    public void delete(Long id) {
-        feedBackRepository.deleteById(id);
+    public void deleteFeedback(Long id) {
+        feedBackRepository.deleteFeedbackById(id);
     }
 
     @Override
