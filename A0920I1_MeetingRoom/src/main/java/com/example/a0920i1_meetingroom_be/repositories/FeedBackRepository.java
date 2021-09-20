@@ -21,7 +21,7 @@ public interface FeedBackRepository extends JpaRepository<FeedBack , Long> {
     @Query(
             value = "UPDATE feed_back " +
                     "SET feed_back.is_handle = 1 " +
-                    "WHERE feed_back.feed_back_type_id= 2 and feed_back.id = :id"
+                    "WHERE feed_back.feed_back_type_id=?1 and feed_back.id = :id"
             ,nativeQuery = true
     )
     void updateFeedBack(@Param("id") Long id);
@@ -41,7 +41,7 @@ public interface FeedBackRepository extends JpaRepository<FeedBack , Long> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO feed_back(date_feedback,description,is_handle, title,account_id,feed_back_type_id,meetingroom_id) VALUES (?1,?2,?3,?4,?5,?6,?7)", nativeQuery = true)
-    void createFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, int feedBackType, int meetingRoom);
+    void createFeedback(LocalDate dateFeedback, String description, boolean handle, String title, int account, String feedBackType, String meetingRoom);
 
 
 
@@ -52,7 +52,7 @@ public interface FeedBackRepository extends JpaRepository<FeedBack , Long> {
     @Modifying
     @Transactional
     @Query(value = " UPDATE feed_back SET date_feedback = ?1, description = ?2, is_handle = ?3, title = ?4, account_id = ?5, feed_back_type_id = ?6, meetingroom_id = ?7, content = ?8 WHERE id = ?9", nativeQuery = true)
-    void handleFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, int feedBackType, int meetingRoom, String content, String id);
+    void handleFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, String feedBackType, String meetingRoom, String content, String id);
     @Modifying
     @Transactional
     @Query(value = " DELETE FROM feed_back where id = ?1  ",nativeQuery = true)

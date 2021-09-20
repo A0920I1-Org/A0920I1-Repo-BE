@@ -33,7 +33,7 @@ public class FeedBack {
 
     @JsonManagedReference(value = "account")
     @ManyToOne
-    @JoinColumn(name="account_id" , referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
     @OneToOne(mappedBy = "feedBack")
@@ -48,20 +48,9 @@ public class FeedBack {
     @JoinColumn(name = "meetingroom_id", referencedColumnName = "id")
     private MeetingRoom meetingRoom;
 
-    public FeedBack() {
-    }
+  private String content;
 
-    public FeedBack(long id, String title, String description, LocalDate dateFeedback, boolean isHandle, FeedBackType feedBackType, Account account, Notification notification, MeetingRoom meetingRoom, String content) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.dateFeedback = dateFeedback;
-        this.isHandle = isHandle;
-        this.feedBackType = feedBackType;
-        this.account = account;
-        this.notification = notification;
-        this.meetingRoom = meetingRoom;
-        this.content = content;
+    public FeedBack() {
     }
 
     public FeedBack(long id, String title, String description, LocalDate dateFeedback, boolean isHandle, FeedBackType feedBackType, Account account, Notification notification, List<ImageFeedBack> imageFeedBackList, MeetingRoom meetingRoom, String content) {
@@ -78,7 +67,13 @@ public class FeedBack {
         this.content = content;
     }
 
-    private String content;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -86,30 +81,6 @@ public class FeedBack {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public boolean isHandle() {
-        return isHandle;
-    }
-
-    public void setHandle(boolean handle) {
-        isHandle = handle;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getDescription() {
@@ -128,12 +99,12 @@ public class FeedBack {
         this.dateFeedback = dateFeedback;
     }
 
-    public boolean isIsHandle() {
+    public boolean isHandle() {
         return isHandle;
     }
 
-    public void setIsHandle(boolean isHandle) {
-        this.isHandle = isHandle;
+    public void setHandle(boolean handle) {
+        isHandle = handle;
     }
 
     public FeedBackType getFeedBackType() {
@@ -176,5 +147,11 @@ public class FeedBack {
         this.meetingRoom = meetingRoom;
     }
 
-}
+    public String getContent() {
+        return content;
+    }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+}

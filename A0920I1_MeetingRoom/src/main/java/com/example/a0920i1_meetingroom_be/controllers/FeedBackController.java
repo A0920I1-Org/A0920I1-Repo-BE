@@ -2,16 +2,12 @@ package com.example.a0920i1_meetingroom_be.controllers;
 
 
 import com.example.a0920i1_meetingroom_be.models.dto.FeedbackDTO1;
-import com.example.a0920i1_meetingroom_be.models.dto.accountDto.AccountListDTO;
 import com.example.a0920i1_meetingroom_be.models.entity.*;
 import com.example.a0920i1_meetingroom_be.services.AccountService;
 import com.example.a0920i1_meetingroom_be.services.FeedBackService;
 import com.example.a0920i1_meetingroom_be.services.FeedBackTypeService;
 import com.example.a0920i1_meetingroom_be.services.MeetingRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +28,8 @@ public class FeedBackController {
     private MeetingRoomService meetingRoomService;
     @Autowired
     private AccountService accountService;
+
+
 
     //VietNT lấy list feedback
     @GetMapping(value = "/feedbacklist")
@@ -54,7 +52,7 @@ public class FeedBackController {
         if (feedbackDTO1 == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            feedBackService.createFeedback(feedbackDTO1.getDateFeedback(), feedbackDTO1.getDescription(), false, feedbackDTO1.getTitle(), feedbackDTO1.getAccount(), feedbackDTO1.getMeetingRoom(), feedbackDTO1.getFeedBackType());
+            feedBackService.createFeedback(feedbackDTO1.getDateFeedback(),feedbackDTO1.getDescription(),false,feedbackDTO1.getTitle(),feedbackDTO1.getAccount(),String.valueOf(feedbackDTO1.getMeetingRoom()),String.valueOf(feedbackDTO1.getFeedBackType()));
             return new ResponseEntity<>(feedbackDTO1, HttpStatus.OK);
         }
 
@@ -76,7 +74,7 @@ public class FeedBackController {
         System.out.print(id);
 
         FeedBack feedBack = feedBackService.findFeedbackId(id);
-             feedBack.setHandle(true);
+
         if (feedBack == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
@@ -88,16 +86,20 @@ public class FeedBackController {
     }
 
     //VietNT Handle feedback
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<FeedBack> updateVaccination(@PathVariable("id") Integer id, @RequestBody FeedbackDTO1 feedbackDTO1) {
+    @PatchMapping(value = "/update/{id}")
+    public ResponseEntity<FeedBack> updateVaccination(@PathVariable("id") long id, @RequestBody FeedbackDTO1 feedbackDTO1) {
+
         FeedBack feedBack = feedBackService.findFeedbackId(id);
+
         if (feedBack == null) {
             return new ResponseEntity<FeedBack>(HttpStatus.NOT_FOUND);
-        }
-        feedBackService.
-                handleFeedback(feedbackDTO1);
+        }else {
+            feedBack.setHandle(true);
+            feedBackService.handleFeedback(feedbackDTO1);
 
-        return new ResponseEntity<FeedBack>(feedBack, HttpStatus.OK);
+
+            return new ResponseEntity<FeedBack>(feedBack, HttpStatus.OK);
+        }
     }
 
 

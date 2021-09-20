@@ -15,6 +15,6 @@ public interface FeedBackService{
     void createFeedBack(String content, String description, LocalDate dateFeedback, boolean isHandle, String title,
                         int account, int feedBackType, int meetingroom_id, String imageFeedBackList);
 
-    void createFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, int feedBackType, int meetingRoom);
+    void createFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, String feedBackType, String meetingRoom);
 
 }
