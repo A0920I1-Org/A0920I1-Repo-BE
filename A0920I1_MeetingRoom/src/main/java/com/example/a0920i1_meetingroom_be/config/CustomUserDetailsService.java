@@ -21,8 +21,6 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
     private AccountRepository accountRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
 //    Tim kiem user dua theo username - TuHC
     @Override
@@ -39,11 +37,5 @@ public class CustomUserDetailsService implements UserDetailsService{
             return new User(username, account.getPassword(), grantedAuthorities);
         }
         throw new UsernameNotFoundException("User not found with the name " + username);
-    }
-
-//    Tao account - TuHC
-    public Account save(Account account) {
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        return accountRepository.save(account);
     }
 }

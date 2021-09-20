@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value = "/meetingRooms")
+@RequestMapping(value = "/api")
+@RestController
 public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService;
@@ -59,7 +60,7 @@ public class MeetingRoomController {
     }
 
     // chỉnh sửa phòng họp (Hoàng)
-    @PutMapping(value = "/update-meeting/{id}")
+    @PatchMapping(value = "/update-meeting/{id}")
     public ResponseEntity<?> updateMeetingRoom(@PathVariable("id") long id, @RequestBody MeetingRoomDto meetingRoomDto) {
         meetingRoomService.updateMeeting(meetingRoomDto);
         return new ResponseEntity<>(HttpStatus.OK);

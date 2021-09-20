@@ -44,6 +44,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable();
+//        config CORS
+        httpSecurity.cors();
         // dont authenticate this particular request
         httpSecurity.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/api/authenticate").permitAll();
         // all other requests need to be authenticated
@@ -55,6 +57,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // Add a filter to validate the tokens with every request
         httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
     }
 
     //    TuHC

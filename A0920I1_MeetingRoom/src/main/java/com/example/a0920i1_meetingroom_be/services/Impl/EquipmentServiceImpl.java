@@ -46,9 +46,9 @@ public class EquipmentServiceImpl  implements EquipmentService {
     }
     //PhapNT-UpdateEquipment
     @Override
-    public void updateEquipment(EquipmentDto equipmentDto) {
+    public void updateEquipment(EquipmentDto equipmentDto, long id) {
         equipmentRepository.updateEquipment(equipmentDto.getName(),equipmentDto.getStock(),
-                equipmentDto.getRepairQuantity(),equipmentDto.getImageUrl(),equipmentDto.getId());
+                equipmentDto.getRepairQuantity(),equipmentDto.getImageUrl(),id);
     }
     //PhapNT-searchNameEquipment.
     @Override
