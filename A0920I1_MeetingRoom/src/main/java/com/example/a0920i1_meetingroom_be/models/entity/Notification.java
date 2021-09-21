@@ -1,8 +1,5 @@
 package com.example.a0920i1_meetingroom_be.models.entity;
 
-
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;

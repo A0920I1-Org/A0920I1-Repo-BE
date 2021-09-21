@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/api/meeting-room")
-@RestController
 public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService;
@@ -116,7 +116,7 @@ public class MeetingRoomController {
     }
 
     // huệ tạo 9/9/2021, chức năng thêm mới phòng họp bằng cách sử dụng đối tượng dto
-    @PostMapping(value = "/create-meeting")
+    @PostMapping(value = "")
     public ResponseEntity<?> createMeeting(@RequestBody MeetingRoomDto meetingRoom){
 
         meetingRoomService.saveMeetingRoom(meetingRoom.getName().trim(),

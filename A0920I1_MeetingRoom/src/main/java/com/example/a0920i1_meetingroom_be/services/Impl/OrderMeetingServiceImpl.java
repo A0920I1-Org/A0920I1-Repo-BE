@@ -176,7 +176,7 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                             float daysBetweenForCalculator = getDaysBetween(
                                     String.valueOf(statisticList.get(i).getDateCheckin()),
                                     String.valueOf(statisticList.get(i).getDateCheckout()));
-                            holDays[j] += daysBetweenForCalculator;
+                            holDays[j] += daysBetweenForCalculator + 1;
 
                             numberHoursUses[j] += getTimeDiff * daysBetweenForCalculator;
 

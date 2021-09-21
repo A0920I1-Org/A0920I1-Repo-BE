@@ -13,21 +13,6 @@ public class FeedbackDTO1 {
     private int account;
     private String content;
 
-    public FeedbackDTO1() {
-    }
-
-    public FeedbackDTO1(long id, String title, String description, LocalDate dateFeedback, boolean isHandle, int feedBackType, int meetingRoom, int account, String content) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.dateFeedback = dateFeedback;
-        this.isHandle = isHandle;
-        this.feedBackType = feedBackType;
-        this.meetingRoom = meetingRoom;
-        this.account = account;
-        this.content = content;
-    }
-
     public long getId() {
         return id;
     }
