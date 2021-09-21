@@ -41,9 +41,9 @@ public class SecurityController {
                     authenticationRequest.getUsername(), authenticationRequest.getPassword()));
         } catch (DisabledException e) {
 //            throw new Exception("USER_DISABLED", e);
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (BadCredentialsException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
