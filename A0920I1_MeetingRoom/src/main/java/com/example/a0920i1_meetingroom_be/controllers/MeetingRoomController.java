@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/meeting-room")
 public class MeetingRoomController {
     @Autowired
     MeetingRoomService meetingRoomService;

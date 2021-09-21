@@ -2,8 +2,10 @@ package com.example.a0920i1_meetingroom_be.controllers;
 
 
 import com.example.a0920i1_meetingroom_be.models.dto.FeedbackDTO1;
+import com.example.a0920i1_meetingroom_be.models.entity.Account;
 import com.example.a0920i1_meetingroom_be.models.entity.FeedBack;
 import com.example.a0920i1_meetingroom_be.models.entity.FeedBackType;
+import com.example.a0920i1_meetingroom_be.services.AccountService;
 import com.example.a0920i1_meetingroom_be.services.FeedBackService;
 import com.example.a0920i1_meetingroom_be.services.FeedBackTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +18,45 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping(value = "/feedback")
+@RequestMapping(value = "/api/feedback")
 
 public class FeedBackController {
     @Autowired
     private FeedBackService  feedBackService;
+
     @Autowired
     private FeedBackTypeService feedBackTypeService;
 
-    //VietNT lấy list feedback
-    @GetMapping(value = "/feedbacklist")
-    public ResponseEntity<List<FeedBack>> getAllFeedback() {
 
-        List<FeedBack> feedBackList = feedBackService.findAllFeedback();
+    @Autowired
+    private AccountService accountService;
+//    //VietNT lấy list feedback
+//    @GetMapping(value = "/feedback-list")
+//    public ResponseEntity<List<FeedBack>> getAllFeedback() {
+//        List<FeedBack> feedBackList = feedBackService.findAllFeedback();
+//        if (feedBackList.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } else {
+//            return new ResponseEntity<>(feedBackList, HttpStatus.OK);
+//        }
+//    }
 
-        if (feedBackList.isEmpty()) {
+    //Viet lấy Account
+    @GetMapping(value = "/feedbackAccount")
+    public ResponseEntity<List<Account>> getAllAccountList(){
+        List<Account> accountList = this.accountService.getAllAccount();
+        if (accountList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-
-            return new ResponseEntity<>(feedBackList, HttpStatus.OK);
         }
+        return new ResponseEntity<>(accountList, HttpStatus.OK);
+    }
+
+    //VietNT lấy list feedback
+    @GetMapping(value = "/feedback-list")
+    public List<FeedBack> getAllFeedback() {
+
+        return feedBackService.findAllFeedback();
+
     }
 
     //VietNT  Feedback

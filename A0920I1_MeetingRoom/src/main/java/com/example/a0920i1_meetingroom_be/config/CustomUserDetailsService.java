@@ -21,8 +21,6 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
     private AccountRepository accountRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
 //    Tim kiem user dua theo username - TuHC
     @Override

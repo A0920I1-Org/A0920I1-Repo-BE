@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/feedback")
+@RequestMapping("/api/feedback")
 @CrossOrigin(origins ="http://localhost:4200")
 //chuc nang TriNH
 public class TechnicalFeedbackController {

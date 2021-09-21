@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-@RequestMapping("/statistical")
+@RequestMapping("/api/statistical")
 public class StatisticController {
     @Autowired
     OrderMeetingService orderMeetingService;
