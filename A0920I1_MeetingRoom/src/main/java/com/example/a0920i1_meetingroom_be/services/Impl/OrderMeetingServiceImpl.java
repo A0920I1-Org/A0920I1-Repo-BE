@@ -181,7 +181,6 @@ public class OrderMeetingServiceImpl implements OrderMeetingService {
                             numberHoursUses[j] += getTimeDiff * daysBetweenForCalculator;
 
                             break;
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

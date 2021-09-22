@@ -7,9 +7,9 @@ public class FeedbackDTO1 {
     private String title;
     private String description;
     private LocalDate dateFeedback;
-    private boolean isHandle;
-    private int feedBackType;
-    private int meetingRoom;
+    private boolean handle;
+    private String feedBackType;
+    private String meetingRoom;
     private int account;
     private String content;
 
@@ -46,26 +46,26 @@ public class FeedbackDTO1 {
     }
 
     public boolean isHandle() {
-        return isHandle;
+        return handle;
     }
 
     public void setHandle(boolean handle) {
-        isHandle = handle;
+        this.handle = handle;
     }
 
-    public int getFeedBackType() {
+    public String getFeedBackType() {
         return feedBackType;
     }
 
-    public void setFeedBackType(int feedBackType) {
+    public void setFeedBackType(String feedBackType) {
         this.feedBackType = feedBackType;
     }
 
-    public int getMeetingRoom() {
+    public String getMeetingRoom() {
         return meetingRoom;
     }
 
-    public void setMeetingRoom(int meetingRoom) {
+    public void setMeetingRoom(String meetingRoom) {
         this.meetingRoom = meetingRoom;
     }
 

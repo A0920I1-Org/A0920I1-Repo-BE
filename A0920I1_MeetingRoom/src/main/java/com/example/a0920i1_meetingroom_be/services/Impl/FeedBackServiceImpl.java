@@ -19,7 +19,7 @@ public class FeedBackServiceImpl implements FeedBackService {
 
     @Override
     public FeedBack findFeedbackId(long id) {
-        return feedBackRepository.findById(id);
+        return feedBackRepository.findFeedbackById(id);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class FeedBackServiceImpl implements FeedBackService {
     }
 
     @Override
-    public void createFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, int feedBackType, int meetingRoom) {
+    public void createFeedback(LocalDate dateFeedback, String description, boolean isHandle, String title, int account, String feedBackType, String meetingRoom) {
         feedBackRepository.createFeedback(dateFeedback,description,isHandle,title,account,feedBackType,meetingRoom);
     }
 
@@ -44,16 +44,14 @@ public class FeedBackServiceImpl implements FeedBackService {
     }
 
 
-
-
     @Override
-    public void delete(Long id) {
-        feedBackRepository.deleteById(id);
+    public void deleteFeedback(Long id) {
+        feedBackRepository.deleteFeedbackById(id);
     }
 
     @Override
     public void handleFeedback(FeedbackDTO1 feedbackDTO1) {
-        feedBackRepository.handleFeedback(feedbackDTO1.getDateFeedback(),feedbackDTO1.getDescription(),feedbackDTO1.isHandle(),feedbackDTO1.getTitle(),feedbackDTO1.getAccount(),feedbackDTO1.getFeedBackType(),feedbackDTO1.getMeetingRoom(),feedbackDTO1.getContent(),String.valueOf(feedbackDTO1.getId()));
+        feedBackRepository.handleFeedback(feedbackDTO1.getDateFeedback(),feedbackDTO1.getDescription(),feedbackDTO1.isHandle(),feedbackDTO1.getTitle(),String.valueOf(feedbackDTO1.getAccount()),Integer.parseInt(feedbackDTO1.getFeedBackType()),String.valueOf(feedbackDTO1.getMeetingRoom()),feedbackDTO1.getContent(),String.valueOf(feedbackDTO1.getId()));
     }
 
 }
